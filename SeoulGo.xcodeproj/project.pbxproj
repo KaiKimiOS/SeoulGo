@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0103562B3F1CB10042797F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0103552B3F1CB10042797F /* HomeView.swift */; };
+		2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */; };
 		2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */; };
 		2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE602B3F1A7500396357 /* ContentView.swift */; };
 		2A6BCE632B3F1A7500396357 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE622B3F1A7500396357 /* Item.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A0103552B3F1CB10042797F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulDataModel.swift; sourceTree = "<group>"; };
 		2A6BCE5B2B3F1A7500396357 /* SeoulGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoApp.swift; sourceTree = "<group>"; };
 		2A6BCE602B3F1A7500396357 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 			children = (
 				2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */,
 				2A6BCE602B3F1A7500396357 /* ContentView.swift */,
+				2A0103552B3F1CB10042797F /* HomeView.swift */,
+				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
 				2A6BCE622B3F1A7500396357 /* Item.swift */,
 				2A6BCE642B3F1A7600396357 /* Assets.xcassets */,
 				2A6BCE662B3F1A7600396357 /* Preview Content */,
@@ -261,6 +267,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */,
+				2A0103562B3F1CB10042797F /* HomeView.swift in Sources */,
+				2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */,
 				2A6BCE632B3F1A7500396357 /* Item.swift in Sources */,
 				2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */,
 			);
