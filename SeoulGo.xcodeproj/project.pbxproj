@@ -11,7 +11,6 @@
 		2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */; };
 		2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */; };
 		2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE602B3F1A7500396357 /* ContentView.swift */; };
-		2A6BCE632B3F1A7500396357 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE622B3F1A7500396357 /* Item.swift */; };
 		2A6BCE652B3F1A7600396357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BCE642B3F1A7600396357 /* Assets.xcassets */; };
 		2A6BCE682B3F1A7600396357 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BCE672B3F1A7600396357 /* Preview Assets.xcassets */; };
 		2A6BCE722B3F1A7600396357 /* SeoulGoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE712B3F1A7600396357 /* SeoulGoTests.swift */; };
@@ -42,7 +41,6 @@
 		2A6BCE5B2B3F1A7500396357 /* SeoulGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoApp.swift; sourceTree = "<group>"; };
 		2A6BCE602B3F1A7500396357 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2A6BCE622B3F1A7500396357 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2A6BCE642B3F1A7600396357 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A6BCE672B3F1A7600396357 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A6BCE6D2B3F1A7600396357 /* SeoulGoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeoulGoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +102,6 @@
 				2A6BCE602B3F1A7500396357 /* ContentView.swift */,
 				2A0103552B3F1CB10042797F /* HomeView.swift */,
 				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
-				2A6BCE622B3F1A7500396357 /* Item.swift */,
 				2A6BCE642B3F1A7600396357 /* Assets.xcassets */,
 				2A6BCE662B3F1A7600396357 /* Preview Content */,
 			);
@@ -269,7 +266,6 @@
 				2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */,
 				2A0103562B3F1CB10042797F /* HomeView.swift in Sources */,
 				2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */,
-				2A6BCE632B3F1A7500396357 /* Item.swift in Sources */,
 				2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
