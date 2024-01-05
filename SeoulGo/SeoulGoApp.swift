@@ -12,7 +12,7 @@ import SwiftData
 struct SeoulGoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
  
     }

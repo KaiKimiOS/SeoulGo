@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2A0103562B3F1CB10042797F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0103552B3F1CB10042797F /* HomeView.swift */; };
 		2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */; };
+		2A465B032B46833F00345046 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A465B022B46833F00345046 /* Network.swift */; };
 		2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */; };
 		2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE602B3F1A7500396357 /* ContentView.swift */; };
 		2A6BCE652B3F1A7600396357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BCE642B3F1A7600396357 /* Assets.xcassets */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		2A0103552B3F1CB10042797F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulDataModel.swift; sourceTree = "<group>"; };
+		2A465B022B46833F00345046 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		2A465B042B468A1A00345046 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A6BCE5B2B3F1A7500396357 /* SeoulGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoApp.swift; sourceTree = "<group>"; };
 		2A6BCE602B3F1A7500396357 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,10 +101,12 @@
 		2A6BCE5D2B3F1A7500396357 /* SeoulGo */ = {
 			isa = PBXGroup;
 			children = (
+				2A465B042B468A1A00345046 /* Info.plist */,
 				2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */,
 				2A6BCE602B3F1A7500396357 /* ContentView.swift */,
 				2A0103552B3F1CB10042797F /* HomeView.swift */,
 				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
+				2A465B022B46833F00345046 /* Network.swift */,
 				2A6BCE642B3F1A7600396357 /* Assets.xcassets */,
 				2A6BCE662B3F1A7600396357 /* Preview Content */,
 			);
@@ -263,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A465B032B46833F00345046 /* Network.swift in Sources */,
 				2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */,
 				2A0103562B3F1CB10042797F /* HomeView.swift in Sources */,
 				2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */,
@@ -433,6 +439,7 @@
 				DEVELOPMENT_TEAM = M76T92YWCS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SeoulGo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -466,6 +473,7 @@
 				DEVELOPMENT_TEAM = M76T92YWCS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SeoulGo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

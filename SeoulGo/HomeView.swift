@@ -7,26 +7,61 @@
 
 import SwiftUI
 
-//URL http://data.seoul.go.kr/dataList/OA-2266/S/1/datasetView.do
-//인증키 647879614473646636395064566e6a
-//http://openAPI.seoul.go.kr:8088/(인증키)/xml/ListPublicReservationSport/1/5/테니스장
-
 struct HomeView: View {
     
-    @State var dataList:[String] = ["test"]
+    @ObservedObject var information = Network()
     
+    @State var placeInformation: [Row] = []
+    @State var abcd:PlaceName = .songpa
+    enum PlaceName:String {
+        case songpa = "송파구"
+        case gangnam = "강남구"
+    }
+    
+    // 종목별 enum처리
+    // 지역별 enum처리
     var body: some View {
         VStack {
             
+            List {
+                //                ForEach(information.store, id: \.ListPublicReservationSport.listTotalCount){ info in
+                //
+                //                    ForEach(0..<information.pageNumbers) { i in
+                //                        Text("\(i)" + "\(info.ListPublicReservationSport.resultDetails[i].placeName)")
+                //                    }
+                //
+                //
+                //
+                //                }
+                
+                ForEach(placeInformation, id: \.serviceID) { information in
+                    Text(information.serviceName)
+                }
+            }
             
-            List(dataList, id: \.self) { item in
-                Text(item)
+            Text("\(information.pageNumbers)")
+            
+            Picker("픽픽", selection: $abcd) {
+                Text("송파구").tag(PlaceName.songpa)
+                Text("강남구").tag(PlaceName.gangnam)
             }
             Button{
-                requestData()
+                Task {
+                    await information.getData(sportName: "축구장")
+                    
+                }
                 
             } label: {
                 Text("Button")
+            }
+            
+            
+            Button{
+                placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == "송파구"
+                }
+                print(placeInformation)
+            } label: {
+                Text("Button2")
             }
             .buttonStyle(.bordered)
             
@@ -34,16 +69,16 @@ struct HomeView: View {
         }
     }
     
-    func requestData() {
-        do{
-            let decode = try JSONDecoder().decode(SeoulDataModel.self, from: dummy.data(using: .utf8)!)
-            print(decode)
-            dataList.append("\(decode.ListPublicReservationSport.listTotalCount)")
-            
-        } catch {
-            print(error)
-        }
-    }
+    //    func requestData() {
+    //        do{
+    //            let decode = try JSONDecoder().decode(SeoulDataModel.self, from: dummy.data(using: .utf8)!)
+    //            print(decode)
+    //            dataList.append("\(decode.ListPublicReservationSport.resultDetails[0])")
+    //
+    //        } catch {
+    //            print(error)
+    //        }
+    //    }
     
     
 }
@@ -51,10 +86,6 @@ struct HomeView: View {
 
 
 
-
-let dummy = """
-{"ListPublicReservationSport":{"list_total_count":219,"RESULT":{"CODE":"INFO-000","MESSAGE":"정상 처리되었습니다"},"row":[{"GUBUN":"자체","SVCID":"S231108093742281723","MAXCLASSNM":"체육시설","MINCLASSNM":"테니스장","SVCSTATNM":"접수중","SVCNM":"테니스장1 (평일) - 2024년 응봉공원(대현산배수지)","PAYATNM":"유료","PLACENM":"응봉공원","USETGTINFO":" 제한없음","SVCURL":"https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S231108093742281723","X":"127.02182026085195","Y":"37.5569473910838","SVCOPNBGNDT":"2023-12-02 00:00:00.0","SVCOPNENDDT":"2024-12-31 00:00:00.0","RCPTBGNDT":"2023-12-02 09:00:00.0","RCPTENDDT":"2024-12-31 05:12:00.0","AREANM":"성동구","IMGURL":"https://yeyak.seoul.go.kr/web/common/file/FileDown.do?file_id=16994039650496JDTCJO9Y6KZU3GT293H0JBDX","DTLCONT":"1. 공공시설 예약서비스 이용시 필수 준수사항모든 서비스의 이용은 담당 기관의 규정에 따릅니다. 각 시설의 규정 및 허가조건을 반드시 준수하여야 합니다.각 관리기관의 시설물과 부대시설을 이용함에 있어 담당자들과 협의 후 사용합니다.각 관리기관의 사고 발생시 서울시청에서는 어떠한 책임도 지지않습니다.시설이용료 납부는 각 관리기관에서 규정에 준 합니다.본 사이트와 각 관리기관의 규정을 위반할시에는 시설이용 취소 및 시설이용 불허의 조치를 취할 수 있습니다.접수시간을 기준으로 브라우저에서 새로고침을 하면 변경된 정보를 볼 수 있습니다.2. 시설예약비회원일 경우에는 실명 확인을 통하여 사용하실 수 있으며 서울시 통합 회원에 가입 하시게 되면 서울시에서 제공하는 다양하고 많은 혜택을 받으실 수 있습니다.3. 상세내용◎ 시설현황\r\n- 테니스코트(잔디) 2면, 심판대 2조, 능형망휀스\r\n\r\n◎ 이용요금(시간당 이용가능)\r\n- 평일 : 1시간 4,000원 (2시간 초과 시 추가 1시간당 2,000원)\r\n- 주말, 공휴일 : 1시간 5,200원 (2시간 초과 시 추가 1시간당 2,600원)\r\n\r\n※ 테니스장 관리 운영상 사용 1일 전까지 취소가능 함\r\n※ 당일 우천 등으로 테니스장 사용을 못할 경우 취소 및 환불처리\r\n\r\n◎ 찾아오시는 방법\r\n- 공원정문(관리사무소) 남측배수지 방향으로 100m에 있습니다.\r\n4. 주의사항\r\n※ 당일 우천 등으로 테니스장 사용을 못할 경우 취소 및 환불처리\r\n\r\n\r\n※ 체육시설 오픈시간\r\n\r\n 3월 ~ 10월 - 07:00 ~ 19:00\r\n\r\n  11월 ~ 2월 - 08:00 ~ 17:00\r\n","TELNO":"02-2293-7646","V_MIN":"07:00","V_MAX":"19:00","REVSTDDAYNM":"이용일","REVSTDDAY":"1"},{"GUBUN":"자체","SVCID":"S231108104359716676","MAXCLASSNM":"체육시설","MINCLASSNM":"테니스장","SVCSTATNM":"접수중","SVCNM":"테니스장2 (평일) - 2024년 응봉공원(대현산배수지)","PAYATNM":"유료","PLACENM":"응봉공원","USETGTINFO":" 제한없음","SVCURL":"https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S231108104359716676","X":"127.02182026085195","Y":"37.5569473910838","SVCOPNBGNDT":"2023-12-02 00:00:00.0","SVCOPNENDDT":"2024-12-31 00:00:00.0","RCPTBGNDT":"2023-12-02 09:00:00.0","RCPTENDDT":"2024-12-31 07:12:00.0","AREANM":"성동구","IMGURL":"https://yeyak.seoul.go.kr/web/common/file/FileDown.do?file_id=1699407981833BDABH9JL28HPGSME2RMXBEFMX","DTLCONT":"1. 공공시설 예약서비스 이용시 필수 준수사항모든 서비스의 이용은 담당 기관의 규정에 따릅니다. 각 시설의 규정 및 허가조건을 반드시 준수하여야 합니다.각 관리기관의 시설물과 부대시설을 이용함에 있어 담당자들과 협의 후 사용합니다.각 관리기관의 사고 발생시 서울시청에서는 어떠한 책임도 지지않습니다.시설이용료 납부는 각 관리기관에서 규정에 준 합니다.본 사이트와 각 관리기관의 규정을 위반할시에는 시설이용 취소 및 시설이용 불허의 조치를 취할 수 있습니다.접수시간을 기준으로 브라우저에서 새로고침을 하면 변경된 정보를 볼 수 있습니다.2. 시설예약비회원일 경우에는 실명 확인을 통하여 사용하실 수 있으며 서울시 통합 회원에 가입 하시게 되면 서울시에서 제공하는 다양하고 많은 혜택을 받으실 수 있습니다.3. 상세내용◎ 시설현황\r\n- 테니스코트(잔디) 2면, 심판대 2조, 능형망휀스\r\n\r\n\r\n\r\n◎ 이용요금(시간당 이용가능)\r\n- 평일 : 1시간 4,000원 (2시간 초과 시 추가 1시간당 2,000원)\r\n- 주말, 공휴일 : 1시간 5.200원 (2시간 초과 시 추가 1시간당 2,600원)\r\n\r\n※ 테니스장 관리 운영상 사용 1일 전까지 취소가능 함\r\n※ 당일 우천 등으로 테니스장 사용을 못할경우 취소 및 환불처리\r\n\r\n\r\n◎ 찾아오시는 방법\r\n- 공원정문(관리사무소) 남측배수지 방향으로 100m에 있습니다.\r\n-응봉공원관리사무소02-2293-7646\r\n4. 주의사항※ 당일 우천 등으로 테니스장 사용을 못할 경우 취소 및 환불처리\r\n\r\n※ 체육시설 오픈시간\r\n\r\n 3월 ~ 10월 - 07:00 ~ 19:00\r\n\r\n 11월 ~ 2월 - 08:00 ~ 17:00\r\n\r\n\r\n","TELNO":"02-2293-7646","V_MIN":"07:00","V_MAX":"19:00","REVSTDDAYNM":"이용일","REVSTDDAY":"1"},{"GUBUN":"자체","SVCID":"S231108110459780710","MAXCLASSNM":"체육시설","MINCLASSNM":"테니스장","SVCSTATNM":"예약마감","SVCNM":"테니스장1 (토/일/공휴일) - 2024년 응봉공원(대현산배수지)","PAYATNM":"유료","PLACENM":"응봉공원","USETGTINFO":" 제한없음","SVCURL":"https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S231108110459780710","X":"127.02182026085195","Y":"37.5569473910838","SVCOPNBGNDT":"2023-12-02 00:00:00.0","SVCOPNENDDT":"2024-12-31 00:00:00.0","RCPTBGNDT":"2023-12-02 09:00:00.0","RCPTENDDT":"2024-12-31 05:12:00.0","AREANM":"성동구","IMGURL":"https://yeyak.seoul.go.kr/web/common/file/FileDown.do?file_id=1699409560888JURRFLK1QSJH8IW1F9DWPG813","DTLCONT":"1. 공공시설 예약서비스 이용시 필수 준수사항모든 서비스의 이용은 담당 기관의 규정에 따릅니다. 각 시설의 규정 및 허가조건을 반드시 준수하여야 합니다.각 관리기관의 시설물과 부대시설을 이용함에 있어 담당자들과 협의 후 사용합니다.각 관리기관의 사고 발생시 서울시청에서는 어떠한 책임도 지지않습니다.시설이용료 납부는 각 관리기관에서 규정에 준 합니다.본 사이트와 각 관리기관의 규정을 위반할시에는 시설이용 취소 및 시설이용 불허의 조치를 취할 수 있습니다.접수시간을 기준으로 브라우저에서 새로고침을 하면 변경된 정보를 볼 수 있습니다.2. 시설예약비회원일 경우에는 실명 확인을 통하여 사용하실 수 있으며 서울시 통합 회원에 가입 하시게 되면 서울시에서 제공하는 다양하고 많은 혜택을 받으실 수 있습니다.3. 상세내용◎ 시설현황\r\n- 테니스코트(잔디) 2면, 심판대 2조, 능형망휀스\r\n\r\n◎ 이용요금(시간당 이용가능)\r\n- 평일 : 1시간 4,000원 (2시간 초과 시 추가 1시간당 2,000원)\r\n- 주말, 공휴일 : 1시간 5,200원 (2시간 초과 시 추가 1시간당 2,600원)\r\n\r\n※테니스장 관리 운영상 사용 1일 전까지 취소가능 함\r\n※ 당일 우천 등으로 테니스장 사용을 못할 경우 취소 및 환불처리\r\n\r\n◎ 찾아오시는 방법\r\n- 공원정문(관리사무소) 남측배수지 방향으로 100m에 있습니다.\r\n\r\n4. 주의사항\r\n※ 당일 우천 등으로 테니스장 사용을 못할 경우 취소 및 환불처리\r\n\r\n※ 체육시설 오픈시간\r\n\r\n 3월 ~ 10월 - 07:00 ~ 19:00\r\n\r\n 11월 ~ 2월 - 08:00 ~ 17:00\r\n\r\n\r\n","TELNO":"02-2293-7646","V_MIN":"07:00","V_MAX":"19:00","REVSTDDAYNM":"이용일","REVSTDDAY":"1"},{"GUBUN":"자체","SVCID":"S231108111805019183","MAXCLASSNM":"체육시설","MINCLASSNM":"테니스장","SVCSTATNM":"예약마감","SVCNM":"테니스장2 (토/일/공휴일) - 2024년 응봉공원(대현산배수지)","PAYATNM":"유료","PLACENM":"응봉공원","USETGTINFO":" 제한없음","SVCURL":"https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S231108111805019183","X":"127.02182026085195","Y":"37.5569473910838","SVCOPNBGNDT":"2023-12-02 00:00:00.0","SVCOPNENDDT":"2024-12-31 00:00:00.0","RCPTBGNDT":"2023-12-02 09:00:00.0","RCPTENDDT":"2024-12-31 05:12:00.0","AREANM":"성동구","IMGURL":"https://yeyak.seoul.go.kr/web/common/file/FileDown.do?file_id=1699409990577JQ5Q8OSPB4OOVOBT2CRDHEHDZ","DTLCONT":"1. 공공시설 예약서비스 이용시 필수 준수사항모든 서비스의 이용은 담당 기관의 규정에 따릅니다. 각 시설의 규정 및 허가조건을 반드시 준수하여야 합니다.각 관리기관의 시설물과 부대시설을 이용함에 있어 담당자들과 협의 후 사용합니다.각 관리기관의 사고 발생시 서울시청에서는 어떠한 책임도 지지않습니다.시설이용료 납부는 각 관리기관에서 규정에 준 합니다.본 사이트와 각 관리기관의 규정을 위반할시에는 시설이용 취소 및 시설이용 불허의 조치를 취할 수 있습니다.접수시간을 기준으로 브라우저에서 새로고침을 하면 변경된 정보를 볼 수 있습니다.2. 시설예약비회원일 경우에는 실명 확인을 통하여 사용하실 수 있으며 서울시 통합 회원에 가입 하시게 되면 서울시에서 제공하는 다양하고 많은 혜택을 받으실 수 있습니다.3. 상세내용◎ 시설현황\r\n- 테니스코트(잔디) 2면, 심판대 2조, 능형망휀스\r\n\r\n◎ 이용요금(시간당 이용가능)\r\n- 평일 : 1시간 4,000원 (2시간 초과 시 추가 1시간당 2,000원)\r\n- 주말, 공휴일 : 1시간 5,200원 (2시간 초과 시 추가 1시간당 2,600원)\r\n\r\n※ 테니스장 관리 운영상 사용 1일 전까지 취소가능 함\r\n※ 당일 우천 등으로 테니스장 사용을 못할경우 취소 및 환불\r\n\r\n◎ 찾아오시는 방법\r\n- 공원정문(관리사무소) 남측배수지 방향으로 100m에 있습니다.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n4. 주의사항※ 당일 우천 등으로 테니스장 사용을 못할 경우 취소 및 환불처리\r\n\r\n※ 체육시설 오픈시간\r\n\r\n 3월 ~ 10월 - 07:00 ~ 19:00\r\n\r\n 11월 ~ 2월 - 08:00 ~ 17:00\r\n\r\n\r\n","TELNO":"02-2293-7646","V_MIN":"07:00","V_MAX":"19:00","REVSTDDAYNM":"이용일","REVSTDDAY":"1"},{"GUBUN":"자체","SVCID":"S200903171905941615","MAXCLASSNM":"체육시설","MINCLASSNM":"테니스장","SVCSTATNM":"접수중","SVCNM":"보라매공원테니스장 1번코트(평일주간)","PAYATNM":"유료","PLACENM":"보라매공원>테니스장","USETGTINFO":" 제한없음","SVCURL":"https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S200903171905941615","X":"126.91605","Y":"37.49101","SVCOPNBGNDT":"2022-09-01 00:00:00.0","SVCOPNENDDT":"2025-09-01 00:00:00.0","RCPTBGNDT":"2022-09-22 00:00:00.0","RCPTENDDT":"2025-09-01 07:09:00.0","AREANM":"동작구","IMGURL":"https://yeyak.seoul.go.kr/web/common/file/FileDown.do?file_id=SVC_IMG_FILE_276094","DTLCONT":"1. 공공시설 예약서비스 이용시 필수 준수사항모든 서비스의 이용은 담당 기관의 규정에 따릅니다. 각 시설의 규정 및 허가조건을 반드시 준수하여야 합니다.각 관리기관의 시설물과 부대시설을 이용함에 있어 담당자들과 협의 후 사용합니다.각 관리기관의 사고 발생시 서울시청에서는 어떠한 책임도 지지않습니다.시설이용료 납부는 각 관리기관에서 규정에 준 합니다.본 사이트와 각 관리기관의 규정을 위반할시에는 시설이용 취소 및 시설이용 불허의 조치를 취할 수 있습니다.접수시간을 기준으로 브라우저에서 새로고침을 하면 변경된 정보를 볼 수 있습니다.2. 시설예약비회원일 경우에는 실명 확인을 통하여 사용하실 수 있으며 서울시 통합 회원에 가입 하시게 되면 서울시에서 제공하는 다양하고 많은 혜택을 받으실 수 있습니다.3. 상세내용보라매공원 테니스장을 방문해 주셔서 감사합니다.\r\n\r\n홈페이지\r\nhttp://hawktennis.kr/\r\n\r\n\r\n\r\n* 1팀 1일 2시간까지 예약가능\r\n\r\n* 예약,환불 레슨문의: 02-841-8808(7)\r\n\r\n* 예약을 하면서 부정한 명령(불법 매크로 사용 등) 및 정당한 접근권한 없이 정보통신망(예약시스템)에 침입할 경우,\r\n형법 제314조 및 정보 통신 이용촉진 및 정보보호 등에 관한 법률 제48조에 의거 처벌될 수 있음을 유의하여 주시기 바랍니다.\r\n\r\n\r\n\r\n1. 사용료(기본 2시간)\r\n\r\n- 평일(야간 제외): 8,000원\r\n\r\n- 주말, 공휴일 및 야간: 10,400원 (18시 이후)\r\n\r\n2. 매일 오전 9시 예약시스템 오픈\r\n\r\n- 익일부터 30일까지 예약 가능\r\n\r\n3. 환불 규정\r\n\r\n- 이용 당일 취소 불가\r\n\r\n- 코트 사용 1일 전 취소 시 20% 환불\r\n\r\n- 코트 사용 2일 전 취소 시 50% 환불\r\n\r\n- 우천 등 천재지변 시 100% 환불\r\n\r\n- 잔디코트 사용시, 우천뒤 1시간 후에 코트 사용이 가능합니다.\r\n\r\n\r\n\r\n* 테니스코트 이용 양도-양수 금지 안내\r\n\r\n- 최근 테니스코트 예약자가 이용할 수 없는 사정이 발생할 경우 취소하지 않고, 테니스 친구 찾기등의 사이트를 이용 코트를 양도하려는 사례가 있는 것으로 보입니다.\r\n\r\n- 이는 공유재산 및 물품관리법 등을 위반한 것으로, 이러한 행위는 관련 법령에 따라 처벌 받을 수 있음을 알려드립니다.\r\n\r\n- 이후, 이러한 부정사용 시도를 근절하기 위해 수시로 이용자에 대한 본인 확인을 할 것이며, 부정사용 적발시 예약자에 대한 직권취소 및 한달간 이용 제한, 2회 위반시는 테니스장 이용을 영구 제한할 것임을 안내합니다.\r\n4. 주의사항1. 본인 예약코트 외 사용을 금합니다.\r\n\r\n2. 흡연 적발 시 과태료 부과합니다.\r\n\r\n3. 볼박스 사용을 금합니다.\r\n\r\n4.정해진 이용시간을 준수해 주시기 바랍니다.\r\n\r\n5. 개인 강습 및 개인 연습공 사용 불가합니다.\r\n\r\n6. 음식물 반입을 금지합니다.\r\n\r\n\r\n\r\n아래에 해당되는 자는 환불 없이 퇴장됩니다.\r\n\r\n- 본 코트 지도강사 외의 개인강습 및 수강행위\r\n\r\n- 코트 내에서의 흡연, 음주 및 취사행위\r\n\r\n- 가스버너, 전열기구 등 화재위험물질 반입 행위\r\n\r\n- 코트를 테니스 외 용도로 사용하는 행위 (족구, 자전거 등)\r\n\r\n- 타 이용객의 이용 방해 및 혐오감을 주는 행위\r\n\r\n- 코트 내 음식물 반입 행위 (음료 등)\r\n\r\n- 연습구 사용 및 테니스화 미착용\r\n\r\n시설물 파손 및 훼손 시에는 시설의 원상복구 또는 전액 변상하여야 합니다.\r\n","TELNO":"02-841-8808","V_MIN":"06:00","V_MAX":"22:00","REVSTDDAYNM":"이용일","REVSTDDAY":"1"}]}}
-"""
 
 #Preview {
     HomeView()

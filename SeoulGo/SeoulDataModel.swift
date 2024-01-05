@@ -8,13 +8,13 @@
 import Foundation
 
 
-struct SeoulDataModel:Decodable {
-    
+struct SeoulDataModel:Decodable{
+
     let ListPublicReservationSport:ListPublicReservationSport
 }
 
-struct ListPublicReservationSport:Decodable {
-    
+struct ListPublicReservationSport:Decodable{
+
     let listTotalCount:Int
     let result:Result
     let resultDetails:[Row]
@@ -38,8 +38,8 @@ struct Result:Decodable {
 
 struct Row: Decodable {
     
-    let gubun,
-        serviceID,
+    let gubun:String
+    let serviceID,
         maxClass,
         minClass,
         serviceStatus,
