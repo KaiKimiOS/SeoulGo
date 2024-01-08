@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		2A0103562B3F1CB10042797F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0103552B3F1CB10042797F /* HomeView.swift */; };
 		2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */; };
+		2A2C81132B4BB9320011707A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2A2C81122B4BB9320011707A /* SwiftSoup */; };
 		2A465B032B46833F00345046 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A465B022B46833F00345046 /* Network.swift */; };
+		2A4BD5752B4852D90003CBC6 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4BD5742B4852D90003CBC6 /* Enum.swift */; };
 		2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */; };
 		2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE602B3F1A7500396357 /* ContentView.swift */; };
 		2A6BCE652B3F1A7600396357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BCE642B3F1A7600396357 /* Assets.xcassets */; };
@@ -41,6 +43,7 @@
 		2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulDataModel.swift; sourceTree = "<group>"; };
 		2A465B022B46833F00345046 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		2A465B042B468A1A00345046 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2A4BD5742B4852D90003CBC6 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		2A6BCE5B2B3F1A7500396357 /* SeoulGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoApp.swift; sourceTree = "<group>"; };
 		2A6BCE602B3F1A7500396357 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A2C81132B4BB9320011707A /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +109,7 @@
 				2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */,
 				2A6BCE602B3F1A7500396357 /* ContentView.swift */,
 				2A0103552B3F1CB10042797F /* HomeView.swift */,
+				2A4BD5742B4852D90003CBC6 /* Enum.swift */,
 				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
 				2A465B022B46833F00345046 /* Network.swift */,
 				2A6BCE642B3F1A7600396357 /* Assets.xcassets */,
@@ -154,6 +159,9 @@
 			dependencies = (
 			);
 			name = SeoulGo;
+			packageProductDependencies = (
+				2A2C81122B4BB9320011707A /* SwiftSoup */,
+			);
 			productName = SeoulGo;
 			productReference = 2A6BCE5B2B3F1A7500396357 /* SeoulGo.app */;
 			productType = "com.apple.product-type.application";
@@ -226,6 +234,9 @@
 				Base,
 			);
 			mainGroup = 2A6BCE522B3F1A7500396357;
+			packageReferences = (
+				2A2C81112B4BB9320011707A /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 2A6BCE5C2B3F1A7500396357 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -270,6 +281,7 @@
 			files = (
 				2A465B032B46833F00345046 /* Network.swift in Sources */,
 				2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */,
+				2A4BD5752B4852D90003CBC6 /* Enum.swift in Sources */,
 				2A0103562B3F1CB10042797F /* HomeView.swift in Sources */,
 				2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */,
 				2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */,
@@ -612,6 +624,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2A2C81112B4BB9320011707A /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2A2C81122B4BB9320011707A /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A2C81112B4BB9320011707A /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2A6BCE532B3F1A7500396357 /* Project object */;
 }
