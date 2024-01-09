@@ -19,6 +19,7 @@
 		2A6BCE722B3F1A7600396357 /* SeoulGoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE712B3F1A7600396357 /* SeoulGoTests.swift */; };
 		2A6BCE7C2B3F1A7600396357 /* SeoulGoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE7B2B3F1A7600396357 /* SeoulGoUITests.swift */; };
 		2A6BCE7E2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE7D2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift */; };
+		2AF28FF52B4D2BA200D483C5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF28FF42B4D2BA200D483C5 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		2A6BCE772B3F1A7600396357 /* SeoulGoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeoulGoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE7B2B3F1A7600396357 /* SeoulGoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoUITests.swift; sourceTree = "<group>"; };
 		2A6BCE7D2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2AF28FF42B4D2BA200D483C5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				2A6BCE602B3F1A7500396357 /* ContentView.swift */,
 				2A0103552B3F1CB10042797F /* HomeView.swift */,
 				2A4BD5742B4852D90003CBC6 /* Enum.swift */,
+				2AF28FF42B4D2BA200D483C5 /* DetailView.swift */,
 				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
 				2A465B022B46833F00345046 /* Network.swift */,
 				2A6BCE642B3F1A7600396357 /* Assets.xcassets */,
@@ -282,6 +285,7 @@
 				2A465B032B46833F00345046 /* Network.swift in Sources */,
 				2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */,
 				2A4BD5752B4852D90003CBC6 /* Enum.swift in Sources */,
+				2AF28FF52B4D2BA200D483C5 /* DetailView.swift in Sources */,
 				2A0103562B3F1CB10042797F /* HomeView.swift in Sources */,
 				2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */,
 				2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */,

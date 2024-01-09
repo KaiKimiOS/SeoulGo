@@ -13,98 +13,93 @@ struct HomeView: View {
     @ObservedObject var information = Network()
     
     @State var placeInformation: [Row] = []
-    @State var abcd:PlaceName = .송파구
+    @State var abcd: String = "송파구"
     @State var dddd: SportName = .축구
-    enum PlaceName:String, CaseIterable {
-        case 전체 = "전체"
-        case 송파구 = "송파구"
-        case 강남구 = "강남구"
-        case 강동구 = "강동구"
-    }
     
     enum SportName:String, CaseIterable {
-        case 전체 = "전체"
         case 축구 = "축구장"
         case 농구 = "농구장"
         case 풋살 = "풋살장"
+        case 테니스 = "테니스장"
+        case 족구 = "족구장"
+        case 야구 = "야구장"
+        case 배드민턴 = "배드민턴장"
+        case 배구 = "배구장"
+        case 다목적경기장 = "다목적경기장"
     }
     //각 종목이 있는 지역이 있다. 그걸 나눠야함.
-    //다른 문화시설도 다할지?
-    // picker 바뀌면 자동으로 보여줄지? 지금은 버튼을 눌러야만 보여주니까
+    //API 호출 줄이기
     // 종목별 enum처리
-    // 지역별 enum처리
+    
     var body: some View {
-        VStack {
-            
-            List {
-                if placeInformation.first == nil {
-                    Text("구장과 지역을 선택해주세요")
-                } else {
-                    ForEach(placeInformation, id: \.serviceID) { information in
-                        HStack{
-                            Text(information.serviceName)
-                            Text(",")
-                            Text(information.serviceStatus)
+        
+        NavigationStack{
+            VStack {
+                
+                List {
+                    if placeInformation.first == nil {
+                        Text("구장과 지역을 다시 선택해주세요")
+                    } else {
+                        ForEach(placeInformation, id: \.serviceID) { information in
+                            
+                            HStack{
+                                NavigationLink("\(information.serviceName)" ) {
+                                    DetailView(information: information)
+                                }
+                                
+                            }
                         }
+                    }
+                }
+                
+                Text("\(information.pageNumbers)")
+                
+                
+                Picker("종목", selection: $dddd) {
+                    
+                    ForEach(SportName.allCases, id:\.self) { information in
+                        Text("\(information.rawValue)").tag(information)
+                    }
+                    
+                    
+                }
+                
+                Picker("지역", selection: $abcd) {
+                    
+                    ForEach(information.placeName2, id: \.self) { information in
+                        
+                        
+                        Text(information)
+                        
+                        
+                    }
+                }
+                
+                
+            }
+            .onAppear {
+                Task{
+                    await information.getData(sportName: dddd.rawValue)
+                    placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == abcd
                     }
                 }
             }
             
-            Text("\(information.pageNumbers)")
-            
-            
-            Picker("종목", selection: $dddd) {
-            
-                ForEach(SportName.allCases, id:\.self) { information in
-                    Text("\(information.rawValue)").tag(information)
-                }
-       
-           
-            }
-            
-            Picker("지역", selection: $abcd) {
-            
-                ForEach(PlaceName.allCases, id:\.self) { information in
-                    Text("\(information.rawValue)").tag(information)
-                }
-       
-
-            }
-            
-            
-            Button{
-                
+            .onChange(of: dddd.rawValue ) { _ in
                 Task {
                     await information.getData(sportName: dddd.rawValue)
-                    print(dddd)
-                    placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == abcd.rawValue   }
-
-                    print(placeInformation.first)
+                    
+                    placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == abcd
+                    }
                 }
-                
-            } label: {
-                Text("Button")
             }
-            
-            
-//            Button{
-//                print(abcd)
-////                placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == abcd.rawValue   }
-//                print(placeInformation)
-//            } label: {
-//                Text("Button2")
-//            }
-//            .buttonStyle(.bordered)
-            
-            
+            .onChange(of:abcd ) { _ in
+                placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == abcd
+                }
+            }
         }
     }
-    
-    
-    
 }
-
-
 
 
 
