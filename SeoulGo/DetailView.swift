@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import NMapsMap
 
 struct DetailView:View {
     
@@ -20,7 +20,7 @@ struct DetailView:View {
     var body: some View {
         
         VStack{
-            
+            NaverMap().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/,height: 100)
             Text("hihi")
             Text("\(information.placeName)")
             
@@ -34,7 +34,7 @@ struct DetailView:View {
             Text("hihi")
             Text("\(information.placeName)")
             Text("hihi")
-            Text("\(information.placeName)")
+            Text("\(information.gubun)")
         }
         
         .navigationTitle(information.serviceName)
@@ -49,6 +49,7 @@ struct DetailView:View {
     //            print(error.localizedDescription)
     //        }
     //    }
+
     
     
     
