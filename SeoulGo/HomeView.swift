@@ -28,9 +28,11 @@ struct HomeView: View {
         case 다목적경기장 = "다목적경기장"
     }
     //각 종목이 있는 지역이 있다. 그걸 나눠야함.
+    
     //API 호출 줄이기
     //네이버 지도앱 뛰우기
     // 예약 페이지 -> 인앱 사파리
+    
     // 종목별 enum처리
     //중복처리 Set으로
     
@@ -49,6 +51,7 @@ struct HomeView: View {
                             HStack{
                                 NavigationLink("\(information.serviceName)" ) {
                                     DetailView(information: information)
+                                    
                                 }
                                 
                             }

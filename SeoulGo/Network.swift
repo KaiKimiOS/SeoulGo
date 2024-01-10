@@ -20,6 +20,8 @@ class Network: ObservableObject {
     
     @MainActor
     func getData(sportName:String) async {
+        
+        
         store.removeAll()
         placeName.removeAll()
         placeName2.removeAll()
@@ -44,6 +46,7 @@ class Network: ObservableObject {
            
             
             store.append(finalData)
+            
             // 구장에 따른 지역 출력
             
             

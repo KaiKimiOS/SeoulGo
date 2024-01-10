@@ -10,16 +10,25 @@ import NMapsMap
 import UIKit
 
 struct NaverMap: UIViewRepresentable{
+    
+    var y:Double
+    var x:Double
+    
     func updateUIView(_ uiView: UIViewType, context: Context) {
         
     }
     
    
-    func makeUIView(context: Context) -> some NMFNaverMapView {
-        let view = NMFNaverMapView()
-        view.showZoomControls =  false
-        view.mapView.positionMode = .direction
-        view.mapView.zoomLevel = 17
+    func makeUIView(context: Context) -> some NMFMapView {
+        let view = NMFMapView()
+        let marker = NMFMarker()
+        let temp = NMGLatLng(lat: y, lng: x)
+        marker.position = temp
+       
+        marker.mapView = view
+        view.isScrollGestureEnabled = true
+        view.moveCamera( (NMFCameraUpdate(scrollTo: temp)))
+
         return view
     }
     
@@ -27,6 +36,6 @@ struct NaverMap: UIViewRepresentable{
 
 }
 
-#Preview {
-    NaverMap()
-}
+//#Preview {
+//    NaverMap()
+//}
