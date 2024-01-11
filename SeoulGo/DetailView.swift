@@ -7,6 +7,8 @@
 
 import SwiftUI
 import NMapsMap
+import WebKit
+import SafariServices
 
 struct DetailView:View {
     
@@ -25,32 +27,54 @@ struct DetailView:View {
     
     
     var body: some View {
-        
-        VStack{
-            NaverMap(y: locationY, x: locationX)
-                .aspectRatio(contentMode: .fit)
-            
-            Text("hihi")
-            Text("\(information.placeName)")
-            
-            AsyncImage(url: uuuu) { image in
-                image
-                    .resizable()
+        ScrollView{
+            VStack{
+                
+                AsyncImage(url: uuuu) { image in
+                    image
+                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
+                        .frame(minWidth: 200,  maxWidth:.infinity, idealHeight: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                      
+                } placeholder: {
+                    ProgressView()
+                }
+                
+                Text("\(information.placeName)")
+                
+                Text("\(information.gubun)")
+                
+                NavigationLink("예약예약WEBkit") {
+                    WebKit(webURL: information.informationURL)
+                }
+                NavigationLink("예약예약SF") {
+                    SFSafariView(url: information.informationURL)
+                }
+                Button(action: {
+                    print("예약하기")
+                    print(information.informationURL)
+                    WebKit(webURL: information.informationURL)
+                }, label: {
+                    Text("예약하기")
+                })
+                
+                NaverMap(y: locationY, x: locationX)
                     .aspectRatio(contentMode: .fit)
-            } placeholder: {
-                ProgressView()
+//                    .scaledToFit()
+                    .frame(minWidth: 200,  maxWidth:.infinity, maxHeight: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+
+                
+                
             }
-            
-            Text("\(information.placeName)")
-            
-            Text("\(information.gubun)")
-            
-            
+            .navigationTitle(information.serviceName)
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle(information.serviceName)
-        .navigationBarTitleDisplayMode(.inline)
 
     }
     
 }
 
+#Preview {
+    HomeView()
+}

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import NMapsMap
-import UIKit
 
 struct NaverMap: UIViewRepresentable{
     
@@ -18,7 +17,6 @@ struct NaverMap: UIViewRepresentable{
         
     }
     
-   
     func makeUIView(context: Context) -> some NMFMapView {
         let view = NMFMapView()
         let marker = NMFMarker()
@@ -31,11 +29,7 @@ struct NaverMap: UIViewRepresentable{
 
         return view
     }
-    
-    
 
 }
 
-//#Preview {
-//    NaverMap()
-//}
+

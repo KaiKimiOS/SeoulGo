@@ -33,11 +33,10 @@ struct HomeView: View {
     // 종목별 enum처리
     //중복처리 Set으로
     
-    
     var body: some View {
         
         NavigationStack{
-            VStack {
+            VStack(alignment:.leading) {
                 HStack(alignment:.center){
                     
                     Picker("종목", selection: $initialSport) {
@@ -54,8 +53,9 @@ struct HomeView: View {
                         }
                     }
                 }
-               // .padding()
+                .padding([.leading], 10)
                 List {
+
                     if placeInformation.isEmpty {
                         Text("구장과 지역을 다시 선택해주세요")
                     } else {
@@ -72,10 +72,11 @@ struct HomeView: View {
                     }
                 }
                 
-                Text("\(information.pageNumbers)")
+//                Text("\(information.pageNumbers)")
                 
                 
             }
+
             .onAppear {
                 if !initialBool {
                     Task{

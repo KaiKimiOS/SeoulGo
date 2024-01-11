@@ -20,6 +20,8 @@
 		2A6BCE722B3F1A7600396357 /* SeoulGoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE712B3F1A7600396357 /* SeoulGoTests.swift */; };
 		2A6BCE7C2B3F1A7600396357 /* SeoulGoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE7B2B3F1A7600396357 /* SeoulGoUITests.swift */; };
 		2A6BCE7E2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE7D2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift */; };
+		2AA68EE92B502FF20015A9B8 /* WebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EE82B502FF20015A9B8 /* WebKit.swift */; };
+		2AA68EEB2B5033E60015A9B8 /* SFSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */; };
 		2AF28FF52B4D2BA200D483C5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF28FF42B4D2BA200D483C5 /* DetailView.swift */; };
 		2AF28FF72B4D948300D483C5 /* NaverMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF28FF62B4D948300D483C5 /* NaverMap.swift */; };
 		C4FA53A22CF0FA9511EE8B04 /* Pods_SeoulGo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0679ADB29173E30316ADFDAF /* Pods_SeoulGo.framework */; };
@@ -63,6 +65,8 @@
 		2A6BCE772B3F1A7600396357 /* SeoulGoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeoulGoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE7B2B3F1A7600396357 /* SeoulGoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoUITests.swift; sourceTree = "<group>"; };
 		2A6BCE7D2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2AA68EE82B502FF20015A9B8 /* WebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKit.swift; sourceTree = "<group>"; };
+		2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariView.swift; sourceTree = "<group>"; };
 		2AF28FF42B4D2BA200D483C5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		2AF28FF62B4D948300D483C5 /* NaverMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMap.swift; sourceTree = "<group>"; };
 		69F6B41FEB91DD62E9A927A0 /* Pods-SeoulGo-SeoulGoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeoulGo-SeoulGoUITests.release.xcconfig"; path = "Target Support Files/Pods-SeoulGo-SeoulGoUITests/Pods-SeoulGo-SeoulGoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,7 +138,9 @@
 				2AF28FF42B4D2BA200D483C5 /* DetailView.swift */,
 				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
 				2AF28FF62B4D948300D483C5 /* NaverMap.swift */,
+				2AA68EE82B502FF20015A9B8 /* WebKit.swift */,
 				2A465B022B46833F00345046 /* Network.swift */,
+				2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */,
 				2A6BCE642B3F1A7600396357 /* Assets.xcassets */,
 				2A6BCE662B3F1A7600396357 /* Preview Content */,
 			);
@@ -433,12 +439,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AA68EE92B502FF20015A9B8 /* WebKit.swift in Sources */,
 				2A465B032B46833F00345046 /* Network.swift in Sources */,
 				2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */,
 				2A4BD5752B4852D90003CBC6 /* Enum.swift in Sources */,
 				2AF28FF72B4D948300D483C5 /* NaverMap.swift in Sources */,
 				2AF28FF52B4D2BA200D483C5 /* DetailView.swift in Sources */,
 				2A0103562B3F1CB10042797F /* HomeView.swift in Sources */,
+				2AA68EEB2B5033E60015A9B8 /* SFSafariView.swift in Sources */,
 				2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */,
 				2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */,
 			);
