@@ -29,40 +29,28 @@ struct DetailView:View {
         VStack{
             NaverMap(y: locationY, x: locationX)
                 .aspectRatio(contentMode: .fit)
-               
+            
             Text("hihi")
             Text("\(information.placeName)")
-//            
-//            AsyncImage(url: uuuu) { image in
-//                image
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//            } placeholder: {
-//                ProgressView()
+            
+            AsyncImage(url: uuuu) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } placeholder: {
+                ProgressView()
             }
-            Text("hihi")
+            
             Text("\(information.placeName)")
-            Text("hihi")
+            
             Text("\(information.gubun)")
-        
-        
+            
+            
+        }
         .navigationTitle(information.serviceName)
-    }
-    //    func imageU(url:String) {
-    //        do{
-    //            let url = URL(string: url)
-    //            let data = try Data(contentsOf: url!)
-    //            let image1 = UIImage(data: data)
-    //
-    //        } catch{
-    //            print(error.localizedDescription)
-    //        }
-    //    }
+        .navigationBarTitleDisplayMode(.inline)
 
-    
-    
+    }
     
 }
-
-
 

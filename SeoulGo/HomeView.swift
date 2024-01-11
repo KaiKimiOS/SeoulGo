@@ -11,26 +11,23 @@ import SwiftSoup
 struct HomeView: View {
     
     @ObservedObject var information = Network()
-    
     @State var placeInformation: [Row] = []
-    @State var abcd: String = "송파구"
-    @State var dddd: SportName = .축구
+    @State var initialArea: String = "송파구"
+    @State var initialSport: SportName = .축구
+    @State var initialBool:Bool = false //처음 화면 진입시 호출 및 재호출 방지를 위한 Bool값
     
-    enum SportName:String, CaseIterable {
-        case 축구 = "축구장"
-        case 농구 = "농구장"
-        case 풋살 = "풋살장"
-        case 테니스 = "테니스장"
-        case 족구 = "족구장"
-        case 야구 = "야구장"
-        case 배드민턴 = "배드민턴장"
-        case 배구 = "배구장"
-        case 다목적경기장 = "다목적경기장"
-    }
-    //각 종목이 있는 지역이 있다. 그걸 나눠야함.
+    
+    //에러1
+    //ForEach로 화면 표시할때 에러발생 -> ForEach<Array<String>, String, Text>: the ID 성동구 occurs multiple times within the collection, this will give undefined results!
+    
+    //에러2
+    //    fopen failed for data file: errno = 2 (No such file or directory)
+    //    Errors found! Invalidating cache...
+    
     
     //API 호출 줄이기
     //네이버 지도앱 뛰우기
+    
     // 예약 페이지 -> 인앱 사파리
     
     // 종목별 enum처리
@@ -41,14 +38,30 @@ struct HomeView: View {
         
         NavigationStack{
             VStack {
-                
+                HStack(alignment:.center){
+                    
+                    Picker("종목", selection: $initialSport) {
+                        
+                        ForEach(SportName.allCases, id:\.self) { information in
+                            Text("\(information.rawValue)").tag(information)
+                        }
+                    }
+                 
+                    Picker("지역", selection: $initialArea) {
+                        
+                        ForEach(information.placeArea, id: \.self) { information in
+                            Text(information)
+                        }
+                    }
+                }
+               // .padding()
                 List {
-                    if placeInformation.first == nil {
+                    if placeInformation.isEmpty {
                         Text("구장과 지역을 다시 선택해주세요")
                     } else {
                         ForEach(placeInformation, id: \.serviceID) { information in
                             
-                            HStack{
+                            HStack {
                                 NavigationLink("\(information.serviceName)" ) {
                                     DetailView(information: information)
                                     
@@ -62,54 +75,45 @@ struct HomeView: View {
                 Text("\(information.pageNumbers)")
                 
                 
-                Picker("종목", selection: $dddd) {
-                    
-                    ForEach(SportName.allCases, id:\.self) { information in
-                        Text("\(information.rawValue)").tag(information)
-                    }
-                    
-                    
-                }
-                
-                Picker("지역", selection: $abcd) {
-                    
-                    ForEach(information.placeName2, id: \.self) { information in
-                        
-                        
-                        Text(information)
-                        
-                        
-                    }
-                }
-                
-                
             }
             .onAppear {
-                Task{
-                    await information.getData(sportName: dddd.rawValue)
-                    placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == abcd
+                if !initialBool {
+                    Task{
+                        await information.getData(sportName: initialSport.rawValue)
+                        initialBool = true
+                        resetPlaceInformation()
                     }
-                }
+                } else {return}
             }
             
-            .onChange(of: dddd.rawValue ) { _ in
+            .onChange(of: initialSport.rawValue ) { _ in
                 Task {
-                    await information.getData(sportName: dddd.rawValue)
-                    
-                    placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == abcd
-                    }
+                    await information.getData(sportName: initialSport.rawValue)
+                    resetPlaceInformation()
                 }
             }
-            .onChange(of:abcd ) { _ in
-                placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == abcd
-                }
+            .onChange(of:initialArea) { _ in
+                resetPlaceInformation()
+                
             }
+            .navigationTitle("SeoulGo")
+        }
+       
+        
+    }
+    
+//   축구장(고양시)-> 종목을 농구로 변경 -> 농구장(고양시) -> 농구장 고양시는 데이터에 존재하지 않음 -> 지역구를 재설정 하면 괜찮지만, 농구장(고양시)에서 종목을 또 바꾸면 풋살장(고양시)가 되어버림 -> 해결방법 농구장에 고양시가 존재하지 않으면 농구장지역의 첫번째를 바로 넣어준다.
+    func resetPlaceInformation() {
+        
+        placeInformation.removeAll()
+        placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == initialArea
+        }
+
+        if placeInformation.isEmpty  {
+            initialArea = information.placeArea.first ?? "송파구"
         }
     }
 }
-
-
-
 #Preview {
     HomeView()
 }

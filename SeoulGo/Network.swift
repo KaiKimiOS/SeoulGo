@@ -15,40 +15,28 @@ class Network: ObservableObject {
     
     @Published var store:[SeoulDataModel] = []
     @Published var pageNumbers:Int = 0
-    @Published var placeName:Set<String> = []
-    @Published var placeName2:[String] = []
+
+    @Published var placeArea:[String] = []
     
     @MainActor
     func getData(sportName:String) async {
         
-        
         store.removeAll()
-        placeName.removeAll()
-        placeName2.removeAll()
+        placeArea.removeAll()
+        
         let urlString = "http://openAPI.seoul.go.kr:8088/\(apiKey)/json/ListPublicReservationSport/1/300/\(sportName)"
+        
         guard let url = URL(string: urlString) else { return print(URLError.errorDomain)}
+        
         do {
-            let (data,_) = try await URLSession.shared.data(from: url)
-//             print("data = \(data), stringData = \(String(data: data, encoding: .utf8) ?? "Nothing to print")")
             
+            let (data,_) = try await URLSession.shared.data(from: url)
             let finalData = try JSONDecoder().decode(SeoulDataModel.self, from: data)
+            
             pageNumbers = finalData.ListPublicReservationSport.listTotalCount
-            var area =  finalData.ListPublicReservationSport.resultDetails.map { $0.areaName}
-          
-            for i in 0..<area.count {
-                placeName.insert(area[i])
-            }
-            for i in placeName {
-                placeName2.append(i)
-            }
-
-            placeName2.sort(by: <)
-           
+            placeArea = Array(Set(finalData.ListPublicReservationSport.resultDetails.map { $0.areaName })).sorted(by: <)
             
             store.append(finalData)
-            
-            // 구장에 따른 지역 출력
-            
             
         } catch {
             debugPrint("\(String(describing: error))")
@@ -59,10 +47,10 @@ class Network: ObservableObject {
         
         
     }
-
+    
     //SwiftSoup
     func temptemp() async {
-
+        
         let urlAddress = "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S210401100008601453"
         
         guard let url2 = URL(string: urlAddress) else {return}
