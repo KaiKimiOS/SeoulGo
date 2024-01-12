@@ -10,12 +10,12 @@ import SwiftSoup
 
 struct HomeView: View {
     
-    @ObservedObject var information = Network()
+    @EnvironmentObject var information: Network
     @State var placeInformation: [Row] = []
     @State var initialArea: String = "송파구"
     @State var initialSport: SportName = .축구
     @State var initialBool:Bool = false //처음 화면 진입시 호출 및 재호출 방지를 위한 Bool값
-    
+
     
     //에러1
     //ForEach로 화면 표시할때 에러발생 -> ForEach<Array<String>, String, Text>: the ID 성동구 occurs multiple times within the collection, this will give undefined results!
@@ -33,18 +33,22 @@ struct HomeView: View {
     // 종목별 enum처리
     //중복처리 Set으로
     
+    // UserDefaults.standard.dictionaryRepresentation().key 로 해주기
+    
     var body: some View {
         
         NavigationStack{
             VStack(alignment:.leading) {
-                HStack(){
-                    
+               
+                HStack(alignment:.center){
+                  
                     Picker("종목", selection: $initialSport) {
                         
                         ForEach(SportName.allCases, id:\.self) { information in
                             Text("\(information.rawValue)").tag(information)
                         }
                     }
+                    //.border(Color.black)
                  
                     Picker("지역", selection: $initialArea) {
                         
@@ -52,13 +56,13 @@ struct HomeView: View {
                             Text(information)
                         }
                     }
-//                    VStack(alignment:.trailing){
-                        Text("종목과 지역을 선택해주세요")
-                            .foregroundStyle(.gray)
-                            .font(.caption)
-                            .fontWeight(.light)
-                            .lineLimit(1)
-//                    }
+                    //.border(Color.black)
+                    Text("종목과 지역을 선택해주세요")
+                        .foregroundStyle(.gray)
+                        .font(.caption)
+                        .fontWeight(.light)
+                        .lineLimit(1)
+                        .padding(.leading,5)
                 }
                 .padding([.leading], 10)
                 List {
@@ -66,11 +70,11 @@ struct HomeView: View {
                     if placeInformation.isEmpty {
                         Text("구장과 지역을 다시 선택해주세요")
                     } else {
-                        ForEach(placeInformation, id: \.serviceID) { information in
+                        ForEach($placeInformation, id: \.serviceID) { $information in
                             
                             HStack {
                                 NavigationLink("\(information.serviceName)" ) {
-                                    DetailView(information: information)
+                                    DetailView(information: $information)
                                     
                                 }
                                 
@@ -79,11 +83,7 @@ struct HomeView: View {
                     }
                 }
                 
-//                Text("\(information.pageNumbers)")
-                
-                
             }
-
             .onAppear {
                 if !initialBool {
                     Task{
@@ -93,6 +93,7 @@ struct HomeView: View {
                         
                     }
                 } else {return}
+                
             }
             
             .onChange(of: initialSport.rawValue ) { _ in
@@ -106,6 +107,7 @@ struct HomeView: View {
                 
             }
             .navigationTitle("SeoulGo")
+ 
         }
        
         

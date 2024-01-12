@@ -11,9 +11,15 @@ import WebKit
 import SafariServices
 
 struct DetailView:View {
+    //즐겨찾기
     
-    var information:Row
-    var uuuu: URL? {
+    @State var isWebViewBool: Bool = false
+    @Binding var information:Row
+    @EnvironmentObject var network: Network
+    //@AppStorage("clicked") private var count:String = ""
+    
+
+    var imageURL: URL? {
         URL(string: information.imageURL)
     }
     var locationY: Double {
@@ -24,23 +30,35 @@ struct DetailView:View {
         guard let locationX = Double(information.locationX) else { return 0 }
         return locationX
     }
-    
+    @State var starBool:Bool = false
+    var star:String {
+        
+        information.star ? "star.fill" : "star"
+        
+    }
     
     var body: some View {
         ScrollView{
             VStack{
                 
-                AsyncImage(url: uuuu) { image in
+                AsyncImage(url: imageURL) { image in
                     image
                         .resizable()
                         .clipShape(.rect)
-                        .aspectRatio(16/9,contentMode: .fit)
-                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 5)
+                        .aspectRatio(16/9, contentMode: .fit)
+                        //.border(.white)
+                        .padding(5)
                     
                 } placeholder: {
                     ProgressView()
                 }
                 VStack(spacing:10){
+                    
+                    HStack {
+                        Text("\(information.areaName)" + " - \(information.placeName)")
+                            .modifier(detailMoidifier())
+                        
+                    }
                     HStack{
                         
                         Text("\(information.serviceStatus)")
@@ -61,39 +79,62 @@ struct DetailView:View {
                             .font(.subheadline)
                             .modifier(detailMoidifier())
                     }
-                    HStack {
-                        Text("\(information.areaName)" + " - \(information.placeName)")
-                            .modifier(detailMoidifier())
-                        
-                    }
+                    
                 }
-                //                .border(Color.black)
                 .padding(5)
                 
-                NavigationLink("예약예약WEBkit") {
-                    WebKit(webURL: information.informationURL)
-                }
-                
-                NavigationLink("예약예약SF") {
-                    SFSafariView(url: information.informationURL)
-                }
-                
                 Button(action: {
-                    //print(information.registerEndDate.stringToDate())
-                    print("예약하기")
-                    print(information.registerEndDate)
-                    print(information.serviceEndDate)
-                    WebKit(webURL: information.informationURL)
+                    print(star)
+//                    information.star.toggle()
+//                    UserDefaults.standard.setValue(information.serviceID, forKey: information.serviceID)
+//                    count = information.serviceID
+//                    isWebViewBool = true
                 }, label: {
-                    Text("예약하기")
+                    HStack{
+                        Spacer()
+                        Text("예약하기")
+                        Spacer()
+                            
+                    }
+                    .padding()
+//
+//                    .modifier(detailMoidifier())
+//                    .padding([.leading,.trailing,.bottom], 5)
                 })
+                .buttonStyle(.borderedProminent)
+                .padding([.leading,.trailing,.bottom], 5)
+                
+                .sheet(isPresented: $isWebViewBool, content: {
+                    WebKit(webURL: information.informationURL)
+                    //SFSafariView(url: information.informationURL)
+                })
+                
                 NaverMap(y: locationY, x: locationX)
+                    .aspectRatio(1.0, contentMode: .fit)
+                    //.border(Color.white)
+                    .padding(5)
                 
-                    .aspectRatio(16/9, contentMode: .fit)
-                    .border(Color.white, width: 5)
                 
                 
-                
+            }
+            .toolbar(content: {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("즐겨찾기", systemImage: star) {
+                        information.star.toggle()
+                        information.star ?  UserDefaults.standard.setValue(information.serviceID, forKey: information.serviceID) : UserDefaults.standard.removeObject(forKey: information.serviceID)
+                        information.star ? network.favoriteLists.append(information) : network.favoriteLists.removeAll(where: { $0.serviceID == information.serviceID
+                        })
+                        print(information.star)
+                    }
+                }
+            })
+            .onAppear{
+             
+                if UserDefaults.standard.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
+                    information.star = true
+                } else {
+                    information.star = false
+                }
             }
             .navigationTitle(information.serviceName)
             .navigationBarTitleDisplayMode(.inline)

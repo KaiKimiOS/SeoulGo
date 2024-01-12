@@ -56,6 +56,7 @@ struct Row: Decodable {
         registerEndDate,
         areaName,
         imageURL:String
+    var star:Bool = false
     
     enum CodingKeys: String, CodingKey {
         case gubun = "GUBUN"

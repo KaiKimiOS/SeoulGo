@@ -48,5 +48,6 @@ struct detailMoidifier: ViewModifier {
                 .stroke(Color(.lightGray), lineWidth: 1))
             .padding(.top, 8)
             .minimumScaleFactor(0.1)
+          
     }
 }

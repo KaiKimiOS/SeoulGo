@@ -10,9 +10,11 @@ import SwiftUI
 @main
 struct SeoulGoApp: App {
 
+    @StateObject private var network = Network()
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            ContentView()
+                .environmentObject(network)
         }
  
     }

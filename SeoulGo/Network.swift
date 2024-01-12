@@ -14,6 +14,8 @@ class Network: ObservableObject {
     private let apiKey = "647879614473646636395064566e6a"
     
     @Published var store:[SeoulDataModel] = []
+    @Published var favoriteLists:[Row] = []
+
     @Published var pageNumbers:Int = 0
 
     @Published var placeArea:[String] = []
@@ -51,6 +53,7 @@ class Network: ObservableObject {
     //SwiftSoup
     func temptemp() async {
         
+      
         let urlAddress = "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S210401100008601453"
         
         guard let url2 = URL(string: urlAddress) else {return}

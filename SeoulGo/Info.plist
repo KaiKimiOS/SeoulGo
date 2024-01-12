@@ -11,6 +11,8 @@
 	</dict>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIColorName</key>
+		<string>backColor</string>
 		<key>UIImageName</key>
 		<string>SeoulGoImage</string>
 		<key>UILaunchScreen</key>
