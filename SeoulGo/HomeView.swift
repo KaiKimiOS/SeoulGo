@@ -37,7 +37,7 @@ struct HomeView: View {
         
         NavigationStack{
             VStack(alignment:.leading) {
-                HStack(alignment:.center){
+                HStack(){
                     
                     Picker("종목", selection: $initialSport) {
                         
@@ -52,6 +52,13 @@ struct HomeView: View {
                             Text(information)
                         }
                     }
+//                    VStack(alignment:.trailing){
+                        Text("종목과 지역을 선택해주세요")
+                            .foregroundStyle(.gray)
+                            .font(.caption)
+                            .fontWeight(.light)
+                            .lineLimit(1)
+//                    }
                 }
                 .padding([.leading], 10)
                 List {
@@ -83,6 +90,7 @@ struct HomeView: View {
                         await information.getData(sportName: initialSport.rawValue)
                         initialBool = true
                         resetPlaceInformation()
+                        
                     }
                 } else {return}
             }

@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
-import NMapsMap
 
 @main
 struct SeoulGoApp: App {

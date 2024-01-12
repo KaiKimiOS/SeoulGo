@@ -12,7 +12,7 @@
 		2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */; };
 		2A2C81132B4BB9320011707A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2A2C81122B4BB9320011707A /* SwiftSoup */; };
 		2A465B032B46833F00345046 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A465B022B46833F00345046 /* Network.swift */; };
-		2A4BD5752B4852D90003CBC6 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4BD5742B4852D90003CBC6 /* Enum.swift */; };
+		2A4BD5752B4852D90003CBC6 /* Enum + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */; };
 		2A6BCE5F2B3F1A7500396357 /* SeoulGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */; };
 		2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE602B3F1A7500396357 /* ContentView.swift */; };
 		2A6BCE652B3F1A7600396357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BCE642B3F1A7600396357 /* Assets.xcassets */; };
@@ -54,7 +54,7 @@
 		2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulDataModel.swift; sourceTree = "<group>"; };
 		2A465B022B46833F00345046 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		2A465B042B468A1A00345046 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2A4BD5742B4852D90003CBC6 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum + Extension.swift"; sourceTree = "<group>"; };
 		2A6BCE5B2B3F1A7500396357 /* SeoulGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoApp.swift; sourceTree = "<group>"; };
 		2A6BCE602B3F1A7500396357 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 				2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */,
 				2A6BCE602B3F1A7500396357 /* ContentView.swift */,
 				2A0103552B3F1CB10042797F /* HomeView.swift */,
-				2A4BD5742B4852D90003CBC6 /* Enum.swift */,
+				2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */,
 				2AF28FF42B4D2BA200D483C5 /* DetailView.swift */,
 				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
 				2AF28FF62B4D948300D483C5 /* NaverMap.swift */,
@@ -442,7 +442,7 @@
 				2AA68EE92B502FF20015A9B8 /* WebKit.swift in Sources */,
 				2A465B032B46833F00345046 /* Network.swift in Sources */,
 				2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */,
-				2A4BD5752B4852D90003CBC6 /* Enum.swift in Sources */,
+				2A4BD5752B4852D90003CBC6 /* Enum + Extension.swift in Sources */,
 				2AF28FF72B4D948300D483C5 /* NaverMap.swift in Sources */,
 				2AF28FF52B4D2BA200D483C5 /* DetailView.swift in Sources */,
 				2A0103562B3F1CB10042797F /* HomeView.swift in Sources */,
@@ -619,7 +619,6 @@
 				INFOPLIST_FILE = SeoulGo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
@@ -654,7 +653,6 @@
 				INFOPLIST_FILE = SeoulGo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.3;

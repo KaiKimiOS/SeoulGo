@@ -33,48 +33,81 @@ struct DetailView:View {
                 AsyncImage(url: uuuu) { image in
                     image
                         .resizable()
-//                        .aspectRatio(contentMode: .fit)
-                        .scaledToFit()
-                        .frame(minWidth: 200,  maxWidth:.infinity, idealHeight: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                      
+                        .clipShape(.rect)
+                        .aspectRatio(16/9,contentMode: .fit)
+                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 5)
+                    
                 } placeholder: {
                     ProgressView()
                 }
-                
-                Text("\(information.placeName)")
-                
-                Text("\(information.gubun)")
+                VStack(spacing:10){
+                    HStack{
+                        
+                        Text("\(information.serviceStatus)")
+                            .modifier(detailMoidifier())
+                        Text("\(information.payment)")
+                            .modifier(detailMoidifier())
+                        
+                    }
+                    
+                    HStack{
+                        
+                        Text("접수기간: \(information.registerStartDate.stringToDate())" + " ~ \(information.registerEndDate.stringToDate())" )
+                            .font(.subheadline)
+                            .modifier(detailMoidifier())
+                    }
+                    HStack{
+                        Text("이용기간: \(information.serviceStartDate.stringToDate())" + " ~ \(information.serviceEndDate.stringToDate())" )
+                            .font(.subheadline)
+                            .modifier(detailMoidifier())
+                    }
+                    HStack {
+                        Text("\(information.areaName)" + " - \(information.placeName)")
+                            .modifier(detailMoidifier())
+                        
+                    }
+                }
+                //                .border(Color.black)
+                .padding(5)
                 
                 NavigationLink("예약예약WEBkit") {
                     WebKit(webURL: information.informationURL)
                 }
+                
                 NavigationLink("예약예약SF") {
                     SFSafariView(url: information.informationURL)
                 }
+                
                 Button(action: {
+                    //print(information.registerEndDate.stringToDate())
                     print("예약하기")
-                    print(information.informationURL)
+                    print(information.registerEndDate)
+                    print(information.serviceEndDate)
                     WebKit(webURL: information.informationURL)
                 }, label: {
                     Text("예약하기")
                 })
-                
                 NaverMap(y: locationY, x: locationX)
-                    .aspectRatio(contentMode: .fit)
-//                    .scaledToFit()
-                    .frame(minWidth: 200,  maxWidth:.infinity, maxHeight: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-
+                
+                    .aspectRatio(16/9, contentMode: .fit)
+                    .border(Color.white, width: 5)
+                
                 
                 
             }
             .navigationTitle(information.serviceName)
             .navigationBarTitleDisplayMode(.inline)
         }
-
+        
     }
+    
     
 }
 
-#Preview {
-    HomeView()
-}
+
+
+
+//#Preview {
+//    DetailView(information: Row(gubun: "구분", serviceID: "아이디", maxClass: "큰클래스", minClass: "작은클래스", serviceStatus: "상태", serviceName: "네임", payment: "ㄷ돈", placeName: "", userTarget: "1", informationURL: "1", locationX: "1", locationY: "1", serviceStartDate: "1", serviceEndDate: "1", registerStartDate: "1", registerEndDate: "1", areaName: "1", imageURL: "https://yeyak.seoul.go.kr/web/common/file/FileDown.do?file_id=1699407981833BDABH9JL28HPGSME2RMXBEFMX"))
+//}
+

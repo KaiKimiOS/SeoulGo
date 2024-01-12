@@ -77,4 +77,5 @@ struct Row: Decodable {
         case areaName = "AREANM"
         case imageURL = "IMGURL"
     }
+   
 }

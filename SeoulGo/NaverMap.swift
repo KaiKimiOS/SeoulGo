@@ -22,7 +22,10 @@ struct NaverMap: UIViewRepresentable{
         let marker = NMFMarker()
         let temp = NMGLatLng(lat: y, lng: x)
         marker.position = temp
-        view.zoomLevel = 15.5
+        view.zoomLevel = 15
+        view.allowsZooming = true
+        view.isZoomGestureEnabled = true
+        
         marker.mapView = view
         view.isScrollGestureEnabled = true
         view.moveCamera( (NMFCameraUpdate(scrollTo: temp)))
