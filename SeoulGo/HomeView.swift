@@ -85,6 +85,7 @@ struct HomeView: View {
                 
             }
             .onAppear {
+            
                 if !initialBool {
                     Task{
                         await information.getData(sportName: initialSport.rawValue)
@@ -127,4 +128,5 @@ struct HomeView: View {
 }
 #Preview {
     HomeView()
+        .environmentObject(Network())
 }
