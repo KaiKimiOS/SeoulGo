@@ -12,8 +12,8 @@ struct HomeView: View {
     
     @EnvironmentObject var information: Network
     @State var placeInformation: [Row] = []
-    @State var initialArea: String = "송파구"
-    @State var initialSport: SportName = .축구
+    @State var initialArea: String = "지역"
+    @State var initialSport: SportName = .전체
     @State var initialBool:Bool = false //처음 화면 진입시 호출 및 재호출 방지를 위한 Bool값
 
     
@@ -67,20 +67,22 @@ struct HomeView: View {
                 .padding([.leading], 10)
                 List {
 
-                    if placeInformation.isEmpty {
-                        Text("구장과 지역을 다시 선택해주세요")
-                    } else {
-                        ForEach($placeInformation, id: \.serviceID) { $information in
+//                    if placeInformation.isEmpty {
+//                        Text("구장과 지역을 다시 선택해주세요")
+//                    } else {
+                        
+                  
+                        ForEach(information.finalSportLists, id: \.serviceID) { information in
                             
                             HStack {
                                 NavigationLink("\(information.serviceName)" ) {
-                                    DetailView(information: $information)
+                                    DetailView(information: information)
                                     
                                 }
                                 
                             }
                         }
-                    }
+//                    }
                 }
                 
             }
@@ -88,23 +90,22 @@ struct HomeView: View {
             
                 if !initialBool {
                     Task{
-                        await information.getData(sportName: initialSport.rawValue)
+                        await information.getData()
                         initialBool = true
-                        resetPlaceInformation()
-                        
+                        information.getSportName(sportName: initialSport.rawValue)
+                        information.getArea(areaName: initialArea)
+//                        print(information.totalSports)
                     }
                 } else {return}
                 
             }
             
             .onChange(of: initialSport.rawValue ) { _ in
-                Task {
-                    await information.getData(sportName: initialSport.rawValue)
-                    resetPlaceInformation()
-                }
+                information.getSportName(sportName: initialSport.rawValue)
+
             }
             .onChange(of:initialArea) { _ in
-                resetPlaceInformation()
+                information.getArea(areaName: initialArea)
                 
             }
             .navigationTitle("SeoulGo")

@@ -14,7 +14,7 @@ class Network: ObservableObject {
     private let apiKey = "647879614473646636395064566e6a"
     
     @Published var store:[SeoulDataModel] = []
-    @Published var favoriteLists:[Row] = []
+    @Published var favoriteLists:[Row]? = []
     @Published var totalSports:[Row] = []
     @Published var pageNumbers:Int = 0
     @Published var finalSportLists:[Row] = []
@@ -22,7 +22,7 @@ class Network: ObservableObject {
     @Published var placeArea:[String] = []
     
     @MainActor
-    func getData(sportName:String) async {
+    func getData() async {
         
         store.removeAll()
         placeArea.removeAll()
@@ -38,33 +38,34 @@ class Network: ObservableObject {
             
             pageNumbers = finalData.ListPublicReservationSport.listTotalCount
             
-            
             store.append(finalData)
-            getSportName(sportName: "축구장")
-            getArea(areaName: "송파구")
+//            getSportName(sportName: "축구장")
+//            getArea(areaName: "송파구")
             
         } catch {
             debugPrint("\(String(describing: error))")
             
         }
-        
-        
-        
    
     }
     
     func getSportName(sportName:String) {
-        
+        totalSports.removeAll()
+        placeArea.removeAll()
         totalSports = (store.first?.ListPublicReservationSport.resultDetails.filter{ $0.minClass == sportName})!
         placeArea = Array(Set((store.first?.ListPublicReservationSport.resultDetails.map { $0.areaName })!)).sorted(by: <)
-        print(placeArea)
         
     }
     func getArea(areaName:String) {
+        finalSportLists.removeAll()
         finalSportLists = totalSports.filter { $0.areaName ==  areaName}
-        print(finalSportLists)
+//        print(finalSportLists)
         
     }
+//    func toStar(serviceID:String) {
+//        var selectedID = (store.first?.ListPublicReservationSport.resultDetails.filter{ $0.serviceID == serviceID })!
+//        selectedID[0].star.toggle()
+//    }
     
     //SwiftSoup
 //    func temptemp() async {

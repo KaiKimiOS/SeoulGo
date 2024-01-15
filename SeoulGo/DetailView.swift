@@ -14,7 +14,7 @@ struct DetailView:View {
     //즐겨찾기
     
     @State var isWebViewBool: Bool = false
-    @Binding var information:Row
+    var information:Row
     @EnvironmentObject var network: Network
     //@AppStorage("clicked") private var count:String = ""
     
@@ -33,7 +33,7 @@ struct DetailView:View {
     @State var starBool:Bool = false
     var star:String {
         
-        information.star ? "star.fill" : "star"
+        starBool ? "star.fill" : "star"
         
     }
     
@@ -120,20 +120,23 @@ struct DetailView:View {
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("즐겨찾기", systemImage: star) {
-                        information.star.toggle()
-                        information.star ?  UserDefaults.standard.setValue(information.serviceID, forKey: information.serviceID) : UserDefaults.standard.removeObject(forKey: information.serviceID)
-                        information.star ? network.favoriteLists.append(information) : network.favoriteLists.removeAll(where: { $0.serviceID == information.serviceID
-                        })
-                        print(information.star)
+                        starBool.toggle()
+                        starBool ?  UserDefaults.standard.setValue(information.serviceID, forKey: information.serviceID) :
+                        UserDefaults.standard.removeObject(forKey: information.serviceID)
+                        
+//                        starBool ? network.favoriteLists.append(information) : network.favoriteLists.removeAll(where: { $0.serviceID == information.serviceID
+//                        })
+//                        print(information.star)
                     }
                 }
             })
             .onAppear{
              
                 if UserDefaults.standard.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
-                    information.star = true
+                   
+                    starBool = true
                 } else {
-                    information.star = false
+                    starBool = false
                 }
             }
             .navigationTitle(information.serviceName)
