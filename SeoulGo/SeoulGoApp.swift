@@ -15,6 +15,9 @@ struct SeoulGoApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(network)
+                .onOpenURL(perform: { url in
+                    let text = url.absoluteString.removingPercentEncoding ?? ""
+                })
         }
  
     }
