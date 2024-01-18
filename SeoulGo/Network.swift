@@ -16,7 +16,7 @@ class Network: ObservableObject {
     @Published var store:[SeoulDataModel] = []
     @Published var favoriteLists:[Row]? = []
     @Published var totalSports:[Row] = []
-    @Published var pageNumbers:Int = 0
+    @Published var pageNumbers:Int?
     @Published var finalSportLists:[Row] = []
 
     @Published var placeArea:[String] = []
