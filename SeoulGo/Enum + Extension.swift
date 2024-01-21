@@ -52,3 +52,11 @@ struct detailMoidifier: ViewModifier {
           
     }
 }
+
+
+extension UserDefaults {
+    static var shared: UserDefaults {
+        let appGroupId = "group.kaikim.SeoulGo"
+        return UserDefaults(suiteName: appGroupId)!
+    }
+}

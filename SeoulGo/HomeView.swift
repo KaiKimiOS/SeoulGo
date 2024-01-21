@@ -63,6 +63,7 @@ struct HomeView: View {
                         .fontWeight(.light)
                         .lineLimit(1)
                         .padding(.leading,5)
+                  
                 }
                 .padding([.leading], 10)
                 List {

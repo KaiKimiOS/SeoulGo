@@ -6,7 +6,6 @@
 //
 
 
-import SwiftSoup
 import SwiftUI
 class Network: ObservableObject {
     

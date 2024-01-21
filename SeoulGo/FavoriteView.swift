@@ -30,7 +30,7 @@ struct FavoriteView: View {
                                     HStack {
                                         VStack{
                                             Button {
-                                                UserDefaults.standard.removeObject(forKey: information.serviceID)
+                                                UserDefaults.shared.removeObject(forKey: information.serviceID)
                                             } label: {
                                                 Image(systemName: star)
                                             }
@@ -45,9 +45,6 @@ struct FavoriteView: View {
                                         }
                                     }
                                 }
-                                .onDelete(perform: { indexSet in
-                                    
-                                })
                             }
                         }
 
@@ -64,7 +61,7 @@ struct FavoriteView: View {
                 putUserDefaultsToLists()
                 putlistToDictionary()
             }
-            .onChange(of:UserDefaults.standard.dictionaryRepresentation().keys) { _ in
+            .onChange(of:UserDefaults.shared.dictionaryRepresentation().keys) { _ in
                 putUserDefaultsToLists()
                 putlistToDictionary()
             }
@@ -77,7 +74,7 @@ struct FavoriteView: View {
         network.favoriteLists?.append(
             contentsOf:
                 (network.store.first?.ListPublicReservationSport.resultDetails.filter { row in
-                    UserDefaults.standard.dictionaryRepresentation().keys.contains(row.serviceID) 
+                    UserDefaults.shared.dictionaryRepresentation().keys.contains(row.serviceID)
 //                    && !network.favoriteLists!.contains(where:{ $0.serviceID == row.serviceID })
                 })!
         )

@@ -121,8 +121,8 @@ struct DetailView:View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("즐겨찾기", systemImage: star) {
                         starBool.toggle()
-                        starBool ?  UserDefaults.standard.setValue(information.serviceID, forKey: information.serviceID) :
-                        UserDefaults.standard.removeObject(forKey: information.serviceID)
+                        starBool ?  UserDefaults.shared.setValue(information.serviceID, forKey: information.serviceID) :
+                        UserDefaults.shared.removeObject(forKey: information.serviceID)
                         
 //                        starBool ? network.favoriteLists.append(information) : network.favoriteLists.removeAll(where: { $0.serviceID == information.serviceID
 //                        })
@@ -132,7 +132,7 @@ struct DetailView:View {
             })
             .onAppear{
              
-                if UserDefaults.standard.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
+                if UserDefaults.shared.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
                    
                     starBool = true
                 } else {
