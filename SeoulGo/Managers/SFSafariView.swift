@@ -19,7 +19,6 @@ struct SFSafariView: UIViewControllerRepresentable {
         return SFSafariViewController(url: url)
     }
     
-    
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
         guard let url = URL(string: url) else { return }
         SFSafariViewController(url: url)

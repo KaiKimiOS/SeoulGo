@@ -12,6 +12,5 @@ import SwiftUI
 struct SeoulGoWidgetBundle: WidgetBundle {
     var body: some Widget {
         SeoulGoWidget()
-        SeoulGoWidgetLiveActivity()
     }
 }

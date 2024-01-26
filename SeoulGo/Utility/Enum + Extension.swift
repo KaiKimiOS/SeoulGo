@@ -9,7 +9,7 @@ import SwiftUI
 
 
 enum SportName:String, CaseIterable {
-    case 전체 = ""
+    case 전체 = "전체"
     case 축구 = "축구장"
     case 농구 = "농구장"
     case 풋살 = "풋살장"
@@ -49,7 +49,7 @@ struct detailMoidifier: ViewModifier {
                 .stroke(Color(.lightGray), lineWidth: 1))
             .padding(.top, 8)
             .minimumScaleFactor(0.1)
-          
+        
     }
 }
 
@@ -57,6 +57,9 @@ struct detailMoidifier: ViewModifier {
 extension UserDefaults {
     static var shared: UserDefaults {
         let appGroupId = "group.kaikim.SeoulGo"
-        return UserDefaults(suiteName: appGroupId)!
+        guard let appGroup = UserDefaults(suiteName: appGroupId) else {
+            print("AppGroup Error!")
+            return UserDefaults() }
+        return appGroup
     }
 }

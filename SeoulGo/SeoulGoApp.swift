@@ -9,12 +9,13 @@ import SwiftUI
 
 @main
 struct SeoulGoApp: App {
-
-    @StateObject private var network = Network()
+    
+    @StateObject private var store = Store()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(network)
+                .environmentObject(store)
                 .onOpenURL(perform: { url in
                     let text = url.absoluteString.removingPercentEncoding ?? ""
                 })

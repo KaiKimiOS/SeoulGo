@@ -13,9 +13,9 @@ import SafariServices
 struct DetailView:View {
     //즐겨찾기
     
+    @State var starBool:Bool = false
     @State var isWebViewBool: Bool = false
     var information:Row
-    @EnvironmentObject var network: Network
     //@AppStorage("clicked") private var count:String = ""
     
 
@@ -30,7 +30,6 @@ struct DetailView:View {
         guard let locationX = Double(information.locationX) else { return 0 }
         return locationX
     }
-    @State var starBool:Bool = false
     var star:String {
         
         starBool ? "star.fill" : "star"

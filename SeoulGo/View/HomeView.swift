@@ -10,7 +10,7 @@ import SwiftSoup
 
 struct HomeView: View {
     
-    @EnvironmentObject var information: Network
+    @EnvironmentObject var store:Store
     @State var placeInformation: [Row] = []
     @State var initialArea: String = "지역"
     @State var initialSport: SportName = .전체
@@ -52,8 +52,8 @@ struct HomeView: View {
                  
                     Picker("지역", selection: $initialArea) {
                         
-                        ForEach(information.placeArea, id: \.self) { information in
-                            Text(information)
+                        ForEach(store.allArea, id: \.self) { area in
+                            Text(area)
                         }
                     }
                     //.border(Color.black)
@@ -68,22 +68,30 @@ struct HomeView: View {
                 .padding([.leading], 10)
                 List {
 
-//                    if placeInformation.isEmpty {
-//                        Text("구장과 지역을 다시 선택해주세요")
-//                    } else {
-                        
-                  
-                        ForEach(information.finalSportLists, id: \.serviceID) { information in
+                    if initialSport == .전체 {
+                        ForEach(store.storeManager, id:\.serviceID) { info in
+                            HStack {
+                                NavigationLink("\(info.serviceName)" ) {
+                                    DetailView(information: info)
+                                    
+                                }
+                                
+                            }
+
+                            
+                        }
+                    } else {
+                    ForEach(store.selectedResults, id: \.serviceID) { info  in
                             
                             HStack {
-                                NavigationLink("\(information.serviceName)" ) {
-                                    DetailView(information: information)
+                                NavigationLink("\(info.serviceName)" ) {
+                                    DetailView(information: info)
                                     
                                 }
                                 
                             }
                         }
-//                    }
+                    }
                 }
                 
             }
@@ -91,22 +99,19 @@ struct HomeView: View {
             
                 if !initialBool {
                     Task{
-                        await information.getData()
+                        await store.fectRequest()
                         initialBool = true
-                        information.getSportName(sportName: initialSport.rawValue)
-                        information.getArea(areaName: initialArea)
-//                        print(information.totalSports)
                     }
                 } else {return}
                 
             }
             
             .onChange(of: initialSport.rawValue ) { _ in
-                information.getSportName(sportName: initialSport.rawValue)
+                store.getSelectedArea(sport: initialSport.rawValue)
 
             }
             .onChange(of:initialArea) { _ in
-                information.getArea(areaName: initialArea)
+                store.getSelectedResults(sport: initialSport.rawValue, areaName: initialArea)
                 
             }
             .navigationTitle("SeoulGo")
@@ -117,18 +122,17 @@ struct HomeView: View {
     }
     
 //   축구장(고양시)-> 종목을 농구로 변경 -> 농구장(고양시) -> 농구장 고양시는 데이터에 존재하지 않음 -> 지역구를 재설정 하면 괜찮지만, 농구장(고양시)에서 종목을 또 바꾸면 풋살장(고양시)가 되어버림 -> 해결방법 농구장에 고양시가 존재하지 않으면 농구장지역의 첫번째를 바로 넣어준다.
-    func resetPlaceInformation() {
-        
-        placeInformation.removeAll()
-        placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == initialArea
-        }
-
-        if placeInformation.isEmpty  {
-            initialArea = information.placeArea.first ?? "송파구"
-        }
-    }
+//    func resetPlaceInformation() {
+//        
+//        placeInformation.removeAll()
+//        placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == initialArea
+//        }
+//
+//        if placeInformation.isEmpty  {
+//            initialArea = information.placeArea.first ?? "송파구"
+//        }
+//    }
 }
 #Preview {
     HomeView()
-        .environmentObject(Network())
 }

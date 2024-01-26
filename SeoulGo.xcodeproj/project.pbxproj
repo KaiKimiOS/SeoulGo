@@ -18,6 +18,9 @@
 		2A19253E2B566BF000549503 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19253D2B566BF000549503 /* AppIntent.swift */; };
 		2A1925402B566BF100549503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A19253F2B566BF100549503 /* Assets.xcassets */; };
 		2A1925442B566BF100549503 /* SeoulGoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2A1925312B566BEF00549503 /* SeoulGoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2A2A8E252B63EB48006AA339 /* WebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EE82B502FF20015A9B8 /* WebKit.swift */; };
+		2A2A8E262B63EB48006AA339 /* SFSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */; };
+		2A2A8E292B63EC9F006AA339 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A8E282B63EC9F006AA339 /* Store.swift */; };
 		2A2C81132B4BB9320011707A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2A2C81122B4BB9320011707A /* SwiftSoup */; };
 		2A465B032B46833F00345046 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A465B022B46833F00345046 /* Network.swift */; };
 		2A4BD5752B4852D90003CBC6 /* Enum + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */; };
@@ -33,7 +36,6 @@
 		2ADAB9032B58C87500DB21E5 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A465B022B46833F00345046 /* Network.swift */; };
 		2ADAB9042B58C88300DB21E5 /* SeoulDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */; };
 		2AE937AF2B5164DB00B5242B /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE937AE2B5164DB00B5242B /* FavoriteView.swift */; };
-		2AE937B12B5176CF00B5242B /* tempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE937B02B5176CF00B5242B /* tempView.swift */; };
 		2AF28FF52B4D2BA200D483C5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF28FF42B4D2BA200D483C5 /* DetailView.swift */; };
 		2AF28FF72B4D948300D483C5 /* NaverMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF28FF62B4D948300D483C5 /* NaverMap.swift */; };
 		C4FA53A22CF0FA9511EE8B04 /* Pods_SeoulGo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0679ADB29173E30316ADFDAF /* Pods_SeoulGo.framework */; };
@@ -94,6 +96,7 @@
 		2A19253D2B566BF000549503 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		2A19253F2B566BF100549503 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1925412B566BF100549503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A2A8E282B63EC9F006AA339 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		2A465B022B46833F00345046 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		2A465B042B468A1A00345046 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum + Extension.swift"; sourceTree = "<group>"; };
@@ -112,7 +115,6 @@
 		2ADAB9062B58F27600DB21E5 /* SeoulGoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeoulGoWidgetExtension.entitlements; sourceTree = "<group>"; };
 		2ADAB9072B58F3B300DB21E5 /* SeoulGo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeoulGo.entitlements; sourceTree = "<group>"; };
 		2AE937AE2B5164DB00B5242B /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
-		2AE937B02B5176CF00B5242B /* tempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempView.swift; sourceTree = "<group>"; };
 		2AF28FF42B4D2BA200D483C5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		2AF28FF62B4D948300D483C5 /* NaverMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMap.swift; sourceTree = "<group>"; };
 		69F6B41FEB91DD62E9A927A0 /* Pods-SeoulGo-SeoulGoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeoulGo-SeoulGoUITests.release.xcconfig"; path = "Target Support Files/Pods-SeoulGo-SeoulGoUITests/Pods-SeoulGo-SeoulGoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +175,52 @@
 			path = SeoulGoWidget;
 			sourceTree = "<group>";
 		};
+		2A2A8E202B63EAC1006AA339 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2A6BCE602B3F1A7500396357 /* ContentView.swift */,
+				2A0103552B3F1CB10042797F /* HomeView.swift */,
+				2AF28FF42B4D2BA200D483C5 /* DetailView.swift */,
+				2AE937AE2B5164DB00B5242B /* FavoriteView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2A2A8E212B63EAD3006AA339 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2A2A8E282B63EC9F006AA339 /* Store.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2A2A8E222B63EAE2006AA339 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2A2A8E232B63EAFA006AA339 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		2A2A8E242B63EB17006AA339 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2AF28FF62B4D948300D483C5 /* NaverMap.swift */,
+				2AA68EE82B502FF20015A9B8 /* WebKit.swift */,
+				2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */,
+				2A465B022B46833F00345046 /* Network.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		2A6BCE522B3F1A7500396357 = {
 			isa = PBXGroup;
 			children = (
@@ -201,20 +249,14 @@
 		2A6BCE5D2B3F1A7500396357 /* SeoulGo */ = {
 			isa = PBXGroup;
 			children = (
+				2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */,
 				2ADAB9072B58F3B300DB21E5 /* SeoulGo.entitlements */,
 				2A465B042B468A1A00345046 /* Info.plist */,
-				2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */,
-				2A6BCE602B3F1A7500396357 /* ContentView.swift */,
-				2A0103552B3F1CB10042797F /* HomeView.swift */,
-				2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */,
-				2AF28FF42B4D2BA200D483C5 /* DetailView.swift */,
-				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
-				2AF28FF62B4D948300D483C5 /* NaverMap.swift */,
-				2AE937AE2B5164DB00B5242B /* FavoriteView.swift */,
-				2AA68EE82B502FF20015A9B8 /* WebKit.swift */,
-				2AE937B02B5176CF00B5242B /* tempView.swift */,
-				2A465B022B46833F00345046 /* Network.swift */,
-				2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */,
+				2A2A8E232B63EAFA006AA339 /* Utility */,
+				2A2A8E242B63EB17006AA339 /* Managers */,
+				2A2A8E222B63EAE2006AA339 /* Model */,
+				2A2A8E212B63EAD3006AA339 /* ViewModel */,
+				2A2A8E202B63EAC1006AA339 /* View */,
 				2A6BCE642B3F1A7600396357 /* Assets.xcassets */,
 				2A6BCE662B3F1A7600396357 /* Preview Content */,
 			);
@@ -550,8 +592,10 @@
 				2A1925382B566BF000549503 /* SeoulGoWidgetBundle.swift in Sources */,
 				2A19253E2B566BF000549503 /* AppIntent.swift in Sources */,
 				2A19253A2B566BF000549503 /* SeoulGoWidgetLiveActivity.swift in Sources */,
+				2A2A8E252B63EB48006AA339 /* WebKit.swift in Sources */,
 				2ADAB9042B58C88300DB21E5 /* SeoulDataModel.swift in Sources */,
 				2A19253C2B566BF000549503 /* SeoulGoWidget.swift in Sources */,
+				2A2A8E262B63EB48006AA339 /* SFSafariView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,8 +605,8 @@
 			files = (
 				2AA68EE92B502FF20015A9B8 /* WebKit.swift in Sources */,
 				2A465B032B46833F00345046 /* Network.swift in Sources */,
-				2AE937B12B5176CF00B5242B /* tempView.swift in Sources */,
 				2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */,
+				2A2A8E292B63EC9F006AA339 /* Store.swift in Sources */,
 				2A4BD5752B4852D90003CBC6 /* Enum + Extension.swift in Sources */,
 				2AF28FF72B4D948300D483C5 /* NaverMap.swift in Sources */,
 				2AE937AF2B5164DB00B5242B /* FavoriteView.swift in Sources */,
