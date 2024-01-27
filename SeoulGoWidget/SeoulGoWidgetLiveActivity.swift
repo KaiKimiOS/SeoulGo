@@ -72,9 +72,9 @@ extension SeoulGoWidgetAttributes.ContentState {
      }
 }
 
-#Preview("Notification", as: .content, using: SeoulGoWidgetAttributes.preview) {
-   SeoulGoWidgetLiveActivity()
-} contentStates: {
-    SeoulGoWidgetAttributes.ContentState.smiley
-    SeoulGoWidgetAttributes.ContentState.starEyes
-}
+//#Preview("Notification", as: .content, using: SeoulGoWidgetAttributes.preview) {
+//   SeoulGoWidgetLiveActivity()
+//} contentStates: {
+//    SeoulGoWidgetAttributes.ContentState.smiley
+//    SeoulGoWidgetAttributes.ContentState.starEyes
+//}

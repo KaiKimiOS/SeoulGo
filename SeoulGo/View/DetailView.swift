@@ -9,6 +9,7 @@ import SwiftUI
 import NMapsMap
 import WebKit
 import SafariServices
+import WidgetKit
 
 struct DetailView:View {
     //즐겨찾기
@@ -122,6 +123,7 @@ struct DetailView:View {
                         starBool.toggle()
                         starBool ?  UserDefaults.shared.setValue(information.serviceID, forKey: information.serviceID) :
                         UserDefaults.shared.removeObject(forKey: information.serviceID)
+                        WidgetCenter.shared.reloadAllTimelines()
                         
 //                        starBool ? network.favoriteLists.append(information) : network.favoriteLists.removeAll(where: { $0.serviceID == information.serviceID
 //                        })

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 enum SportName:String, CaseIterable {
     case 전체 = "전체"
     case 축구 = "축구장"

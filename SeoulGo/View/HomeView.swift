@@ -52,7 +52,9 @@ struct HomeView: View {
                  
                     Picker("지역", selection: $initialArea) {
                         
+                        Text("지역")
                         ForEach(store.allArea, id: \.self) { area in
+                            
                             Text(area)
                         }
                     }
@@ -73,12 +75,8 @@ struct HomeView: View {
                             HStack {
                                 NavigationLink("\(info.serviceName)" ) {
                                     DetailView(information: info)
-                                    
                                 }
-                                
                             }
-
-                            
                         }
                     } else {
                     ForEach(store.selectedResults, id: \.serviceID) { info  in
@@ -93,13 +91,14 @@ struct HomeView: View {
                         }
                     }
                 }
+                .listStyle(.plain)
                 
             }
             .onAppear {
             
                 if !initialBool {
                     Task{
-                        await store.fectRequest()
+                        await store.fetchRequest()
                         initialBool = true
                     }
                 } else {return}
@@ -108,6 +107,7 @@ struct HomeView: View {
             
             .onChange(of: initialSport.rawValue ) { _ in
                 store.getSelectedArea(sport: initialSport.rawValue)
+                initialArea = "지역"
 
             }
             .onChange(of:initialArea) { _ in

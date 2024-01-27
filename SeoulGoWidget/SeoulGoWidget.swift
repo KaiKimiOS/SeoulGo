@@ -14,61 +14,39 @@ import SwiftUI
 
 struct Provider: AppIntentTimelineProvider {
     
-    
-    @ObservedObject var information = Network.shared
-    
+    @ObservedObject var store: Store = Store()
+    @State var initalBool:Bool = false
     func placeholder(in context: Context) ->  SimpleEntry {
         print("1️⃣")
-        return SimpleEntry(date: Date(), configuration: ConfigurationAppIntent(), temp: [])
+        return SimpleEntry(date: Date(), configuration: ConfigurationAppIntent(), temp: store.favoriteLists)
         
     }
     
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
         print("2️⃣")
-        return SimpleEntry(date: Date(), configuration: configuration, temp: [])
+        return SimpleEntry(date: Date(), configuration: configuration, temp: store.favoriteLists)
         //위젯 추가하려고 꾹 눌러서 seoulgo 검색후 들어가면 그때 호출함.
     }
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
         //바탕화면에 seoulgo 위젯이 하나면 한번, 두개가 존재하면 2번 호출됨.
         print("3️⃣")
-//        await putUserDefaultsToWidget()
+        await putUserDefaultsToWidget()
         
         let currentDate = Date()
-        
-        var entries = SimpleEntry(date: currentDate, configuration: configuration, temp: [])
-        //        for hourOffset in 0 ..< 5 {
-        //            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-        //            let entry = SimpleEntry(date: entryDate, configuration: configuration, temp: information.favoriteLists!)
-        //
-        //            entries.append(entry)
-        //        }
-        
+        var entries = SimpleEntry(date: currentDate, configuration: configuration, temp: store.favoriteLists)
         return Timeline(entries: [entries], policy: .atEnd)
     }
     
-//    func putUserDefaultsToWidget() async -> [Row]{
-//        
-//        do {
-//            try await information.getData()
-//            let tempShared = UserDefaults(suiteName: "group.kaikim.SeoulGo")?.dictionaryRepresentation().keys
-//            var checkID = information.store.first?.ListPublicReservationSport.resultDetails.filter{ row in tempShared!.contains(row.serviceID) }
-//            
-//            guard let ok = checkID else {print("노노노놉");return []}
-//            information.favoriteLists?.removeAll()
-//            for i in ok {
-//                information.favoriteLists?.append(i)
-//                
-//            }
-//            print("4️⃣")
-//
-//            return information.favoriteLists!
-//        }catch {
-//            
-//            print(error.localizedDescription)
-//        }
-//        
-//    }
+    func putUserDefaultsToWidget() async {
+        
+        if !initalBool {
+            await store.fetchRequest()
+            initalBool = true
+        }
+        store.putUserDefaultsToLists()
+        store.putlistToDictionary()
+    }
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -81,9 +59,9 @@ struct SeoulGoWidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-
+        
         VStack(spacing:0) {
-
+            
             HStack(spacing:0){
                 Text("SeoulGo")
                     .lineLimit(1)
@@ -97,42 +75,27 @@ struct SeoulGoWidgetEntryView : View {
                     .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .scaledToFit()
                     .clipShape(.circle.inset(by: 10))
-                //                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-                //
+
             }
-            //            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
             
             VStack(alignment:.leading,spacing: 5){
-                
-                
-                ForEach(0..<min(entry.temp.count, 2)) { i in
+                ForEach(0..<min(entry.temp.count, 3)) { i in
                     HStack(spacing:0) {
-                        
                         
                         Text("[\(entry.temp[i].minClass)] ")
                         Text("\(entry.temp[i].placeName)")
                     }
                     .lineLimit(1)
                     .allowsTightening(true)
-                    .foregroundStyle(.black)
                     .font(.caption2)
                     .fontWeight(.light)
                     .truncationMode(.tail)
-                    
                 }
             }
             Spacer()
-            // .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-            
         }
-        
         .padding()
         .widgetURL(.temporaryDirectory)
-        .foregroundStyle(.black)
-        
-        
-        
-        
     }
     
 }

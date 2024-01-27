@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "54B76253D369787E5E5C64FC5478E929"
-               BuildableName = "Pods_SeoulGoTests.framework"
-               BlueprintName = "Pods-SeoulGoTests"
+               BlueprintIdentifier = "C163C17BD9C5F14C22355F6ADFA9565B"
+               BuildableName = "Pods_SeoulGoWidgetExtension.framework"
+               BlueprintName = "Pods-SeoulGoWidgetExtension"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

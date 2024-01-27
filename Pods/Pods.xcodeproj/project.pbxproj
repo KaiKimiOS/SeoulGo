@@ -16,7 +16,6 @@
 			dependencies = (
 			);
 			name = NMapsGeometry;
-			productName = NMapsGeometry;
 		};
 		8E049F5F4E3BDC647F924FEF22D49D90 /* NMapsMap */ = {
 			isa = PBXAggregateTarget;
@@ -28,20 +27,22 @@
 				258F097AFE79EE06421A954BF7063DC2 /* PBXTargetDependency */,
 			);
 			name = NMapsMap;
-			productName = NMapsMap;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		3E311CB378449F82B5531E8C23764503 /* Pods-SeoulGoTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C046F3820A644A184CCE6F3F318FFBDC /* Pods-SeoulGoTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50B486C8AE6DEFCE4C45DB6FC37E53A5 /* Pods-SeoulGo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 890DB1E2D2050535C4A0D01D3EFB2803 /* Pods-SeoulGo-dummy.m */; };
+		3E311CB378449F82B5531E8C23764503 /* Pods-SeoulGoTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AD1DA120C2DEF9F5BDD200F2A41FB11A /* Pods-SeoulGoTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50B486C8AE6DEFCE4C45DB6FC37E53A5 /* Pods-SeoulGo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E181484C259CFB0B75B09D07095253B6 /* Pods-SeoulGo-dummy.m */; };
 		51D2D7D9BB4313B539614E4EE042398B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		6288F8796A9F6CCD26753E49FBBD4674 /* Pods-SeoulGo-SeoulGoUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C6930B540B01DFC95AC9AD30FAAA7C1 /* Pods-SeoulGo-SeoulGoUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6288F8796A9F6CCD26753E49FBBD4674 /* Pods-SeoulGo-SeoulGoUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A64BA8AE641DBF88DBE58D42F251E0 /* Pods-SeoulGo-SeoulGoUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C8F4D23CE4A1A5D09A6E9CD67898E15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		876B51DA51D85FD606F3F412F0E5DF9E /* Pods-SeoulGo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4683CCBB525E3D10432EAA16E71CCECC /* Pods-SeoulGo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		94210D941FB135B89B69FBB0C7A82157 /* Pods-SeoulGoTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04257E1C51B34440E5163C9C0F871AD5 /* Pods-SeoulGoTests-dummy.m */; };
+		80DB3FE21AB0E1BEEA2E8255F84820DF /* Pods-SeoulGoWidgetExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3531DB599D352B95A0C917D1A8837F1B /* Pods-SeoulGoWidgetExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876B51DA51D85FD606F3F412F0E5DF9E /* Pods-SeoulGo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 107275BE6709F1B02346494310EEA3F0 /* Pods-SeoulGo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B987FF610BE8752851330EBA9D3C1F8 /* Pods-SeoulGoWidgetExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 442280EB619F69CA4057612185A8892B /* Pods-SeoulGoWidgetExtension-dummy.m */; };
+		94210D941FB135B89B69FBB0C7A82157 /* Pods-SeoulGoTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A059D79D3064EDA4774CDDF1FBCA720 /* Pods-SeoulGoTests-dummy.m */; };
 		AF148D7E345AC7068FED2D69F12ECA92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		BD3457AF548326B6976E429B8D147AB3 /* Pods-SeoulGo-SeoulGoUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F99EAF96FF8CA02C9541C35722FED1D /* Pods-SeoulGo-SeoulGoUITests-dummy.m */; };
+		BD3457AF548326B6976E429B8D147AB3 /* Pods-SeoulGo-SeoulGoUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F47002AEA16611FA6B8E94811A7185 /* Pods-SeoulGo-SeoulGoUITests-dummy.m */; };
+		CDD40599A1383197BF272CB0A2255566 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,51 +88,82 @@
 			remoteGlobalIDString = 72E614C823EA09AB1AAE80D5CD8A4C58;
 			remoteInfo = NMapsGeometry;
 		};
+		B253E60E64F9A2354E3219EAABC42BC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 72E614C823EA09AB1AAE80D5CD8A4C58;
+			remoteInfo = NMapsGeometry;
+		};
+		FA002A624137CE0C6B2AB3A4283C911D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E049F5F4E3BDC647F924FEF22D49D90;
+			remoteInfo = NMapsMap;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04257E1C51B34440E5163C9C0F871AD5 /* Pods-SeoulGoTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SeoulGoTests-dummy.m"; sourceTree = "<group>"; };
-		0511FE28B7462D1779C23E2487C6DF4E /* Pods-SeoulGoTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SeoulGoTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		0970046F7060534BA9B286629593DA0C /* NMapsMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMapsMap.debug.xcconfig; sourceTree = "<group>"; };
-		12CDE733B8C12DE12AE446C71D00E38D /* Pods-SeoulGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGo.debug.xcconfig"; sourceTree = "<group>"; };
+		107275BE6709F1B02346494310EEA3F0 /* Pods-SeoulGo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SeoulGo-umbrella.h"; sourceTree = "<group>"; };
+		17078B05172FD34B894419C5CD174657 /* Pods-SeoulGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGo.debug.xcconfig"; sourceTree = "<group>"; };
 		1A326C79B1B897CBCFDC36BFF5174A43 /* NMapsGeometry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMapsGeometry.debug.xcconfig; sourceTree = "<group>"; };
-		1F99EAF96FF8CA02C9541C35722FED1D /* Pods-SeoulGo-SeoulGoUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SeoulGo-SeoulGoUITests-dummy.m"; sourceTree = "<group>"; };
-		21383C385E20157025AC400E1E534BAB /* Pods-SeoulGo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGo-acknowledgements.plist"; sourceTree = "<group>"; };
-		2C7311CE1B835847D8AD08C8EFFECF6D /* Pods_SeoulGo_SeoulGoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeoulGo_SeoulGoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		33BA1CE0F9143053076971CAEFC0D343 /* Pods-SeoulGo-SeoulGoUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGo-SeoulGoUITests-Info.plist"; sourceTree = "<group>"; };
-		3C6930B540B01DFC95AC9AD30FAAA7C1 /* Pods-SeoulGo-SeoulGoUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SeoulGo-SeoulGoUITests-umbrella.h"; sourceTree = "<group>"; };
-		4683CCBB525E3D10432EAA16E71CCECC /* Pods-SeoulGo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SeoulGo-umbrella.h"; sourceTree = "<group>"; };
-		485FAE6318CCD7779377C7AA4A7B3528 /* NMapsGeometry.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = NMapsGeometry.xcframework; path = framework/NMapsGeometry.xcframework; sourceTree = "<group>"; };
-		4F0C55D25B9900DE7936740E68EFDFCF /* NMapsMap.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = framework/NMapsMap.xcframework; sourceTree = "<group>"; };
-		4F60F76C5E18A589A6755161B72F7564 /* Pods-SeoulGoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGoTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		2C7311CE1B835847D8AD08C8EFFECF6D /* Pods-SeoulGo-SeoulGoUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SeoulGo-SeoulGoUITests"; path = Pods_SeoulGo_SeoulGoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F0DA126118EDFB4E6188A374DC0333C /* Pods-SeoulGo-SeoulGoUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGo-SeoulGoUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		3531DB599D352B95A0C917D1A8837F1B /* Pods-SeoulGoWidgetExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SeoulGoWidgetExtension-umbrella.h"; sourceTree = "<group>"; };
+		3AE461057DD488ABF479C4996AB4FE71 /* Pods-SeoulGo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGo-acknowledgements.plist"; sourceTree = "<group>"; };
+		42A64BA8AE641DBF88DBE58D42F251E0 /* Pods-SeoulGo-SeoulGoUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SeoulGo-SeoulGoUITests-umbrella.h"; sourceTree = "<group>"; };
+		43B11A2E2DA983EBCD3B949484E6F25E /* Pods-SeoulGo-SeoulGoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGo-SeoulGoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		441B57D883B1A692DCDD2D8D8A80F804 /* Pods-SeoulGo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SeoulGo-frameworks.sh"; sourceTree = "<group>"; };
+		442280EB619F69CA4057612185A8892B /* Pods-SeoulGoWidgetExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SeoulGoWidgetExtension-dummy.m"; sourceTree = "<group>"; };
+		485FAE6318CCD7779377C7AA4A7B3528 /* NMapsGeometry.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = NMapsGeometry.xcframework; path = framework/NMapsGeometry.xcframework; sourceTree = "<group>"; };
+		4A059D79D3064EDA4774CDDF1FBCA720 /* Pods-SeoulGoTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SeoulGoTests-dummy.m"; sourceTree = "<group>"; };
+		4F0C55D25B9900DE7936740E68EFDFCF /* NMapsMap.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = NMapsMap.xcframework; path = framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		53BB18D8DE6118DEC0AAC01027DBECA8 /* NMapsMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMapsMap.release.xcconfig; sourceTree = "<group>"; };
-		5B22EA8B9F0E624ACE3C466EBAB4BF7A /* Pods-SeoulGo-SeoulGoUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SeoulGo-SeoulGoUITests-frameworks.sh"; sourceTree = "<group>"; };
-		5DBD565B6194F7773AF72C789BCEC9B8 /* Pods-SeoulGo-SeoulGoUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGo-SeoulGoUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		6AE460294657F5579BC1F8483AAD810F /* Pods-SeoulGo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGo-Info.plist"; sourceTree = "<group>"; };
+		5B0F0FD9C124365615AFBC49D0DF5178 /* Pods-SeoulGo-SeoulGoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGo-SeoulGoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5FAACE16B653B5C1CEF789D4CEAE6EBE /* Pods-SeoulGoWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGoWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		758B7EDD1DBC1E833F4957791D2EC17D /* Pods-SeoulGo-SeoulGoUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SeoulGo-SeoulGoUITests.modulemap"; sourceTree = "<group>"; };
+		78F15684C45430FD86DEF9933609810C /* Pods-SeoulGoTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SeoulGoTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7B715160F01D0E721367BCF4E9F47885 /* Pods-SeoulGoTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SeoulGoTests.modulemap"; sourceTree = "<group>"; };
 		7F89040B8DC7FC773592AA5FE110E9DF /* NMapsGeometry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMapsGeometry.release.xcconfig; sourceTree = "<group>"; };
-		82B97399F01E820B780402513FE2442C /* Pods-SeoulGo-SeoulGoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGo-SeoulGoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		890DB1E2D2050535C4A0D01D3EFB2803 /* Pods-SeoulGo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SeoulGo-dummy.m"; sourceTree = "<group>"; };
-		8917C221A15D0A9A5826E6BAF7738A2A /* Pods-SeoulGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGo.release.xcconfig"; sourceTree = "<group>"; };
+		820FAE6F27868810EE4D12494A6678F7 /* Pods-SeoulGoTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGoTests-Info.plist"; sourceTree = "<group>"; };
+		9312443258576B2244B528B47F3678A1 /* Pods-SeoulGo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SeoulGo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		954C591BAE8D57BE9E114CBF6132A112 /* Pods-SeoulGo-SeoulGoUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGo-SeoulGoUITests-Info.plist"; sourceTree = "<group>"; };
 		983FCEF2808419DF12F69DFEBD7685D4 /* NMapsMap-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "NMapsMap-xcframeworks.sh"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A5214E95B594D062183AE031274CEAD8 /* Pods-SeoulGoTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SeoulGoTests.modulemap"; sourceTree = "<group>"; };
-		A6C081E402A4DC61507AA48490FC1212 /* Pods-SeoulGo-SeoulGoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGo-SeoulGoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		AC9EA781E5CD498DEAC329E6894F6EF9 /* Pods-SeoulGoTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGoTests-Info.plist"; sourceTree = "<group>"; };
-		B7FB47346A6A793180147B0D402A91A6 /* Pods-SeoulGo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SeoulGo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C01208648FA02113F7756C263FF8F117 /* Pods-SeoulGoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C046F3820A644A184CCE6F3F318FFBDC /* Pods-SeoulGoTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SeoulGoTests-umbrella.h"; sourceTree = "<group>"; };
-		D76CBD1482411DE6253D7EDAE8F679A6 /* Pods-SeoulGo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SeoulGo-frameworks.sh"; sourceTree = "<group>"; };
-		DB77D892F835DE618A4EE4C1E1E476D1 /* Pods-SeoulGo-SeoulGoUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SeoulGo-SeoulGoUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E003ED82CA9A2B7056231CF9219ED57B /* Pods_SeoulGo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeoulGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C7888F23873F1960035E5CC09A51F96 /* Pods-SeoulGoWidgetExtension-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGoWidgetExtension-Info.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A12AE67888EFE097F7890A2C96F18FF2 /* Pods-SeoulGoWidgetExtension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGoWidgetExtension-acknowledgements.plist"; sourceTree = "<group>"; };
+		A353482BC198741C630B88073FBE003F /* Pods-SeoulGo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SeoulGo.modulemap"; sourceTree = "<group>"; };
+		A615F0E9168DA3D26211CD6DFAE8D1DD /* Pods-SeoulGo-SeoulGoUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SeoulGo-SeoulGoUITests.modulemap"; sourceTree = "<group>"; };
+		AD1DA120C2DEF9F5BDD200F2A41FB11A /* Pods-SeoulGoTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SeoulGoTests-umbrella.h"; sourceTree = "<group>"; };
+		AEFB1B45AE5AC60D9A562F40D7C19C29 /* Pods-SeoulGoWidgetExtension */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SeoulGoWidgetExtension"; path = Pods_SeoulGoWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFC8E332E27C5664EA56A485AD45356F /* Pods-SeoulGoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGoTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		C7AD25D3A764C922C7DB9ABEEB4DF306 /* Pods-SeoulGoWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGoWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		CD78A7605210E7B2C62FE5164C0ACBE1 /* Pods-SeoulGoWidgetExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SeoulGoWidgetExtension.modulemap"; sourceTree = "<group>"; };
+		D3703D49DD648F1A739998D004B926F7 /* Pods-SeoulGo-SeoulGoUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SeoulGo-SeoulGoUITests-frameworks.sh"; sourceTree = "<group>"; };
+		D9875D758A03B08CC0CE74933C901449 /* Pods-SeoulGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGo.release.xcconfig"; sourceTree = "<group>"; };
+		D9EFF039D1B4927B26B6500C9BFA930F /* Pods-SeoulGoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGoTests.release.xcconfig"; sourceTree = "<group>"; };
+		E003ED82CA9A2B7056231CF9219ED57B /* Pods-SeoulGo */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SeoulGo"; path = Pods_SeoulGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E101130795B024FC83E4F774AA209B18 /* NMapsGeometry-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "NMapsGeometry-xcframeworks.sh"; sourceTree = "<group>"; };
-		E358D8DEEB7E07EEF234811C1B5A853C /* Pods-SeoulGoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGoTests.release.xcconfig"; sourceTree = "<group>"; };
-		E3D0BCA85E096EE620557E0CDAF89AEB /* Pods_SeoulGoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeoulGoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9AF8F5F2FD615DC8636DE2BC827BB31 /* Pods-SeoulGo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SeoulGo.modulemap"; sourceTree = "<group>"; };
+		E181484C259CFB0B75B09D07095253B6 /* Pods-SeoulGo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SeoulGo-dummy.m"; sourceTree = "<group>"; };
+		E3D0BCA85E096EE620557E0CDAF89AEB /* Pods-SeoulGoTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SeoulGoTests"; path = Pods_SeoulGoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E553E0919B8D738926C4448C5CD50DC7 /* Pods-SeoulGoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeoulGoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E6925E58B89091CDBD44C4206BC9BB85 /* Pods-SeoulGo-SeoulGoUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SeoulGo-SeoulGoUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F4F47002AEA16611FA6B8E94811A7185 /* Pods-SeoulGo-SeoulGoUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SeoulGo-SeoulGoUITests-dummy.m"; sourceTree = "<group>"; };
+		FE9B7DD510056119553256D545A17EEA /* Pods-SeoulGoWidgetExtension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SeoulGoWidgetExtension-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FF2B0626A8C0EF935350A6221F05D136 /* Pods-SeoulGo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeoulGo-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3CFED5E7E62CE1CFF0550E0419E99F65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDD40599A1383197BF272CB0A2255566 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		79A8FDA6F318EBE946577A76F0C5483C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -193,7 +225,19 @@
 				DC955F600E602E5041F1000DC79753BB /* Frameworks */,
 				169A894F474781F666BE8D90408D3828 /* Support Files */,
 			);
+			name = NMapsGeometry;
 			path = NMapsGeometry;
+			sourceTree = "<group>";
+		};
+		36B993CCE162FB2FF2CA32FEF716533C /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				55301C20504319EE4F0E800E9D822897 /* Pods-SeoulGo */,
+				F82D71744C2C34EFCD252F123E4C65EB /* Pods-SeoulGo-SeoulGoUITests */,
+				E8518E0A527C28BBE7CFFF2C84650095 /* Pods-SeoulGoTests */,
+				68AA2FFB234D15A9B5717AF613AAA052 /* Pods-SeoulGoWidgetExtension */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		487B37947971C0C75B135158191A5547 /* NMapsMap */ = {
@@ -202,7 +246,25 @@
 				2ED541A35C7BD1778556550CF4846D2F /* Frameworks */,
 				A3E28C362EAC5C5A2CCC22EE5E2FDA30 /* Support Files */,
 			);
+			name = NMapsMap;
 			path = NMapsMap;
+			sourceTree = "<group>";
+		};
+		55301C20504319EE4F0E800E9D822897 /* Pods-SeoulGo */ = {
+			isa = PBXGroup;
+			children = (
+				A353482BC198741C630B88073FBE003F /* Pods-SeoulGo.modulemap */,
+				9312443258576B2244B528B47F3678A1 /* Pods-SeoulGo-acknowledgements.markdown */,
+				3AE461057DD488ABF479C4996AB4FE71 /* Pods-SeoulGo-acknowledgements.plist */,
+				E181484C259CFB0B75B09D07095253B6 /* Pods-SeoulGo-dummy.m */,
+				441B57D883B1A692DCDD2D8D8A80F804 /* Pods-SeoulGo-frameworks.sh */,
+				FF2B0626A8C0EF935350A6221F05D136 /* Pods-SeoulGo-Info.plist */,
+				107275BE6709F1B02346494310EEA3F0 /* Pods-SeoulGo-umbrella.h */,
+				17078B05172FD34B894419C5CD174657 /* Pods-SeoulGo.debug.xcconfig */,
+				D9875D758A03B08CC0CE74933C901449 /* Pods-SeoulGo.release.xcconfig */,
+			);
+			name = "Pods-SeoulGo";
+			path = "Target Support Files/Pods-SeoulGo";
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -213,14 +275,20 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		744E946B7AB4953953C2590F8317F6DA /* Targets Support Files */ = {
+		68AA2FFB234D15A9B5717AF613AAA052 /* Pods-SeoulGoWidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
-				A923F875313BDADEB7CAA3EA524F9DEE /* Pods-SeoulGo */,
-				B1A5C63C1ADCEE466BD34C9CBEDE463E /* Pods-SeoulGo-SeoulGoUITests */,
-				C772D620853F2175CDFCF2145576DAA7 /* Pods-SeoulGoTests */,
+				CD78A7605210E7B2C62FE5164C0ACBE1 /* Pods-SeoulGoWidgetExtension.modulemap */,
+				FE9B7DD510056119553256D545A17EEA /* Pods-SeoulGoWidgetExtension-acknowledgements.markdown */,
+				A12AE67888EFE097F7890A2C96F18FF2 /* Pods-SeoulGoWidgetExtension-acknowledgements.plist */,
+				442280EB619F69CA4057612185A8892B /* Pods-SeoulGoWidgetExtension-dummy.m */,
+				9C7888F23873F1960035E5CC09A51F96 /* Pods-SeoulGoWidgetExtension-Info.plist */,
+				3531DB599D352B95A0C917D1A8837F1B /* Pods-SeoulGoWidgetExtension-umbrella.h */,
+				5FAACE16B653B5C1CEF789D4CEAE6EBE /* Pods-SeoulGoWidgetExtension.debug.xcconfig */,
+				C7AD25D3A764C922C7DB9ABEEB4DF306 /* Pods-SeoulGoWidgetExtension.release.xcconfig */,
 			);
-			name = "Targets Support Files";
+			name = "Pods-SeoulGoWidgetExtension";
+			path = "Target Support Files/Pods-SeoulGoWidgetExtension";
 			sourceTree = "<group>";
 		};
 		A3E28C362EAC5C5A2CCC22EE5E2FDA30 /* Support Files */ = {
@@ -234,74 +302,14 @@
 			path = "../Target Support Files/NMapsMap";
 			sourceTree = "<group>";
 		};
-		A923F875313BDADEB7CAA3EA524F9DEE /* Pods-SeoulGo */ = {
-			isa = PBXGroup;
-			children = (
-				F9AF8F5F2FD615DC8636DE2BC827BB31 /* Pods-SeoulGo.modulemap */,
-				B7FB47346A6A793180147B0D402A91A6 /* Pods-SeoulGo-acknowledgements.markdown */,
-				21383C385E20157025AC400E1E534BAB /* Pods-SeoulGo-acknowledgements.plist */,
-				890DB1E2D2050535C4A0D01D3EFB2803 /* Pods-SeoulGo-dummy.m */,
-				D76CBD1482411DE6253D7EDAE8F679A6 /* Pods-SeoulGo-frameworks.sh */,
-				6AE460294657F5579BC1F8483AAD810F /* Pods-SeoulGo-Info.plist */,
-				4683CCBB525E3D10432EAA16E71CCECC /* Pods-SeoulGo-umbrella.h */,
-				12CDE733B8C12DE12AE446C71D00E38D /* Pods-SeoulGo.debug.xcconfig */,
-				8917C221A15D0A9A5826E6BAF7738A2A /* Pods-SeoulGo.release.xcconfig */,
-			);
-			name = "Pods-SeoulGo";
-			path = "Target Support Files/Pods-SeoulGo";
-			sourceTree = "<group>";
-		};
-		B1A5C63C1ADCEE466BD34C9CBEDE463E /* Pods-SeoulGo-SeoulGoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				758B7EDD1DBC1E833F4957791D2EC17D /* Pods-SeoulGo-SeoulGoUITests.modulemap */,
-				DB77D892F835DE618A4EE4C1E1E476D1 /* Pods-SeoulGo-SeoulGoUITests-acknowledgements.markdown */,
-				5DBD565B6194F7773AF72C789BCEC9B8 /* Pods-SeoulGo-SeoulGoUITests-acknowledgements.plist */,
-				1F99EAF96FF8CA02C9541C35722FED1D /* Pods-SeoulGo-SeoulGoUITests-dummy.m */,
-				5B22EA8B9F0E624ACE3C466EBAB4BF7A /* Pods-SeoulGo-SeoulGoUITests-frameworks.sh */,
-				33BA1CE0F9143053076971CAEFC0D343 /* Pods-SeoulGo-SeoulGoUITests-Info.plist */,
-				3C6930B540B01DFC95AC9AD30FAAA7C1 /* Pods-SeoulGo-SeoulGoUITests-umbrella.h */,
-				A6C081E402A4DC61507AA48490FC1212 /* Pods-SeoulGo-SeoulGoUITests.debug.xcconfig */,
-				82B97399F01E820B780402513FE2442C /* Pods-SeoulGo-SeoulGoUITests.release.xcconfig */,
-			);
-			name = "Pods-SeoulGo-SeoulGoUITests";
-			path = "Target Support Files/Pods-SeoulGo-SeoulGoUITests";
-			sourceTree = "<group>";
-		};
-		BD1CF8A17039F81A68942004A8AFF213 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E003ED82CA9A2B7056231CF9219ED57B /* Pods_SeoulGo.framework */,
-				2C7311CE1B835847D8AD08C8EFFECF6D /* Pods_SeoulGo_SeoulGoUITests.framework */,
-				E3D0BCA85E096EE620557E0CDAF89AEB /* Pods_SeoulGoTests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C772D620853F2175CDFCF2145576DAA7 /* Pods-SeoulGoTests */ = {
-			isa = PBXGroup;
-			children = (
-				A5214E95B594D062183AE031274CEAD8 /* Pods-SeoulGoTests.modulemap */,
-				0511FE28B7462D1779C23E2487C6DF4E /* Pods-SeoulGoTests-acknowledgements.markdown */,
-				4F60F76C5E18A589A6755161B72F7564 /* Pods-SeoulGoTests-acknowledgements.plist */,
-				04257E1C51B34440E5163C9C0F871AD5 /* Pods-SeoulGoTests-dummy.m */,
-				AC9EA781E5CD498DEAC329E6894F6EF9 /* Pods-SeoulGoTests-Info.plist */,
-				C046F3820A644A184CCE6F3F318FFBDC /* Pods-SeoulGoTests-umbrella.h */,
-				C01208648FA02113F7756C263FF8F117 /* Pods-SeoulGoTests.debug.xcconfig */,
-				E358D8DEEB7E07EEF234811C1B5A853C /* Pods-SeoulGoTests.release.xcconfig */,
-			);
-			name = "Pods-SeoulGoTests";
-			path = "Target Support Files/Pods-SeoulGoTests";
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				25B56312D79088C322C5B52238334BCC /* Pods */,
-				BD1CF8A17039F81A68942004A8AFF213 /* Products */,
-				744E946B7AB4953953C2590F8317F6DA /* Targets Support Files */,
+				D7051E6C2ECACDD02E2DD67FD346BF61 /* Products */,
+				36B993CCE162FB2FF2CA32FEF716533C /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -313,12 +321,56 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D7051E6C2ECACDD02E2DD67FD346BF61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E003ED82CA9A2B7056231CF9219ED57B /* Pods-SeoulGo */,
+				2C7311CE1B835847D8AD08C8EFFECF6D /* Pods-SeoulGo-SeoulGoUITests */,
+				E3D0BCA85E096EE620557E0CDAF89AEB /* Pods-SeoulGoTests */,
+				AEFB1B45AE5AC60D9A562F40D7C19C29 /* Pods-SeoulGoWidgetExtension */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		DC955F600E602E5041F1000DC79753BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				485FAE6318CCD7779377C7AA4A7B3528 /* NMapsGeometry.xcframework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8518E0A527C28BBE7CFFF2C84650095 /* Pods-SeoulGoTests */ = {
+			isa = PBXGroup;
+			children = (
+				7B715160F01D0E721367BCF4E9F47885 /* Pods-SeoulGoTests.modulemap */,
+				78F15684C45430FD86DEF9933609810C /* Pods-SeoulGoTests-acknowledgements.markdown */,
+				AFC8E332E27C5664EA56A485AD45356F /* Pods-SeoulGoTests-acknowledgements.plist */,
+				4A059D79D3064EDA4774CDDF1FBCA720 /* Pods-SeoulGoTests-dummy.m */,
+				820FAE6F27868810EE4D12494A6678F7 /* Pods-SeoulGoTests-Info.plist */,
+				AD1DA120C2DEF9F5BDD200F2A41FB11A /* Pods-SeoulGoTests-umbrella.h */,
+				E553E0919B8D738926C4448C5CD50DC7 /* Pods-SeoulGoTests.debug.xcconfig */,
+				D9EFF039D1B4927B26B6500C9BFA930F /* Pods-SeoulGoTests.release.xcconfig */,
+			);
+			name = "Pods-SeoulGoTests";
+			path = "Target Support Files/Pods-SeoulGoTests";
+			sourceTree = "<group>";
+		};
+		F82D71744C2C34EFCD252F123E4C65EB /* Pods-SeoulGo-SeoulGoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A615F0E9168DA3D26211CD6DFAE8D1DD /* Pods-SeoulGo-SeoulGoUITests.modulemap */,
+				E6925E58B89091CDBD44C4206BC9BB85 /* Pods-SeoulGo-SeoulGoUITests-acknowledgements.markdown */,
+				2F0DA126118EDFB4E6188A374DC0333C /* Pods-SeoulGo-SeoulGoUITests-acknowledgements.plist */,
+				F4F47002AEA16611FA6B8E94811A7185 /* Pods-SeoulGo-SeoulGoUITests-dummy.m */,
+				D3703D49DD648F1A739998D004B926F7 /* Pods-SeoulGo-SeoulGoUITests-frameworks.sh */,
+				954C591BAE8D57BE9E114CBF6132A112 /* Pods-SeoulGo-SeoulGoUITests-Info.plist */,
+				42A64BA8AE641DBF88DBE58D42F251E0 /* Pods-SeoulGo-SeoulGoUITests-umbrella.h */,
+				5B0F0FD9C124365615AFBC49D0DF5178 /* Pods-SeoulGo-SeoulGoUITests.debug.xcconfig */,
+				43B11A2E2DA983EBCD3B949484E6F25E /* Pods-SeoulGo-SeoulGoUITests.release.xcconfig */,
+			);
+			name = "Pods-SeoulGo-SeoulGoUITests";
+			path = "Target Support Files/Pods-SeoulGo-SeoulGoUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +389,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6288F8796A9F6CCD26753E49FBBD4674 /* Pods-SeoulGo-SeoulGoUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3F86DA59B1E24BE2A2CE6EF89C1A434 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80DB3FE21AB0E1BEEA2E8255F84820DF /* Pods-SeoulGoWidgetExtension-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +428,7 @@
 			);
 			name = "Pods-SeoulGo";
 			productName = Pods_SeoulGo;
-			productReference = E003ED82CA9A2B7056231CF9219ED57B /* Pods_SeoulGo.framework */;
+			productReference = E003ED82CA9A2B7056231CF9219ED57B /* Pods-SeoulGo */;
 			productType = "com.apple.product-type.framework";
 		};
 		54B76253D369787E5E5C64FC5478E929 /* Pods-SeoulGoTests */ = {
@@ -387,7 +447,7 @@
 			);
 			name = "Pods-SeoulGoTests";
 			productName = Pods_SeoulGoTests;
-			productReference = E3D0BCA85E096EE620557E0CDAF89AEB /* Pods_SeoulGoTests.framework */;
+			productReference = E3D0BCA85E096EE620557E0CDAF89AEB /* Pods-SeoulGoTests */;
 			productType = "com.apple.product-type.framework";
 		};
 		8DD0DF969CA836C17E5D84C890FEC919 /* Pods-SeoulGo-SeoulGoUITests */ = {
@@ -407,7 +467,27 @@
 			);
 			name = "Pods-SeoulGo-SeoulGoUITests";
 			productName = Pods_SeoulGo_SeoulGoUITests;
-			productReference = 2C7311CE1B835847D8AD08C8EFFECF6D /* Pods_SeoulGo_SeoulGoUITests.framework */;
+			productReference = 2C7311CE1B835847D8AD08C8EFFECF6D /* Pods-SeoulGo-SeoulGoUITests */;
+			productType = "com.apple.product-type.framework";
+		};
+		C163C17BD9C5F14C22355F6ADFA9565B /* Pods-SeoulGoWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40E6A4B80F73D70158F4C456414E1CDA /* Build configuration list for PBXNativeTarget "Pods-SeoulGoWidgetExtension" */;
+			buildPhases = (
+				D3F86DA59B1E24BE2A2CE6EF89C1A434 /* Headers */,
+				1DE254AFEAE4051AEC7FA2FAD3CA852D /* Sources */,
+				3CFED5E7E62CE1CFF0550E0419E99F65 /* Frameworks */,
+				CFD66510C8730EE7EB0FFA47A08BF0A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5D2B1996DAD8B6098E5EFB59663DEA7C /* PBXTargetDependency */,
+				FED7A46865043817090A70D10C1BFBB5 /* PBXTargetDependency */,
+			);
+			name = "Pods-SeoulGoWidgetExtension";
+			productName = Pods_SeoulGoWidgetExtension;
+			productReference = AEFB1B45AE5AC60D9A562F40D7C19C29 /* Pods-SeoulGoWidgetExtension */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -416,9 +496,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1500;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -429,7 +508,7 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = BD1CF8A17039F81A68942004A8AFF213 /* Products */;
+			productRefGroup = D7051E6C2ECACDD02E2DD67FD346BF61 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -438,6 +517,7 @@
 				3D8B625E898892D0D8984DC88B5CE934 /* Pods-SeoulGo */,
 				8DD0DF969CA836C17E5D84C890FEC919 /* Pods-SeoulGo-SeoulGoUITests */,
 				54B76253D369787E5E5C64FC5478E929 /* Pods-SeoulGoTests */,
+				C163C17BD9C5F14C22355F6ADFA9565B /* Pods-SeoulGoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -451,6 +531,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5E1318BDC0411F4C28518D1D0E8349FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFD66510C8730EE7EB0FFA47A08BF0A5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -504,6 +591,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1DE254AFEAE4051AEC7FA2FAD3CA852D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B987FF610BE8752851330EBA9D3C1F8 /* Pods-SeoulGoWidgetExtension-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58007089B1DCC743917631D7464DF4F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -555,6 +650,12 @@
 			target = 72E614C823EA09AB1AAE80D5CD8A4C58 /* NMapsGeometry */;
 			targetProxy = 151C22536144D13B66992CA1AFCC12A8 /* PBXContainerItemProxy */;
 		};
+		5D2B1996DAD8B6098E5EFB59663DEA7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NMapsGeometry;
+			target = 72E614C823EA09AB1AAE80D5CD8A4C58 /* NMapsGeometry */;
+			targetProxy = B253E60E64F9A2354E3219EAABC42BC9 /* PBXContainerItemProxy */;
+		};
 		CD9DC39BF7F7275FB3392781AEAFCA4E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NMapsGeometry;
@@ -567,16 +668,60 @@
 			target = 8E049F5F4E3BDC647F924FEF22D49D90 /* NMapsMap */;
 			targetProxy = 05ED19989152F76035665D931DC586D0 /* PBXContainerItemProxy */;
 		};
+		FED7A46865043817090A70D10C1BFBB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NMapsMap;
+			target = 8E049F5F4E3BDC647F924FEF22D49D90 /* NMapsMap */;
+			targetProxy = FA002A624137CE0C6B2AB3A4283C911D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		11E969B37A4C39EDC0CDAB2AACEDB5BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9875D758A03B08CC0CE74933C901449 /* Pods-SeoulGo.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGo/Pods-SeoulGo-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGo/Pods-SeoulGo.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		138EE7F5840AEF4E4028CA5FAAE9EE6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F89040B8DC7FC773592AA5FE110E9DF /* NMapsGeometry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -587,76 +732,23 @@
 			};
 			name = Release;
 		};
-		4122D12474652D4B94029A59C0DC6010 /* Debug */ = {
+		3DE36A0427817600E19F5EB33123D186 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A326C79B1B897CBCFDC36BFF5174A43 /* NMapsGeometry.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		416D72D823EE7176D5518231270FDB47 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6C081E402A4DC61507AA48490FC1212 /* Pods-SeoulGo-SeoulGoUITests.debug.xcconfig */;
+			baseConfigurationReference = D9EFF039D1B4927B26B6500C9BFA930F /* Pods-SeoulGoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGo-SeoulGoUITests/Pods-SeoulGo-SeoulGoUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGo-SeoulGoUITests/Pods-SeoulGo-SeoulGoUITests.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		4A1ED9EC1030B539F0271403D6CD248F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C01208648FA02113F7756C263FF8F117 /* Pods-SeoulGoTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGoTests/Pods-SeoulGoTests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -664,8 +756,60 @@
 				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGoTests/Pods-SeoulGoTests.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4122D12474652D4B94029A59C0DC6010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A326C79B1B897CBCFDC36BFF5174A43 /* NMapsGeometry.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		556FEC2E25E859706425C97CCCF4046D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17078B05172FD34B894419C5CD174657 /* Pods-SeoulGo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGo/Pods-SeoulGo-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGo/Pods-SeoulGo.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -679,7 +823,7 @@
 			};
 			name = Debug;
 		};
-		A79A178FFBE70ACE6FCA0584568F85EE /* Debug */ = {
+		6A5C026ED62BBFE3380CD257EEFAEB20 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -714,11 +858,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -734,11 +876,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -746,154 +889,23 @@
 			};
 			name = Debug;
 		};
-		AB3B861F8C952D18A07734F798B3DC45 /* Release */ = {
+		893A8784EEA061F99895CD433333105E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E358D8DEEB7E07EEF234811C1B5A853C /* Pods-SeoulGoTests.release.xcconfig */;
+			baseConfigurationReference = 43B11A2E2DA983EBCD3B949484E6F25E /* Pods-SeoulGo-SeoulGoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGoTests/Pods-SeoulGoTests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGoTests/Pods-SeoulGoTests.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		BECF36B316120036CBEFAB4EB2D21250 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12CDE733B8C12DE12AE446C71D00E38D /* Pods-SeoulGo.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGo/Pods-SeoulGo-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGo/Pods-SeoulGo.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		C5EF624620FC9DDE2679412227F3AE71 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8917C221A15D0A9A5826E6BAF7738A2A /* Pods-SeoulGo.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGo/Pods-SeoulGo-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGo/Pods-SeoulGo.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E683018BA3CA2E27A39E5DF5619B90F6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0970046F7060534BA9B286629593DA0C /* NMapsMap.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		F751EFCA761BC27ED665309526C64033 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82B97399F01E820B780402513FE2442C /* Pods-SeoulGo-SeoulGoUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGo-SeoulGoUITests/Pods-SeoulGo-SeoulGoUITests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -901,8 +913,6 @@
 				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGo-SeoulGoUITests/Pods-SeoulGo-SeoulGoUITests.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -917,7 +927,60 @@
 			};
 			name = Release;
 		};
-		FC1B33BD4F14216CBB171450434950A4 /* Release */ = {
+		C96CF2ADE86F1EB1D3AAC00324DA8E87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B0F0FD9C124365615AFBC49D0DF5178 /* Pods-SeoulGo-SeoulGoUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGo-SeoulGoUITests/Pods-SeoulGo-SeoulGoUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGo-SeoulGoUITests/Pods-SeoulGo-SeoulGoUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E683018BA3CA2E27A39E5DF5619B90F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0970046F7060534BA9B286629593DA0C /* NMapsMap.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E873CA97BD124B21839AF13C9BE1CD18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -952,11 +1015,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -969,10 +1030,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -980,13 +1042,125 @@
 			};
 			name = Release;
 		};
+		E9E3EF0B6CE65479D410587734579855 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7AD25D3A764C922C7DB9ABEEB4DF306 /* Pods-SeoulGoWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGoWidgetExtension/Pods-SeoulGoWidgetExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGoWidgetExtension/Pods-SeoulGoWidgetExtension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EDF1BC07276D395BB1E8259365E539D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E553E0919B8D738926C4448C5CD50DC7 /* Pods-SeoulGoTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGoTests/Pods-SeoulGoTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGoTests/Pods-SeoulGoTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FC9E01EFB9636EA8052EF3026694B6D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FAACE16B653B5C1CEF789D4CEAE6EBE /* Pods-SeoulGoWidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SeoulGoWidgetExtension/Pods-SeoulGoWidgetExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SeoulGoWidgetExtension/Pods-SeoulGoWidgetExtension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		FE5D137BA104CCBECE001BF38C0AEB3E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 53BB18D8DE6118DEC0AAC01027DBECA8 /* NMapsMap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1000,11 +1174,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		40E6A4B80F73D70158F4C456414E1CDA /* Build configuration list for PBXNativeTarget "Pods-SeoulGoWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC9E01EFB9636EA8052EF3026694B6D5 /* Debug */,
+				E9E3EF0B6CE65479D410587734579855 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A79A178FFBE70ACE6FCA0584568F85EE /* Debug */,
-				FC1B33BD4F14216CBB171450434950A4 /* Release */,
+				6A5C026ED62BBFE3380CD257EEFAEB20 /* Debug */,
+				E873CA97BD124B21839AF13C9BE1CD18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1021,8 +1204,8 @@
 		7D6AA82AA08DD615D2DF98485745AD3E /* Build configuration list for PBXNativeTarget "Pods-SeoulGoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4A1ED9EC1030B539F0271403D6CD248F /* Debug */,
-				AB3B861F8C952D18A07734F798B3DC45 /* Release */,
+				EDF1BC07276D395BB1E8259365E539D8 /* Debug */,
+				3DE36A0427817600E19F5EB33123D186 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1030,8 +1213,8 @@
 		A45CCA7CD90517ACA9573AF0D82F2A12 /* Build configuration list for PBXNativeTarget "Pods-SeoulGo-SeoulGoUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				416D72D823EE7176D5518231270FDB47 /* Debug */,
-				F751EFCA761BC27ED665309526C64033 /* Release */,
+				C96CF2ADE86F1EB1D3AAC00324DA8E87 /* Debug */,
+				893A8784EEA061F99895CD433333105E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1039,8 +1222,8 @@
 		D3C54CE55016A8C41735B65D6DC7C796 /* Build configuration list for PBXNativeTarget "Pods-SeoulGo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BECF36B316120036CBEFAB4EB2D21250 /* Debug */,
-				C5EF624620FC9DDE2679412227F3AE71 /* Release */,
+				556FEC2E25E859706425C97CCCF4046D /* Debug */,
+				11E969B37A4C39EDC0CDAB2AACEDB5BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

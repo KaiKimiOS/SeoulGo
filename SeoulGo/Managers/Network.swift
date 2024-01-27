@@ -15,13 +15,6 @@ class Network: ObservableObject {
     
     private let apiKey = "647879614473646636395064566e6a"
     
-//    @Published var store:[SeoulDataModel] = []
-//    @Published var favoriteLists:[Row]? = []
-//    @Published var totalSports:[Row] = []
-//    @Published var pageNumbers:Int?
-//    @Published var finalSportLists:[Row] = []
-//    @Published var placeArea:[String] = []
-    
     @MainActor
     func getData() async  -> [SeoulDataModel] {
         
@@ -37,24 +30,7 @@ class Network: ObservableObject {
         } catch {
             debugPrint("\(String(describing: error))")
         }
-        
         return []
     }
-    
-//    func getSportName(sportName:String) {
-//        totalSports.removeAll()
-//        placeArea.removeAll()
-//        
-//        
-//        
-//        totalSports = (store.first?.ListPublicReservationSport.resultDetails.filter{ $0.minClass == sportName})!
-//        placeArea = Array(Set((store.first?.ListPublicReservationSport.resultDetails.map { $0.areaName })!)).sorted(by: <)
-//        
-//    }
-//    func getArea(areaName:String) {
-//        finalSportLists.removeAll()
-//        finalSportLists = totalSports.filter { $0.areaName ==  areaName}
-////        print(finalSportLists)
-//        
-//    }
+
 }

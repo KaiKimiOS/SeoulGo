@@ -5,7 +5,6 @@ target 'SeoulGo' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 pod 'NMapsMap'
- 
   # Pods for SeoulGo
 
   target 'SeoulGoTests' do
@@ -16,5 +15,13 @@ pod 'NMapsMap'
   target 'SeoulGoUITests' do
     # Pods for testing
   end
+
+end
+
+target 'SeoulGoWidgetExtension' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+pod 'NMapsMap'
+  # Pods for SeoulGoWidgetExtension
 
 end

@@ -8,6 +8,7 @@
 import SwiftUI
 import NMapsMap
 
+
 struct NaverMap: UIViewRepresentable{
     
     var y:Double
