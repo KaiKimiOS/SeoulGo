@@ -84,11 +84,10 @@ struct DetailView:View {
                 .padding(5)
                 
                 Button(action: {
-                    print(star)
 //                    information.star.toggle()
 //                    UserDefaults.standard.setValue(information.serviceID, forKey: information.serviceID)
 //                    count = information.serviceID
-//                    isWebViewBool = true
+                    isWebViewBool = true
                 }, label: {
                     HStack{
                         Spacer()
@@ -97,16 +96,14 @@ struct DetailView:View {
                             
                     }
                     .padding()
-//
-//                    .modifier(detailMoidifier())
-//                    .padding([.leading,.trailing,.bottom], 5)
+
                 })
                 .buttonStyle(.borderedProminent)
                 .padding([.leading,.trailing,.bottom], 5)
                 
                 .sheet(isPresented: $isWebViewBool, content: {
-                    WebKit(webURL: information.informationURL)
-                    //SFSafariView(url: information.informationURL)
+//                    WebKit(webURL: information.informationURL)
+                    SFSafariView(url: information.informationURL)
                 })
                 
                 NaverMap(y: locationY, x: locationX)
@@ -124,12 +121,10 @@ struct DetailView:View {
                         starBool ?  UserDefaults.shared.setValue(information.serviceID, forKey: information.serviceID) :
                         UserDefaults.shared.removeObject(forKey: information.serviceID)
                         WidgetCenter.shared.reloadAllTimelines()
-                        
-//                        starBool ? network.favoriteLists.append(information) : network.favoriteLists.removeAll(where: { $0.serviceID == information.serviceID
-//                        })
-//                        print(information.star)
                     }
+                    
                 }
+                
             })
             .onAppear{
              
