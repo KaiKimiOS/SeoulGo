@@ -10,8 +10,6 @@ import Foundation
 @MainActor
 class Store: ObservableObject {
     
-    private let network = Network.shared
-    
     @Published var storeManager:[Row] = []
     @Published var favoriteLists:[Row] = []
     @Published var selectedResults:[Row] = []
@@ -23,7 +21,7 @@ class Store: ObservableObject {
     
     //Network Fetch 하는 함수
     func fetchRequest() async-> [Row] {
-        let tempStore = await network.getData()
+        let tempStore = await Network.getData()
         guard let row = tempStore.first else {
             return [] }
         storeManager = row.ListPublicReservationSport.resultDetails

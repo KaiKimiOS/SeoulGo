@@ -19,19 +19,19 @@ struct NaverMap: UIViewRepresentable{
     }
     
     func makeUIView(context: Context) -> some NMFMapView {
-        let view = NMFMapView()
+        let nmapShared = NMFMapView()
         let marker = NMFMarker()
         let temp = NMGLatLng(lat: y, lng: x)
         marker.position = temp
-        view.zoomLevel = 15
-        view.allowsZooming = true
-        view.isZoomGestureEnabled = true
+        nmapShared.zoomLevel = 15
+        nmapShared.allowsZooming = true
+        nmapShared.isZoomGestureEnabled = true
         
-        marker.mapView = view
-        view.isScrollGestureEnabled = true
-        view.moveCamera( (NMFCameraUpdate(scrollTo: temp)))
+        marker.mapView = nmapShared
+        nmapShared.isScrollGestureEnabled = true
+        nmapShared.moveCamera( (NMFCameraUpdate(scrollTo: temp)))
 
-        return view
+        return nmapShared
     }
 
 }

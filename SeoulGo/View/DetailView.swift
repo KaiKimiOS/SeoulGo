@@ -70,12 +70,12 @@ struct DetailView:View {
                     
                     HStack{
                         
-                        Text("접수기간: \(information.registerStartDate.stringToDate())" + " ~ \(information.registerEndDate.stringToDate())" )
+                        Text("접수기간: \(information.registerStartDate)" + " ~ \(information.registerEndDate)" )
                             .font(.subheadline)
                             .modifier(detailMoidifier())
                     }
                     HStack{
-                        Text("이용기간: \(information.serviceStartDate.stringToDate())" + " ~ \(information.serviceEndDate.stringToDate())" )
+                        Text("이용기간: \(information.serviceStartDate)" + " ~ \(information.serviceEndDate)" )
                             .font(.subheadline)
                             .modifier(detailMoidifier())
                     }
@@ -106,10 +106,10 @@ struct DetailView:View {
                     SFSafariView(url: information.informationURL)
                 })
                 
-                NaverMap(y: locationY, x: locationX)
-                    .aspectRatio(1.0, contentMode: .fit)
-                    //.border(Color.white)
-                    .padding(5)
+//                NaverMap(y: locationY, x: locationX)
+//                    .aspectRatio(1.0, contentMode: .fit)
+//                    //.border(Color.white)
+//                    .padding(5)
                 
                 
                 

@@ -101,8 +101,7 @@ struct HomeView: View {
                         await store.fetchRequest()
                         initialBool = true
                     }
-                } else {return}
-                
+                }
             }
             
             .onChange(of: initialSport.rawValue ) { _ in

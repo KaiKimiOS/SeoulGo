@@ -7,17 +7,14 @@
 
 import SwiftUI
 
-class Network: ObservableObject {
-    
-    static let shared = Network()
-    
+class Network {
+        
     private init() { }
     
-    private let apiKey = "647879614473646636395064566e6a"
-    
     @MainActor
-    func getData() async  -> [SeoulDataModel] {
+    static func getData() async  -> [SeoulDataModel] {
         
+        let apiKey = "647879614473646636395064566e6a"
         let urlString = "http://openAPI.seoul.go.kr:8088/\(apiKey)/json/ListPublicReservationSport/1/1000"
 
         guard let url = URL(string: urlString) else {

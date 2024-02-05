@@ -20,22 +20,22 @@ enum SportName:String, CaseIterable {
     case 다목적경기장 = "다목적경기장"
 }
 
-extension String {
-    func stringToDate() -> String {
-        
-        let firstDateFormatter = DateFormatter()
-        firstDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-        let firstDate = firstDateFormatter.date(from: self)
-        
-        let secondDateFormatter = DateFormatter()
-        secondDateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        secondDateFormatter.locale = Locale(identifier: "ko-KR")
-        let secondDate = secondDateFormatter.string(from: firstDate!)
-        
-        return secondDate
-    }
-    
-}
+//extension String {
+//    func stringToDate() -> String {
+//        
+//        let firstDateFormatter = DateFormatter()
+//        firstDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        let firstDate = firstDateFormatter.date(from: self)
+//        
+//        let secondDateFormatter = DateFormatter()
+//        secondDateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//        secondDateFormatter.locale = Locale(identifier: "ko-KR")
+//        let secondDate = secondDateFormatter.string(from: firstDate!)
+//        
+//        return secondDate
+//    }
+//    
+//}
 
 struct detailMoidifier: ViewModifier {
     func body(content: Content) -> some View {
