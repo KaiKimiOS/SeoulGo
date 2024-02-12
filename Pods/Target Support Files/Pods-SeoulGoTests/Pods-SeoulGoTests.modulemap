@@ -1,0 +1,6 @@
+framework module Pods_SeoulGoTests {
+  umbrella header "Pods-SeoulGoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
