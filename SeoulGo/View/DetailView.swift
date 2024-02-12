@@ -106,10 +106,10 @@ struct DetailView:View {
                     SFSafariView(url: information.informationURL)
                 })
                 
-//                NaverMap(y: locationY, x: locationX)
-//                    .aspectRatio(1.0, contentMode: .fit)
-//                    //.border(Color.white)
-//                    .padding(5)
+                NaverMap(y: locationY, x: locationX)
+                    .aspectRatio(1.0, contentMode: .fit)
+                    //.border(Color.white)
+                    .padding(5)
                 
                 
                 
