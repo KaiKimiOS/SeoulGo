@@ -12,21 +12,21 @@ import SafariServices
 import WidgetKit
 
 struct DetailView:View {
-    //즐겨찾기
-    
     @State var starBool:Bool = false
     @State var isWebViewBool: Bool = false
-    var information:Row
-    //@AppStorage("clicked") private var count:String = ""
+    @StateObject var coordinator : Coordinator = Coordinator.shared
     
-
+    var information:Row
+    
     var imageURL: URL? {
         URL(string: information.imageURL)
     }
+    
     var locationY: Double {
         guard let locationY = Double(information.locationY) else { return 0 }
         return locationY
     }
+    
     var locationX: Double {
         guard let locationX = Double(information.locationX) else { return 0 }
         return locationX
@@ -84,9 +84,6 @@ struct DetailView:View {
                 .padding(5)
                 
                 Button(action: {
-//                    information.star.toggle()
-//                    UserDefaults.standard.setValue(information.serviceID, forKey: information.serviceID)
-//                    count = information.serviceID
                     isWebViewBool = true
                 }, label: {
                     HStack{
@@ -106,11 +103,13 @@ struct DetailView:View {
                     SFSafariView(url: information.informationURL)
                 })
                 
-                NaverMap(y: locationY, x: locationX)
-                    .aspectRatio(1.0, contentMode: .fit)
-                    //.border(Color.white)
-                    .padding(5)
-                
+                VStack {
+                    NaverMap(x: locationX, y: locationY)
+                        .aspectRatio(1.0, contentMode: .fit)
+
+                        .padding(5)
+                }
+                .padding()
                 
                 
             }
@@ -127,7 +126,6 @@ struct DetailView:View {
                 
             })
             .onAppear{
-             
                 if UserDefaults.shared.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
                    
                     starBool = true
@@ -135,6 +133,7 @@ struct DetailView:View {
                     starBool = false
                 }
             }
+
             .navigationTitle(information.serviceName)
             .navigationBarTitleDisplayMode(.inline)
         }

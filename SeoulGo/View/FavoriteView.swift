@@ -32,25 +32,32 @@ struct FavoriteView: View {
                                             Button {
                                                 UserDefaults.shared.removeObject(forKey: information.serviceID)
                                                 WidgetCenter.shared.reloadAllTimelines()
+                                                
                                             } label: {
                                                 Image(systemName: star)
                                             }
                                             .buttonStyle(.borderless)
+                                            
                                         }
-                                        
                                         
                                         VStack{
                                             NavigationLink("\(information.serviceName)") {
                                                 DetailView(information: information)
                                             }
                                         }
+                                        
                                     }
+                                    
                                 }
+                                
+                                
                             }
                         }
                         
+                        
                     }
                 }
+                
             }
             .navigationTitle("즐겨찾기")
             .onAppear {
@@ -61,18 +68,10 @@ struct FavoriteView: View {
                 store.putUserDefaultsToLists()
                 store.putlistToDictionary()
             }
-            .onChange(of:UserDefaults.shared) { _ in
-                store.putUserDefaultsToLists()
-                store.putlistToDictionary()
-                
-            }
+            
         }
     }
 }
-
-
-
-
 
 #Preview {
     ContentView()
