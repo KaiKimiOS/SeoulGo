@@ -12,7 +12,7 @@ struct HomeView: View {
     
     @EnvironmentObject var store:Store
     @State var placeInformation: [Row] = []
-    @State var initialArea: AreaName = .전체지역
+    @State var initialArea: String = "전체지역"
     @State var initialSport: SportName = .전체종목
     @State var initialBool:Bool = false //처음 화면 진입시 호출 및 재호출 방지를 위한 Bool값
     
@@ -48,26 +48,23 @@ struct HomeView: View {
                 HStack(alignment:.center){
                     
                     Picker("전체종목", selection: $initialSport) {
-                        
                         ForEach(SportName.allCases, id:\.self) { information in
                             Text("\(information.rawValue)").tag(information)
                         }
                     }
                     
                     Picker("전체지역", selection: $initialArea) {
-                        
-                        ForEach(AreaName.allCases, id: \.self) { area in
-                            Text(area.rawValue).tag(area)
+                        ForEach(store.availableArea, id: \.self) { area in
+                            Text(area).tag(area)
                         }
                     }
-                    //.border(Color.black)
                     HStack{
                         Text("종목과 지역을 선택해주세요")
                             .foregroundStyle(.gray)
                             .font(.caption)
                             .fontWeight(.light)
                             .lineLimit(1)
-                            .padding(.trailing)
+                        //                            .padding(.trailing)
                         
                         if store.storeManager.isEmpty {
                             ProgressView()
@@ -77,12 +74,12 @@ struct HomeView: View {
                     }
                     
                 }
-                .padding([.leading], 10)
+                .padding(.leading, 5)
                 
                 
                 List {
                     
-                    ForEach(placeInformation, id: \.serviceID) { info  in
+                    ForEach(store.finalInformation, id: \.serviceID) { info  in
                         
                         HStack {
                             NavigationLink("\(info.serviceName)" ) {
@@ -108,17 +105,18 @@ struct HomeView: View {
             }
             
             .onChange(of: initialSport.rawValue ) { _ in
-                placeInformation =  store.getSelectedArea(sport: initialSport.rawValue)
+                store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
                 
             }
-            .onChange(of:initialArea.rawValue) { _ in
-                print(initialArea)
-                print(initialSport.rawValue)
-                if initialArea == .전체지역 {
-                    placeInformation =  store.getSelectedArea(sport: initialSport.rawValue)
+            .onChange(of:initialArea) { _ in
+                
+                if initialArea == "전체지역" || initialArea == "지역선택" {
+                    store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
+                } else {
+                    store.getSelectedResults(sport: initialSport.rawValue, areaName: initialArea)
                 }
-                placeInformation =  store.getSelectedResults(sport: initialSport.rawValue, areaName: initialArea.rawValue)
-                print(placeInformation)
+                
+                
                 
             }
             .navigationTitle("SeoulGo")
@@ -127,19 +125,7 @@ struct HomeView: View {
         
         
     }
-    
-    //   축구장(고양시)-> 종목을 농구로 변경 -> 농구장(고양시) -> 농구장 고양시는 데이터에 존재하지 않음 -> 지역구를 재설정 하면 괜찮지만, 농구장(고양시)에서 종목을 또 바꾸면 풋살장(고양시)가 되어버림 -> 해결방법 농구장에 고양시가 존재하지 않으면 농구장지역의 첫번째를 바로 넣어준다.
-    //    func resetPlaceInformation() {
-    //
-    //        placeInformation.removeAll()
-    //        placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == initialArea
-    //        }
-    //
-    //        if placeInformation.isEmpty  {
-    //            initialArea = information.placeArea.first ?? "송파구"
-    //        }
-    //    }
 }
-#Preview {
-    HomeView()
-}
+//#Preview {
+//   ContentView()
+//}
