@@ -31,6 +31,7 @@ struct DetailView:View {
         guard let locationX = Double(information.locationX) else { return 0 }
         return locationX
     }
+    
     var star:String {
         
         starBool ? "star.fill" : "star"
@@ -46,7 +47,7 @@ struct DetailView:View {
                         .resizable()
                         .clipShape(.rect)
                         .aspectRatio(16/9, contentMode: .fit)
-                        //.border(.white)
+                    //.border(.white)
                         .padding(5)
                     
                 } placeholder: {
@@ -90,28 +91,44 @@ struct DetailView:View {
                         Spacer()
                         Text("예약하기")
                         Spacer()
-                            
+                        
                     }
                     .padding()
-
+                    
                 })
                 .buttonStyle(.borderedProminent)
                 .padding([.leading,.trailing,.bottom], 5)
                 
                 .sheet(isPresented: $isWebViewBool, content: {
-//                    WebKit(webURL: information.informationURL)
+                    //                    WebKit(webURL: information.informationURL)
                     SFSafariView(url: information.informationURL)
                 })
                 
                 VStack {
-                    NaverMap(x: locationX, y: locationY)
-                        .aspectRatio(1.0, contentMode: .fit)
-
-                        .padding(5)
+                    ZStack(alignment:.topTrailing) {
+                        
+                        NaverMap(x: locationX, y: locationY)
+                            .aspectRatio(1.0, contentMode: .fit)
+                        
+                        NavigationLink{
+                            
+                            NaverMap(x: locationX, y: locationY)
+                            
+                        } label: {
+                            Image(systemName: "arrow.down.backward.and.arrow.up.forward.square.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundStyle(Color.gray)
+                                .frame(width: 30, height: 30)
+                                .padding(10)
+                            
+                        }
+                        
+                    }
+                    
+                    
+                    
                 }
-                .padding()
-                
-                
             }
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -127,13 +144,13 @@ struct DetailView:View {
             })
             .onAppear{
                 if UserDefaults.shared.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
-                   
+                    
                     starBool = true
                 } else {
                     starBool = false
                 }
             }
-
+            
             .navigationTitle(information.serviceName)
             .navigationBarTitleDisplayMode(.inline)
         }

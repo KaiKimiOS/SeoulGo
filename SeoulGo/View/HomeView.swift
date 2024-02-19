@@ -64,7 +64,6 @@ struct HomeView: View {
                             .font(.caption)
                             .fontWeight(.light)
                             .lineLimit(1)
-                        //                            .padding(.trailing)
                         
                         if store.storeManager.isEmpty {
                             ProgressView()

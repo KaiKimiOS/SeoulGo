@@ -18,7 +18,6 @@
 		2A1925402B566BF100549503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A19253F2B566BF100549503 /* Assets.xcassets */; };
 		2A1925442B566BF100549503 /* SeoulGoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2A1925312B566BEF00549503 /* SeoulGoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2A2A8E292B63EC9F006AA339 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A8E282B63EC9F006AA339 /* Store.swift */; };
-		2A2C81132B4BB9320011707A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2A2C81122B4BB9320011707A /* SwiftSoup */; };
 		2A465B032B46833F00345046 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A465B022B46833F00345046 /* Network.swift */; };
 		2A4BD5752B4852D90003CBC6 /* Enum + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */; };
 		2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE602B3F1A7500396357 /* ContentView.swift */; };
@@ -143,7 +142,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A2C81132B4BB9320011707A /* SwiftSoup in Frameworks */,
 				CF1C549B2363DE53671D3C4E /* Pods_SeoulGo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,7 +358,6 @@
 			);
 			name = SeoulGo;
 			packageProductDependencies = (
-				2A2C81122B4BB9320011707A /* SwiftSoup */,
 			);
 			productName = SeoulGo;
 			productReference = 2A6BCE5B2B3F1A7500396357 /* SeoulGo.app */;
@@ -1078,14 +1075,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2A2C81122B4BB9320011707A /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2A2C81112B4BB9320011707A /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2A6BCE532B3F1A7500396357 /* Project object */;
 }

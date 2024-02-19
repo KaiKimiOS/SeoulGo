@@ -9,12 +9,12 @@ import Foundation
 
 
 struct SeoulDataModel:Decodable{
-
+    
     let ListPublicReservationSport:ListPublicReservationSport
 }
 
 struct ListPublicReservationSport:Decodable{
-
+    
     let listTotalCount:Int
     let result:Result
     let resultDetails:[Row]
@@ -48,14 +48,14 @@ struct Row: Decodable {
         placeName,
         userTarget,
         informationURL,
-        locationX,
-        locationY,
         serviceStartDate,
         serviceEndDate,
         registerStartDate,
         registerEndDate,
         areaName,
         imageURL:String
+    let locationX:String
+    let locationY:String
     
     enum CodingKeys: String, CodingKey {
         case gubun = "GUBUN"
@@ -77,5 +77,5 @@ struct Row: Decodable {
         case areaName = "AREANM"
         case imageURL = "IMGURL"
     }
-   
+    
 }

@@ -41,12 +41,12 @@ class Coordinator : NSObject,ObservableObject{
     
     func getNaverMap(x:Double, y:Double) -> NMFMapView {
         let location = NMGLatLng(lat: y, lng: x)
+        view.moveCamera( (NMFCameraUpdate(scrollTo: location)))
         
         view.zoomLevel = 15
         view.allowsZooming = true
-        view.isZoomGestureEnabled = true
-        view.isScrollGestureEnabled = true
-        view.moveCamera( (NMFCameraUpdate(scrollTo: location)))
+        view.isZoomGestureEnabled =  true
+        view.isScrollGestureEnabled =  true
         
         marker.position = location
         marker.mapView = view
