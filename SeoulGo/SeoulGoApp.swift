@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-
+import GoogleMobileAds
+import AppTrackingTransparency
 @main
 struct SeoulGoApp: App {
     
@@ -21,5 +22,11 @@ struct SeoulGoApp: App {
                 })
         }
  
+    }
+    init() {
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            AppTrackingTransparency.ATTrackingManager.requestTrackingAuthorization { _ in            }
+        }
     }
 }

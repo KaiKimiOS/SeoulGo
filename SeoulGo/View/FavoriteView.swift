@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 import WidgetKit
 
 struct FavoriteView: View {
@@ -58,6 +59,13 @@ struct FavoriteView: View {
                     }
                 }
                 
+            }
+            VStack{
+                
+                
+                BannerView()
+                    .frame(width: UIScreen.main.bounds.width, 
+                           height: GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width).size.height)
             }
             .navigationTitle("즐겨찾기")
             .onAppear {

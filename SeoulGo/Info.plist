@@ -2,8 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Ok or not?</string>
 	<key>NMFClientId</key>
 	<string>2lm2knho6r</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-5262324083555745~3524470515</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

@@ -1,6 +1,14 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## Google-Mobile-Ads-SDK
+
+Copyright 2024 Google LLC
+
+## GoogleUserMessagingPlatform
+
+Copyright 2024 Google LLC
+
 ## NMapsGeometry
 
 Copyright © 2018 NAVER Corp.

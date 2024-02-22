@@ -10,11 +10,13 @@ import NMapsMap
 import WebKit
 import SafariServices
 import WidgetKit
+import GoogleMobileAds
 
 struct DetailView:View {
     @State var starBool:Bool = false
     @State var isWebViewBool: Bool = false
     @StateObject var coordinator : Coordinator = Coordinator.shared
+   
     
     var information:Row
     
@@ -23,13 +25,19 @@ struct DetailView:View {
     }
     
     var locationY: Double {
-        guard let locationY = Double(information.locationY) else { return 0 }
-        return locationY
+        get{
+            guard let locationY = Double(information.locationY) else { return 0 }
+            return locationY
+        }
+    
     }
     
     var locationX: Double {
-        guard let locationX = Double(information.locationX) else { return 0 }
-        return locationX
+        get{
+            guard let locationX = Double(information.locationX) else { return 0 }
+            return locationX
+        }
+
     }
     
     var star:String {
@@ -37,9 +45,17 @@ struct DetailView:View {
         starBool ? "star.fill" : "star"
         
     }
-    
+
     var body: some View {
         ScrollView{
+            VStack{
+                
+                
+                BannerView()
+                    .frame(width: UIScreen.main.bounds.width,
+                           height: GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width).size.height)
+            }
+            
             VStack{
                 
                 AsyncImage(url: imageURL) { image in
@@ -100,7 +116,6 @@ struct DetailView:View {
                 .padding([.leading,.trailing,.bottom], 5)
                 
                 .sheet(isPresented: $isWebViewBool, content: {
-                    //                    WebKit(webURL: information.informationURL)
                     SFSafariView(url: information.informationURL)
                 })
                 
@@ -109,6 +124,7 @@ struct DetailView:View {
                         
                         NaverMap(x: locationX, y: locationY)
                             .aspectRatio(1.0, contentMode: .fit)
+
                         
                         NavigationLink{
                             
@@ -129,6 +145,8 @@ struct DetailView:View {
                     
                     
                 }
+                
+                
             }
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -143,6 +161,7 @@ struct DetailView:View {
                 
             })
             .onAppear{
+               
                 if UserDefaults.shared.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
                     
                     starBool = true

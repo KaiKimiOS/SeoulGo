@@ -1,20 +1,28 @@
 PODS:
+  - Google-Mobile-Ads-SDK (11.0.1):
+    - GoogleUserMessagingPlatform (>= 1.1)
+  - GoogleUserMessagingPlatform (2.2.0)
   - NMapsGeometry (1.0.1)
   - NMapsMap (3.17.0):
     - NMapsGeometry
 
 DEPENDENCIES:
+  - Google-Mobile-Ads-SDK
   - NMapsMap
 
 SPEC REPOS:
   trunk:
+    - Google-Mobile-Ads-SDK
+    - GoogleUserMessagingPlatform
     - NMapsGeometry
     - NMapsMap
 
 SPEC CHECKSUMS:
+  Google-Mobile-Ads-SDK: 7a466427864972f5229f1f89d004b998a28ddcae
+  GoogleUserMessagingPlatform: d31dbfb40ec02c5d9683029815c5d5a7f46389ee
   NMapsGeometry: 53c573ead66466681cf123f99f698dc8071a4b83
   NMapsMap: a5b909a31b6f3d27a670f6eb2ddc913c38975474
 
-PODFILE CHECKSUM: a8d0121467bb7de6ef04351796d1482cc84efe2b
+PODFILE CHECKSUM: ef994946ae1a75f2c0b8e5617dab24ac3c610235
 
 COCOAPODS: 1.14.3
