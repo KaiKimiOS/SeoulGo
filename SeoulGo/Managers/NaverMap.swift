@@ -8,7 +8,7 @@
 import SwiftUI
 import NMapsMap
 
-struct NaverMap: UIViewRepresentable{
+struct NaverMapWithSnapShot: UIViewRepresentable{
     
     var x: Double
     var y: Double
@@ -18,7 +18,24 @@ struct NaverMap: UIViewRepresentable{
     }
     
     func makeUIView(context: Context) -> some NMFMapView {
-        context.coordinator.getNaverMap(x: x, y: y)
+        return context.coordinator.getNaverMapWithSnapShot(x: x, y: y)
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+    }
+
+}
+struct NaverMapWithNavigationLink: UIViewRepresentable{
+    
+    var x: Double
+    var y: Double
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator.shared
+    }
+    
+    func makeUIView(context: Context) -> some NMFMapView {
+        return context.coordinator.getNaverMapWithNavigationLink(x: x, y: y)
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
@@ -40,7 +57,7 @@ class Coordinator : NSObject,ObservableObject{
     let view = NMFMapView()
     let marker = NMFMarker()
     
-    func getNaverMap(x:Double, y:Double) -> NMFMapView {
+    func getNaverMapWithNavigationLink(x:Double, y:Double) -> NMFMapView {
         let location = NMGLatLng(lat: y, lng: x)
         view.moveCamera( (NMFCameraUpdate(scrollTo: location)))
         
@@ -48,6 +65,19 @@ class Coordinator : NSObject,ObservableObject{
         view.allowsZooming = true
         view.isZoomGestureEnabled =  true
         view.isScrollGestureEnabled =  true
+        marker.position = location
+        marker.mapView = view
+        return view
+    }
+    
+    func getNaverMapWithSnapShot(x:Double, y:Double) -> NMFMapView {
+        let location = NMGLatLng(lat: y, lng: x)
+        view.moveCamera( (NMFCameraUpdate(scrollTo: location)))
+        
+        view.zoomLevel = 15
+        view.allowsZooming = false
+        view.isZoomGestureEnabled =  false
+        view.isScrollGestureEnabled =  false
         
         marker.position = location
         marker.mapView = view

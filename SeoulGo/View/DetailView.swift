@@ -15,8 +15,9 @@ import GoogleMobileAds
 struct DetailView:View {
     @State var starBool:Bool = false
     @State var isWebViewBool: Bool = false
+    @State var isNaverMapBool:Bool = false
     @StateObject var coordinator : Coordinator = Coordinator.shared
-   
+    
     
     var information:Row
     
@@ -29,7 +30,7 @@ struct DetailView:View {
             guard let locationY = Double(information.locationY) else { return 0 }
             return locationY
         }
-    
+        
     }
     
     var locationX: Double {
@@ -37,7 +38,7 @@ struct DetailView:View {
             guard let locationX = Double(information.locationX) else { return 0 }
             return locationX
         }
-
+        
     }
     
     var star:String {
@@ -45,30 +46,30 @@ struct DetailView:View {
         starBool ? "star.fill" : "star"
         
     }
-
+    
     var body: some View {
         ScrollView{
-            VStack{
-                
-                
-                BannerView()
-                    .frame(width: UIScreen.main.bounds.width,
-                           height: GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width).size.height)
-            }
             
             VStack{
                 
+                BannerView()
+                    .frame(width: 320, height: 50)
+                    .border(.black)
+                
+                Divider()
+ 
                 AsyncImage(url: imageURL) { image in
                     image
                         .resizable()
-                        .clipShape(.rect)
-                        .aspectRatio(16/9, contentMode: .fit)
+                        .clipShape(.buttonBorder)
+                        .frame(width: 380, height: 250)
+                        //.aspectRatio(16/9, contentMode: .fit)
                     //.border(.white)
-                        .padding(5)
                     
                 } placeholder: {
                     ProgressView()
                 }
+                Divider()
                 VStack(spacing:10){
                     
                     HStack {
@@ -97,6 +98,7 @@ struct DetailView:View {
                             .modifier(detailMoidifier())
                     }
                     
+                    
                 }
                 .padding(5)
                 
@@ -122,13 +124,23 @@ struct DetailView:View {
                 VStack {
                     ZStack(alignment:.topTrailing) {
                         
-                        NaverMap(x: locationX, y: locationY)
-                            .aspectRatio(1.0, contentMode: .fit)
-
+                        
+                        if isNaverMapBool {
+                            NaverMapWithSnapShot(x: locationX, y: locationY)
+//                                .modifier(detailMoidifier())
+                                .frame(width: 380, height: 200)
+                                .clipShape(.buttonBorder)
+                                //.aspectRatio(1.0, contentMode: .fit)
+                                .border(.black)
+                                
+                        }
+                        
+                        
                         
                         NavigationLink{
                             
-                            NaverMap(x: locationX, y: locationY)
+                            NaverMapWithNavigationLink(x: locationX, y: locationY)
+                            
                             
                         } label: {
                             Image(systemName: "arrow.down.backward.and.arrow.up.forward.square.fill")
@@ -139,10 +151,7 @@ struct DetailView:View {
                                 .padding(10)
                             
                         }
-                        
                     }
-                    
-                    
                     
                 }
                 
@@ -160,15 +169,21 @@ struct DetailView:View {
                 }
                 
             })
+            
             .onAppear{
-               
+                
+                isNaverMapBool = true
                 if UserDefaults.shared.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
                     
                     starBool = true
                 } else {
                     starBool = false
                 }
+                
             }
+            .onDisappear(perform: {
+                isNaverMapBool = false
+            })
             
             .navigationTitle(information.serviceName)
             .navigationBarTitleDisplayMode(.inline)

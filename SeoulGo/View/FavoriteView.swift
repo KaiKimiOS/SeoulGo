@@ -58,15 +58,11 @@ struct FavoriteView: View {
                         
                     }
                 }
-                
-            }
-            VStack{
-                
-                
                 BannerView()
-                    .frame(width: UIScreen.main.bounds.width, 
-                           height: GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width).size.height)
+                    .frame(width: 320, height: 50)
+                    .border(.black)
             }
+
             .navigationTitle("즐겨찾기")
             .onAppear {
                 store.putUserDefaultsToLists()
