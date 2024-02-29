@@ -53,6 +53,7 @@ struct Row: Decodable {
         registerStartDate,
         registerEndDate,
         areaName,
+        telephone,
         imageURL:String
     let locationX:String
     let locationY:String
@@ -75,6 +76,7 @@ struct Row: Decodable {
         case registerStartDate = "RCPTBGNDT"
         case registerEndDate = "RCPTENDDT"
         case areaName = "AREANM"
+        case telephone = "TELNO"
         case imageURL = "IMGURL"
     }
     

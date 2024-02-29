@@ -43,37 +43,33 @@ struct HomeView: View {
     var body: some View {
         
         NavigationStack{
-            VStack(alignment:.leading) {
+            VStack(alignment:.leading,spacing:0) {
                 
-                HStack(alignment:.center){
-                    
+                //            HStack {
+                //                Text("종목과 지역을 선택해주세요")
+                //                    .foregroundStyle(.gray)
+                //                    .font(.caption)
+                //                    .fontWeight(.light)
+                //                    .lineLimit(1)
+                //            } .padding(.leading)
+                
+                
+                
+                HStack(spacing:0){
                     Picker("전체종목", selection: $initialSport) {
                         ForEach(SportName.allCases, id:\.self) { information in
                             Text("\(information.rawValue)").tag(information)
                         }
                     }
                     
+                    
                     Picker("전체지역", selection: $initialArea) {
                         ForEach(store.availableArea, id: \.self) { area in
                             Text(area).tag(area)
                         }
                     }
-                    HStack{
-                        Text("종목과 지역을 선택해주세요")
-                            .foregroundStyle(.gray)
-                            .font(.caption)
-                            .fontWeight(.light)
-                            .lineLimit(1)
-                        
-                        if store.storeManager.isEmpty {
-                            ProgressView()
-                                .tint(Color.blue)
-                            
-                        }
-                    }
                     
-                }
-                .padding(.leading, 5)
+                } .padding(.leading,5)
                 
                 
                 List {
@@ -93,34 +89,63 @@ struct HomeView: View {
                 .listStyle(.plain)
                 
             }
-            .onAppear {
+            .toolbar {
                 
-                if !initialBool {
-                    Task{
-                        await store.fetchRequest()
-                        initialBool = true
+                ToolbarItem(placement:.topBarLeading) {
+                    HStack(spacing:0){
+                                          
+//                        Text("SeoulGo")
+//                            .font(.largeTitle)
+//                            .foregroundStyle(.blue)
+                     
+                        Image("HomeTitle")
+                            .resizable()
+                            .frame(width: 120, height: 23, alignment: .center)
+//                        Image("SeoulGoImage")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+                           
+                        if store.storeManager.isEmpty {
+                            ProgressView()
+                                .tint(Color.blue)
+                                .padding()
+                        }
+                       
                     }
+
                 }
+                
+                
             }
+        }
+        
+        .onAppear {
             
-            .onChange(of: initialSport.rawValue ) { _ in
-                store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
-                
-            }
-            .onChange(of:initialArea) { _ in
-                
-                if initialArea == "전체지역" || initialArea == "지역선택" {
-                    store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
-                } else {
-                    store.getSelectedResults(sport: initialSport.rawValue, areaName: initialArea)
+            if !initialBool {
+                Task{
+                    await store.fetchRequest()
+                    initialBool = true
                 }
-                
-                
-                
             }
-            .navigationTitle("SeoulGo")
+        }
+        
+        .onChange(of: initialSport.rawValue ) { _ in
+            store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
             
         }
+        .onChange(of:initialArea) { _ in
+            
+            if initialArea == "전체지역" || initialArea == "지역선택" {
+                store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
+            } else {
+                store.getSelectedResults(sport: initialSport.rawValue, areaName: initialArea)
+            }
+            
+            
+            
+        }
+        
+        
         
         
     }

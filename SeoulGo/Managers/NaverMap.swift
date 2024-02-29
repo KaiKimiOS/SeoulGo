@@ -41,6 +41,7 @@ struct NaverMapWithNavigationLink: UIViewRepresentable{
     func updateUIView(_ uiView: UIViewType, context: Context) {
     }
 
+
 }
 
 
@@ -74,7 +75,7 @@ class Coordinator : NSObject,ObservableObject{
         let location = NMGLatLng(lat: y, lng: x)
         view.moveCamera( (NMFCameraUpdate(scrollTo: location)))
         
-        view.zoomLevel = 15
+        view.zoomLevel = 14
         view.allowsZooming = false
         view.isZoomGestureEnabled =  false
         view.isScrollGestureEnabled =  false
@@ -83,6 +84,8 @@ class Coordinator : NSObject,ObservableObject{
         marker.mapView = view
         return view
     }
+    
+ 
     
 }
 
