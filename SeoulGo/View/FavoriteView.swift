@@ -12,11 +12,11 @@ import WidgetKit
 struct FavoriteView: View {
     
     @EnvironmentObject var store:Store
-    var areaKey:[String] { //key를 리턴해서, ForEach에서 키값으로 Section을 구분해주고, ForEach에서 areaDictionary[areaKey]를 통해 키값에 맞는 value를 보여준다
-        store.areaDictionary.map{$0.key}.sorted(by: <)
-    }
-    
     @State var star = "star.fill"
+    //key를 리턴해서, ForEach에서 키값으로 Section을 구분해주고, ForEach에서 areaDictionary[areaKey]를 통해 키값에 맞는 value를 보여준다
+    var areaKey:[String] { store.areaDictionary.map{$0.key}.sorted(by: <)  }
+    
+   
     
     var body: some View {
         NavigationStack {
@@ -29,7 +29,7 @@ struct FavoriteView: View {
                             Section(areaName) {
                                 ForEach(store.areaDictionary[areaName]!, id:\.serviceID) { information in
                                     HStack {
-                                        VStack{
+                                        VStack {
                                             Button {
                                                 UserDefaults.shared.removeObject(forKey: information.serviceID)
                                                 WidgetCenter.shared.reloadAllTimelines()
@@ -38,10 +38,9 @@ struct FavoriteView: View {
                                                 Image(systemName: star)
                                             }
                                             .buttonStyle(.borderless)
-                                            
                                         }
                                         
-                                        VStack{
+                                        VStack {
                                             NavigationLink("\(information.serviceName)") {
                                                 DetailView(information: information)
                                             }

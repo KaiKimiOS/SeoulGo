@@ -16,6 +16,7 @@ struct DetailView:View {
     @State var starBool:Bool = false
     @State var isWebViewBool: Bool = false
     @State var isNaverMapBool:Bool = false
+    @State var isAlertBool:Bool = false
     @StateObject var coordinator : Coordinator = Coordinator.shared
     
     
@@ -62,7 +63,7 @@ struct DetailView:View {
                     ProgressView()
                 }
             }
-            VStack(alignment:.leading){
+            VStack(alignment:.leading,spacing: 10){
                 
                 MainTitleView()
                 ButtonView()
@@ -138,7 +139,13 @@ struct DetailView:View {
             .sheet(isPresented: $isWebViewBool, content: {
                 SFSafariView(url: information.informationURL)
             })
-            .ignoresSafeArea()
+            
+            .alert(starBool ? "저장되었습니다" : "저장이 취소되었습니다", isPresented: $isAlertBool, actions: {
+                VStack{
+                    Text("확인")
+                }
+            })
+            
             .onAppear {
                 
                 isNaverMapBool = true
@@ -198,6 +205,7 @@ struct DetailView:View {
                     starBool ?  UserDefaults.shared.setValue(information.serviceID, forKey: information.serviceID) :
                     UserDefaults.shared.removeObject(forKey: information.serviceID)
                     WidgetCenter.shared.reloadAllTimelines()
+                    isAlertBool.toggle()
                 } label: {
                     VStack(spacing: 5){
                         Image(systemName: star)
@@ -210,9 +218,14 @@ struct DetailView:View {
             //            .border(.blue)
             Divider()
                 .frame(height: 64)
-            VStack(spacing: 5){
-                Image(systemName: "square.and.arrow.up")
-                Text("공유")
+            VStack {
+                ShareLink(item:  URL(string: information.informationURL)!) {
+                    VStack(spacing: 5){
+                        
+                        Image(systemName: "square.and.arrow.up")
+                        Text("공유")
+                    }
+                }
             }
             .frame(maxWidth: .infinity)
             //            .border(.brown)
