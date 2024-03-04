@@ -13,19 +13,17 @@ struct ContentView: View {
     
     var body: some View {
         
-            TabView{
-                HomeView()
-                    .tabItem { Image(systemName: "house")
-                        Text("home")
-                    }
-                FavoriteView()
-                    .tabItem { Image(systemName: "star")
-                        Text("즐겨찾기")
-                    }
-            }
-        
+        TabView{
+            HomeView()
+                .tabItem { Image(systemName: "house")
+                    Text("home")
+                }
+            FavoriteView()
+                .tabItem { Image(systemName: "star")
+                    Text("즐겨찾기")
+                }
+        }
     }
-    
 }
 
 #Preview {

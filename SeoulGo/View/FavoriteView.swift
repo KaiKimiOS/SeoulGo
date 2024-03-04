@@ -57,7 +57,7 @@ struct FavoriteView: View {
                         
                     }
                 }
-                BannerView()
+                GoogleBanner()
                     .frame(width: 320, height: 50)
                     .border(.black)
             }

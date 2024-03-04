@@ -20,6 +20,7 @@
 		2A2A8E292B63EC9F006AA339 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A8E282B63EC9F006AA339 /* Store.swift */; };
 		2A465B032B46833F00345046 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A465B022B46833F00345046 /* Network.swift */; };
 		2A4BD5752B4852D90003CBC6 /* Enum + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */; };
+		2A56477E2B960D0A00DC3E01 /* ToastAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A56477D2B960D0A00DC3E01 /* ToastAlert.swift */; };
 		2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE602B3F1A7500396357 /* ContentView.swift */; };
 		2A6BCE652B3F1A7600396357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BCE642B3F1A7600396357 /* Assets.xcassets */; };
 		2A6BCE682B3F1A7600396357 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BCE672B3F1A7600396357 /* Preview Assets.xcassets */; };
@@ -31,7 +32,7 @@
 		2A7C22E82B6538E8007CC3EE /* SeoulDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */; };
 		2A7C22E92B6538EA007CC3EE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A8E282B63EC9F006AA339 /* Store.swift */; };
 		2A7C22EA2B653A5C007CC3EE /* Enum + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */; };
-		2AA074E42B87378E00AC7C31 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA074E32B87378E00AC7C31 /* BannerView.swift */; };
+		2AA074E42B87378E00AC7C31 /* GoogleBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA074E32B87378E00AC7C31 /* GoogleBanner.swift */; };
 		2AA68EE92B502FF20015A9B8 /* WebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EE82B502FF20015A9B8 /* WebKit.swift */; };
 		2AA68EEB2B5033E60015A9B8 /* SFSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */; };
 		2AE937AF2B5164DB00B5242B /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE937AE2B5164DB00B5242B /* FavoriteView.swift */; };
@@ -99,6 +100,7 @@
 		2A465B022B46833F00345046 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		2A465B042B468A1A00345046 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum + Extension.swift"; sourceTree = "<group>"; };
+		2A56477D2B960D0A00DC3E01 /* ToastAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastAlert.swift; sourceTree = "<group>"; };
 		2A6BCE5B2B3F1A7500396357 /* SeoulGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoApp.swift; sourceTree = "<group>"; };
 		2A6BCE602B3F1A7500396357 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,7 +111,7 @@
 		2A6BCE772B3F1A7600396357 /* SeoulGoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeoulGoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE7B2B3F1A7600396357 /* SeoulGoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoUITests.swift; sourceTree = "<group>"; };
 		2A6BCE7D2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		2AA074E32B87378E00AC7C31 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		2AA074E32B87378E00AC7C31 /* GoogleBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBanner.swift; sourceTree = "<group>"; };
 		2AA68EE82B502FF20015A9B8 /* WebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKit.swift; sourceTree = "<group>"; };
 		2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariView.swift; sourceTree = "<group>"; };
 		2ADAB9062B58F27600DB21E5 /* SeoulGoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeoulGoWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -187,7 +189,7 @@
 				2A0103552B3F1CB10042797F /* HomeView.swift */,
 				2AF28FF42B4D2BA200D483C5 /* DetailView.swift */,
 				2AE937AE2B5164DB00B5242B /* FavoriteView.swift */,
-				2AA074E32B87378E00AC7C31 /* BannerView.swift */,
+				2AA074E32B87378E00AC7C31 /* GoogleBanner.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */,
+				2A56477D2B960D0A00DC3E01 /* ToastAlert.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -642,10 +645,11 @@
 				2A4BD5752B4852D90003CBC6 /* Enum + Extension.swift in Sources */,
 				2AF28FF72B4D948300D483C5 /* NaverMap.swift in Sources */,
 				2AE937AF2B5164DB00B5242B /* FavoriteView.swift in Sources */,
+				2A56477E2B960D0A00DC3E01 /* ToastAlert.swift in Sources */,
 				2AF28FF52B4D2BA200D483C5 /* DetailView.swift in Sources */,
 				2A0103562B3F1CB10042797F /* HomeView.swift in Sources */,
 				2AA68EEB2B5033E60015A9B8 /* SFSafariView.swift in Sources */,
-				2AA074E42B87378E00AC7C31 /* BannerView.swift in Sources */,
+				2AA074E42B87378E00AC7C31 /* GoogleBanner.swift in Sources */,
 				2A12307A2B3F30C0006BFE34 /* SeoulDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

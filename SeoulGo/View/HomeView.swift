@@ -45,24 +45,13 @@ struct HomeView: View {
         NavigationStack{
             VStack(alignment:.leading,spacing:0) {
                 
-                //            HStack {
-                //                Text("종목과 지역을 선택해주세요")
-                //                    .foregroundStyle(.gray)
-                //                    .font(.caption)
-                //                    .fontWeight(.light)
-                //                    .lineLimit(1)
-                //            } .padding(.leading)
-                
-                
-                
                 HStack(spacing:0){
                     Picker("전체종목", selection: $initialSport) {
                         ForEach(SportName.allCases, id:\.self) { information in
                             Text("\(information.rawValue)").tag(information)
                         }
                     }
-                    
-                    
+        
                     Picker("전체지역", selection: $initialArea) {
                         ForEach(store.availableArea, id: \.self) { area in
                             Text(area).tag(area)
@@ -73,49 +62,33 @@ struct HomeView: View {
                 
                 
                 List {
-                    
                     ForEach(store.finalInformation, id: \.serviceID) { info  in
-                        
                         HStack {
                             NavigationLink("\(info.serviceName)" ) {
                                 DetailView(information: info)
-                                
                             }
-                            
                         }
                     }
                 }
-                
                 .listStyle(.plain)
-                
             }
             .toolbar {
                 
                 ToolbarItem(placement:.topBarLeading) {
-                    HStack(spacing:0){
-                                          
-//                        Text("SeoulGo")
-//                            .font(.largeTitle)
-//                            .foregroundStyle(.blue)
-                     
+                    
+                    HStack {
+                        
                         Image("HomeTitle")
                             .resizable()
                             .frame(width: 120, height: 23, alignment: .center)
-//                        Image("SeoulGoImage")
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fit)
-                           
+                        
                         if store.storeManager.isEmpty {
                             ProgressView()
                                 .tint(Color.blue)
                                 .padding()
                         }
-                       
                     }
-
                 }
-                
-                
             }
         }
         
@@ -140,14 +113,7 @@ struct HomeView: View {
             } else {
                 store.getSelectedResults(sport: initialSport.rawValue, areaName: initialArea)
             }
-            
-            
-            
         }
-        
-        
-        
-        
     }
 }
 //#Preview {

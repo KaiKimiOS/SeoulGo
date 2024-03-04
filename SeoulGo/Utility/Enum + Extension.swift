@@ -65,13 +65,9 @@ enum AreaName:String,CaseIterable {
 struct detailMoidifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding(.vertical, 3)
-            .background(.clear)
-//            .frame(minWidth: 0, maxWidth: .infinity)
             .minimumScaleFactor(0.1)
             .foregroundStyle(.primary)
             .font(.system(size: 15, weight: .regular, design: .default))
-        
     }
 }
 

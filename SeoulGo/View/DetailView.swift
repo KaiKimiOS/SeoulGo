@@ -17,7 +17,8 @@ struct DetailView:View {
     @State var isWebViewBool: Bool = false
     @State var isNaverMapBool:Bool = false
     @State var isAlertBool:Bool = false
-    @StateObject var coordinator : Coordinator = Coordinator.shared
+    @State var isToastAlertBool: Bool = false
+    
     
     
     var information:Row
@@ -27,124 +28,36 @@ struct DetailView:View {
     }
     
     var locationY: Double {
-        get{
-            guard let locationY = Double(information.locationY) else { return 0 }
-            return locationY
-        }
-        
+        guard let locationY = Double(information.locationY) else { return 0 }
+        return locationY
     }
     
     var locationX: Double {
-        get{
-            guard let locationX = Double(information.locationX) else { return 0 }
-            return locationX
-        }
-        
+        guard let locationX = Double(information.locationX) else { return 0 }
+        return locationX
     }
     
     var star:String {
-        
         starBool ? "star.fill" : "star"
-        
     }
     
     var body: some View {
         ScrollView(showsIndicators: false){
-            
-            VStack{
-                
-                AsyncImage(url: imageURL) { image in
-                    image
-                        .resizable()
-                        .frame(maxWidth: .infinity, minHeight: 182, idealHeight: 182, maxHeight: 182)
-                    //.aspectRatio(16/9, contentMode: .fit)
-                    
-                } placeholder: {
-                    ProgressView()
-                }
-            }
-            VStack(alignment:.leading,spacing: 10){
-                
+            VStack(alignment:.leading,spacing: 10) {
+               
+                HeadImageView()
                 MainTitleView()
                 ButtonView()
-                VStack {
-                    ZStack(alignment:.topTrailing) {
-                        
-                        
-                        if isNaverMapBool {
-                            NaverMapWithSnapShot(x: locationX, y: locationY)
-                                .frame(maxWidth: .infinity, minHeight: 162)
-                            
-                        }
-                        NavigationLink{
-                            
-                            NaverMapWithNavigationLink(x: locationX, y: locationY)
-                        } label: {
-                            Image(systemName: "arrow.down.backward.and.arrow.up.forward.square.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundStyle(Color.gray.opacity(0.5))
-                                .frame(width: 30, height: 30)
-                                .padding(10)
-                            
-                        }
-                    }
-                    
-                }
-                
-                
-                HStack(spacing: 15) {
-                    Text("주소      ")
-                    Text("\(information.areaName)" + " - \(information.placeName)" )
-                    
-                }
-                .modifier(detailMoidifier())
-                
-                HStack(spacing: 15){
-                    Text("접수상태")
-                    Text("\(information.serviceStatus)" + "(\(information.payment))")
-                    
-                }
-                .modifier(detailMoidifier())
-                
-                HStack(spacing: 15){
-                    
-                    Text("접수기간")
-                    Text("\(information.registerStartDate)" + " ~ \(information.registerEndDate)" )
-                    
-                }
-                .modifier(detailMoidifier())
-                
-                if information.telephone != "" {
-                    HStack(spacing: 15){
-                        Text("전화번호")
-                        Text("\(information.telephone)")
-                            .foregroundStyle(.blue)
-                            .onTapGesture {
-                                makePhoneCall()
-                            }
-                    }
-                    .modifier(detailMoidifier())
-                }
-                
-                HStack(alignment:.center){
-                    Spacer()
-                    BannerView()
-                        .frame(width: 320, height: 50)
-                    Spacer()
-                }
-                .modifier(detailMoidifier())
+                NaverMapView()
+                DetailInformationView()
+                BannerView()
             }
             .padding()
             .sheet(isPresented: $isWebViewBool, content: {
                 SFSafariView(url: information.informationURL)
             })
-            
-            .alert(starBool ? "저장되었습니다" : "저장이 취소되었습니다", isPresented: $isAlertBool, actions: {
-                VStack{
-                    Text("확인")
-                }
-            })
+            .modifier(ToastAlertModifier(isPresented: $isToastAlertBool, title: starBool ? "즐겨찾기에 저장되었습니다." : "즐겨찾기에서 삭제되었습니다."))
+
             
             .onAppear {
                 
@@ -167,6 +80,16 @@ struct DetailView:View {
         
     }
     @ViewBuilder
+    func HeadImageView() -> some View {
+        AsyncImage(url: imageURL) { image in
+            image
+                .resizable()
+                .frame(maxWidth: .infinity, minHeight: 182, idealHeight: 182, maxHeight: 182)
+        } placeholder: {
+            ProgressView()
+        }
+    }
+    @ViewBuilder
     func MainTitleView() -> some View {
         VStack(alignment: .center){
             Text("\(information.serviceName)")
@@ -183,29 +106,30 @@ struct DetailView:View {
     func ButtonView() -> some View {
         HStack {
             VStack{
-                
                 Button {
                     isWebViewBool = true
                 } label: {
                     VStack(spacing: 5){
                         Image(systemName: "calendar")
-                        
                         Text("예약 사이트")
                     }
-                    
                 }
             }
             .frame(maxWidth: .infinity)
-            //            .border(.black)
+            
             Divider()
                 .frame(height: 64)
             VStack{
                 Button {
                     starBool.toggle()
+                    isToastAlertBool.toggle()
                     starBool ?  UserDefaults.shared.setValue(information.serviceID, forKey: information.serviceID) :
                     UserDefaults.shared.removeObject(forKey: information.serviceID)
                     WidgetCenter.shared.reloadAllTimelines()
                     isAlertBool.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        isToastAlertBool = false
+                    }
                 } label: {
                     VStack(spacing: 5){
                         Image(systemName: star)
@@ -215,7 +139,7 @@ struct DetailView:View {
                 }
             }
             .frame(maxWidth: .infinity)
-            //            .border(.blue)
+            
             Divider()
                 .frame(height: 64)
             VStack {
@@ -228,17 +152,73 @@ struct DetailView:View {
                 }
             }
             .frame(maxWidth: .infinity)
-            //            .border(.brown)
+            
+        }
+        .foregroundStyle(.gray)
+        
+    }
+    func NaverMapView() -> some View {
+        
+        ZStack(alignment:.topTrailing) {
+            
+            
+            if isNaverMapBool {
+                NaverMapWithSnapShot(x: locationX, y: locationY)
+                    .frame(maxWidth: .infinity, minHeight: 162)
+                
+            }
+            NavigationLink{
+                NaverMapWithNavigationLink(x: locationX, y: locationY)
+            } label: {
+                Image(systemName: "arrow.down.backward.and.arrow.up.forward.square.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundStyle(Color.gray.opacity(0.5))
+                    .frame(width: 30, height: 30)
+                    .padding(10)
+            }
         }
         
-        .foregroundStyle(.gray)
-        //        .border(.pink)
+    }
+    @ViewBuilder
+    func DetailInformationView() -> some View {
+        
+        
+        VStack(alignment:.leading, spacing: 10){
+            Text("주소          " + "\(information.areaName)" + " - \(information.placeName)" )
+            
+            Text("접수상태    " + "\(information.serviceStatus)" + "(\(information.payment))")
+            
+            Text("접수기간    " + "\(information.registerStartDate)" + " ~ \(information.registerEndDate)")
+            
+            if information.telephone != "" {
+                HStack(spacing: 15){
+                    Text("전화번호")
+                    Text("\(information.telephone)")
+                        .foregroundStyle(.blue)
+                        .onTapGesture {
+                            makePhoneCall()
+                        }
+                }
+            }
+        }
+        .modifier(detailMoidifier())
+    }
+    @ViewBuilder
+    func BannerView() -> some View {
+        HStack(alignment:.center){
+            Spacer()
+            GoogleBanner()
+                .frame(width: 320, height: 50)
+            Spacer()
+        }
+        
     }
     func makePhoneCall() {
         if let phoneURL = URL(string: "tel://\(information.telephone.replacingOccurrences(of: "-", with:""))"), UIApplication.shared.canOpenURL(phoneURL) {
             UIApplication.shared.open(phoneURL)
         }
-
+        
         
     }
     
@@ -259,3 +239,37 @@ struct DetailView:View {
 
 
 //저장되면 토스트 메세지 "저장되었습니다"
+//
+//HStack(spacing: 15) {
+//    Text("주소      ")
+//    Text("\(information.areaName)" + " - \(information.placeName)" )
+//
+//}
+//.modifier(detailMoidifier())
+//
+//HStack(spacing: 15){
+//    Text("접수상태")
+//    Text("\(information.serviceStatus)" + "(\(information.payment))")
+//
+//}
+//.modifier(detailMoidifier())
+//
+//HStack(spacing: 15){
+//
+//    Text("접수기간")
+//    Text("\(information.registerStartDate)" + " ~ \(information.registerEndDate)" )
+//
+//}
+//.modifier(detailMoidifier())
+//
+//if information.telephone != "" {
+//    HStack(spacing: 15){
+//        Text("전화번호")
+//        Text("\(information.telephone)")
+//            .foregroundStyle(.blue)
+//            .onTapGesture {
+//                makePhoneCall()
+//            }
+//    }
+//    .modifier(detailMoidifier())
+//}
