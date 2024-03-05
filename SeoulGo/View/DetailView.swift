@@ -51,6 +51,12 @@ struct DetailView:View {
                 NaverMapView()
                 DetailInformationView()
                 BannerView()
+                Button {
+                    showNaverMap(lat: locationY, lng: locationX)
+                } label: {
+                    Text("뻐튼입다")
+                }
+
             }
             .padding()
             .sheet(isPresented: $isWebViewBool, content: {
@@ -220,6 +226,24 @@ struct DetailView:View {
         }
         
         
+    }
+    func showNaverMap(lat: Double, lng: Double) {
+        // 자동차 길찾기 + 도착지 좌표 + 앱 번들 id
+    //    guard let url = URL(string: "nmap://route/car?dlat=\(lat)&dlng=\(lng)&appname=kaikim.SeoulGo") else { return }
+        guard let url = URL(string: "nmap://map?lat=\(lat)&lng=\(lng)&zoom=15&appname=kaikim.SeoulGo") else { return }
+    
+//        guard let url = URL(string: "nmap://map?&appname=kaikim.SeoulGo") else { return }
+        // 네이버지도 앱스토어 url
+        guard let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8") else { return }
+
+        // 네이버지도 앱이 존재 한다면,
+        if UIApplication.shared.canOpenURL(url) {
+            // 길찾기 open
+            UIApplication.shared.open(url)
+        } else { // 네이버지도 앱이 없다면,
+            // 네이버지도 앱 설치 앱스토어로 이동
+            UIApplication.shared.open(appStoreURL)
+        }
     }
     
 }

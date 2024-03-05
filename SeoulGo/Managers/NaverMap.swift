@@ -31,6 +31,8 @@ struct NaverMapWithSnapShot: UIViewRepresentable{
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
     }
+    // MARK: - 네이버 길찾기
+
 
 }
 
@@ -57,7 +59,22 @@ struct NaverMapWithNavigationLink: UIViewRepresentable{
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
     }
+    // MARK: - 네이버 길찾기
+    func showNaverMap(lat: Double, lng: Double) {
+        // 자동차 길찾기 + 도착지 좌표 + 앱 번들 id
+        guard let url = URL(string: "nmap://route/car?dlat=\(lat)&dlng=\(lng)&appname=com.example.myApp") else { return }
+        // 네이버지도 앱스토어 url
+        guard let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8") else { return }
 
+        // 네이버지도 앱이 존재 한다면,
+        if UIApplication.shared.canOpenURL(url) {
+            // 길찾기 open
+            UIApplication.shared.open(url)
+        } else { // 네이버지도 앱이 없다면,
+            // 네이버지도 앱 설치 앱스토어로 이동
+            UIApplication.shared.open(appStoreURL)
+        }
+    }
 
 }
 

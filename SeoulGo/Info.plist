@@ -6,6 +6,10 @@
 	<string>Ok or not?</string>
 	<key>NMFClientId</key>
 	<string>2lm2knho6r</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>nmap</string>
+	</array>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-5262324083555745~3524470515</string>
 	<key>NSAppTransportSecurity</key>
