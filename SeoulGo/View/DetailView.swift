@@ -7,10 +7,10 @@
 
 import SwiftUI
 import NMapsMap
-import WebKit
 import SafariServices
-import WidgetKit
 import GoogleMobileAds
+import WidgetKit
+ 
 
 struct DetailView:View {
     @State var starBool:Bool = false
@@ -18,8 +18,6 @@ struct DetailView:View {
     @State var isNaverMapBool:Bool = false
     @State var isAlertBool:Bool = false
     @State var isToastAlertBool: Bool = false
-    
-    
     
     var information:Row
     
@@ -44,7 +42,7 @@ struct DetailView:View {
     var body: some View {
         ScrollView(showsIndicators: false){
             VStack(alignment:.leading,spacing: 10) {
-               
+                
                 HeadImageView()
                 MainTitleView()
                 ButtonView()
@@ -52,22 +50,28 @@ struct DetailView:View {
                 DetailInformationView()
                 BannerView()
                 Button {
-                    showNaverMap(lat: locationY, lng: locationX)
+                    //showNaverMap(lat: locationY, lng: locationX)
+                    Task{
+                        var abc = await reverseGeo(lat:locationX,lng:locationY)
+                        print(abc)
+                    }
                 } label: {
                     Text("뻐튼입다")
                 }
-
+                
             }
             .padding()
+            
             .sheet(isPresented: $isWebViewBool, content: {
                 SFSafariView(url: information.informationURL)
             })
             .modifier(ToastAlertModifier(isPresented: $isToastAlertBool, title: starBool ? "즐겨찾기에 저장되었습니다." : "즐겨찾기에서 삭제되었습니다."))
-
+            
             
             .onAppear {
                 
                 isNaverMapBool = true
+                
                 if UserDefaults.shared.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
                     
                     starBool = true
@@ -229,13 +233,13 @@ struct DetailView:View {
     }
     func showNaverMap(lat: Double, lng: Double) {
         // 자동차 길찾기 + 도착지 좌표 + 앱 번들 id
-    //    guard let url = URL(string: "nmap://route/car?dlat=\(lat)&dlng=\(lng)&appname=kaikim.SeoulGo") else { return }
+        //    guard let url = URL(string: "nmap://route/car?dlat=\(lat)&dlng=\(lng)&appname=kaikim.SeoulGo") else { return }
         guard let url = URL(string: "nmap://map?lat=\(lat)&lng=\(lng)&zoom=15&appname=kaikim.SeoulGo") else { return }
-    
-//        guard let url = URL(string: "nmap://map?&appname=kaikim.SeoulGo") else { return }
+        
+        //        guard let url = URL(string: "nmap://map?&appname=kaikim.SeoulGo") else { return }
         // 네이버지도 앱스토어 url
         guard let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8") else { return }
-
+        
         // 네이버지도 앱이 존재 한다면,
         if UIApplication.shared.canOpenURL(url) {
             // 길찾기 open
@@ -246,8 +250,57 @@ struct DetailView:View {
         }
     }
     
-}
+    func reverseGeo(lat:Double, lng:Double) async -> [ReverseGeoModel] {
+        let clientId:String = "2lm2knho6r"
+        let clientSecret:String = "KN3UDAq2bPAcOjOFkLoEPpijfOOvphn8g26BjeBb"
+        
+        
+        let coords = "\(lat),\(lng)"
+        let output = "json"
+        let orders = "addr,admcode,roadaddr"
+        let endpoint = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
 
+        let url = "\(endpoint)?coords=\(coords)&orders=\(orders)&output=\(output)"
+        
+        
+        let headers: [String: String] = [
+            "X-NCP-APIGW-API-KEY-ID": clientId,
+            "X-NCP-APIGW-API-KEY": clientSecret,
+        ]
+        
+        guard let url1 = URL(string: url) else {
+            
+        print(coords)
+            print(URLError.errorDomain)
+            print("2️⃣")
+            return []}
+        
+        do {
+            print(url1)
+            print(coords)
+            var urlRequest = URLRequest(url: url1)
+            urlRequest.setValue(clientSecret, forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
+            urlRequest.setValue(clientId, forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
+//
+            print(urlRequest.allHTTPHeaderFields)
+//            urlRequest.allHTTPHeaderFields = headers
+            let (data,response) = try await URLSession.shared.data(for: urlRequest)
+            guard let httpresponse = response as? HTTPURLResponse, (200...299).contains(httpresponse.statusCode) else {
+                print(URLError.errorDomain)
+                print(URLError.badServerResponse)
+                print(URLError.badURL)
+                print("3️⃣")
+                return []
+            }
+            
+            let finalData = try JSONDecoder().decode(ReverseGeoModel.self, from: data)
+            return [finalData]
+        } catch {
+            debugPrint("4️⃣\(String(describing: error))")
+        }
+        return []
+    }
+}
 
 
 

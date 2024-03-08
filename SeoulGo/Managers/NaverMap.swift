@@ -44,6 +44,7 @@ struct NaverMapWithNavigationLink: UIViewRepresentable{
     func makeUIView(context: Context) -> some NMFMapView {
         
         let map = NMFMapView()
+        
         let marker = NMFMarker()
         let location = NMGLatLng(lat: y, lng: x)
         map.moveCamera( (NMFCameraUpdate(scrollTo: location)))
@@ -53,7 +54,7 @@ struct NaverMapWithNavigationLink: UIViewRepresentable{
         map.isScrollGestureEnabled =  true
         marker.position = location
         marker.mapView = map
-
+        
         return map
     }
     

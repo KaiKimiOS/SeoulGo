@@ -16,7 +16,7 @@ struct SeoulDataModel:Decodable{
 struct ListPublicReservationSport:Decodable{
     
     let listTotalCount:Int
-    let result:Result
+    let result:Result1
     let resultDetails:[Row]
     
     enum CodingKeys:String, CodingKey {
@@ -26,7 +26,7 @@ struct ListPublicReservationSport:Decodable{
     }
 }
 
-struct Result:Decodable {
+struct Result1:Decodable {
     let code: String
     let message:String
     

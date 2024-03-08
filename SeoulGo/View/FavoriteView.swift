@@ -16,8 +16,6 @@ struct FavoriteView: View {
     //key를 리턴해서, ForEach에서 키값으로 Section을 구분해주고, ForEach에서 areaDictionary[areaKey]를 통해 키값에 맞는 value를 보여준다
     var areaKey:[String] { store.areaDictionary.map{$0.key}.sorted(by: <)  }
     
-   
-    
     var body: some View {
         NavigationStack {
             VStack {
@@ -39,7 +37,6 @@ struct FavoriteView: View {
                                             }
                                             .buttonStyle(.borderless)
                                         }
-                                        
                                         VStack {
                                             NavigationLink("\(information.serviceName)") {
                                                 DetailView(information: information)

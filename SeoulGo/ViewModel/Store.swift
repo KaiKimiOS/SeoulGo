@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-class Store: ObservableObject {
+final class Store: ObservableObject {
     
     @Published var storeManager:[Row] = []
     @Published var favoriteLists:[Row] = []

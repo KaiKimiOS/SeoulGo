@@ -12,9 +12,7 @@
 		2A1925332B566BF000549503 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1925322B566BEF00549503 /* WidgetKit.framework */; };
 		2A1925352B566BF000549503 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1925342B566BF000549503 /* SwiftUI.framework */; };
 		2A1925382B566BF000549503 /* SeoulGoWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1925372B566BF000549503 /* SeoulGoWidgetBundle.swift */; };
-		2A19253A2B566BF000549503 /* SeoulGoWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1925392B566BF000549503 /* SeoulGoWidgetLiveActivity.swift */; };
 		2A19253C2B566BF000549503 /* SeoulGoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19253B2B566BF000549503 /* SeoulGoWidget.swift */; };
-		2A19253E2B566BF000549503 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19253D2B566BF000549503 /* AppIntent.swift */; };
 		2A1925402B566BF100549503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A19253F2B566BF100549503 /* Assets.xcassets */; };
 		2A1925442B566BF100549503 /* SeoulGoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2A1925312B566BEF00549503 /* SeoulGoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2A2A8E292B63EC9F006AA339 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A8E282B63EC9F006AA339 /* Store.swift */; };
@@ -32,6 +30,7 @@
 		2A7C22E82B6538E8007CC3EE /* SeoulDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */; };
 		2A7C22E92B6538EA007CC3EE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A8E282B63EC9F006AA339 /* Store.swift */; };
 		2A7C22EA2B653A5C007CC3EE /* Enum + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */; };
+		2A8FEFD72B98B32800B02B9E /* ReverseGeoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FEFD62B98B32800B02B9E /* ReverseGeoModel.swift */; };
 		2AA074E42B87378E00AC7C31 /* GoogleBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA074E32B87378E00AC7C31 /* GoogleBanner.swift */; };
 		2AA68EE92B502FF20015A9B8 /* WebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EE82B502FF20015A9B8 /* WebKit.swift */; };
 		2AA68EEB2B5033E60015A9B8 /* SFSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */; };
@@ -91,9 +90,7 @@
 		2A1925322B566BEF00549503 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		2A1925342B566BF000549503 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		2A1925372B566BF000549503 /* SeoulGoWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoWidgetBundle.swift; sourceTree = "<group>"; };
-		2A1925392B566BF000549503 /* SeoulGoWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoWidgetLiveActivity.swift; sourceTree = "<group>"; };
 		2A19253B2B566BF000549503 /* SeoulGoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoWidget.swift; sourceTree = "<group>"; };
-		2A19253D2B566BF000549503 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		2A19253F2B566BF100549503 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1925412B566BF100549503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A2A8E282B63EC9F006AA339 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -111,6 +108,7 @@
 		2A6BCE772B3F1A7600396357 /* SeoulGoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeoulGoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE7B2B3F1A7600396357 /* SeoulGoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoUITests.swift; sourceTree = "<group>"; };
 		2A6BCE7D2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2A8FEFD62B98B32800B02B9E /* ReverseGeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseGeoModel.swift; sourceTree = "<group>"; };
 		2AA074E32B87378E00AC7C31 /* GoogleBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBanner.swift; sourceTree = "<group>"; };
 		2AA68EE82B502FF20015A9B8 /* WebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKit.swift; sourceTree = "<group>"; };
 		2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariView.swift; sourceTree = "<group>"; };
@@ -173,9 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1925372B566BF000549503 /* SeoulGoWidgetBundle.swift */,
-				2A1925392B566BF000549503 /* SeoulGoWidgetLiveActivity.swift */,
 				2A19253B2B566BF000549503 /* SeoulGoWidget.swift */,
-				2A19253D2B566BF000549503 /* AppIntent.swift */,
 				2A19253F2B566BF100549503 /* Assets.xcassets */,
 				2A1925412B566BF100549503 /* Info.plist */,
 			);
@@ -206,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1230792B3F30C0006BFE34 /* SeoulDataModel.swift */,
+				2A8FEFD62B98B32800B02B9E /* ReverseGeoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -625,8 +622,6 @@
 				2A7C22E92B6538EA007CC3EE /* Store.swift in Sources */,
 				2A7C22E72B6538E6007CC3EE /* Network.swift in Sources */,
 				2A1925382B566BF000549503 /* SeoulGoWidgetBundle.swift in Sources */,
-				2A19253E2B566BF000549503 /* AppIntent.swift in Sources */,
-				2A19253A2B566BF000549503 /* SeoulGoWidgetLiveActivity.swift in Sources */,
 				2A7C22E82B6538E8007CC3EE /* SeoulDataModel.swift in Sources */,
 				2A7C22EA2B653A5C007CC3EE /* Enum + Extension.swift in Sources */,
 				2A19253C2B566BF000549503 /* SeoulGoWidget.swift in Sources */,
@@ -645,6 +640,7 @@
 				2A4BD5752B4852D90003CBC6 /* Enum + Extension.swift in Sources */,
 				2AF28FF72B4D948300D483C5 /* NaverMap.swift in Sources */,
 				2AE937AF2B5164DB00B5242B /* FavoriteView.swift in Sources */,
+				2A8FEFD72B98B32800B02B9E /* ReverseGeoModel.swift in Sources */,
 				2A56477E2B960D0A00DC3E01 /* ToastAlert.swift in Sources */,
 				2AF28FF52B4D2BA200D483C5 /* DetailView.swift in Sources */,
 				2A0103562B3F1CB10042797F /* HomeView.swift in Sources */,
