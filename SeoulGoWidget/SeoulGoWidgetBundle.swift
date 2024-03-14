@@ -14,4 +14,5 @@ struct SeoulGoWidgetBundle: WidgetBundle {
     var body: some Widget {
         SeoulGoWidget()
     }
+    
 }

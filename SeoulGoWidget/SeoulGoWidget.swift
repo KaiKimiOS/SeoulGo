@@ -60,28 +60,26 @@ struct SeoulGoWidgetEntryView : View {
     
     var body: some View {
         
-        VStack(spacing:0) {
+        VStack(spacing:10) {
             
-            HStack(spacing:0){
-                Text("SeoulGo")
+            HStack(spacing:5){
+                Image("SeoulGoImage")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+             
+                
+                Text("즐겨찾기")
                     .lineLimit(1)
                     .allowsTightening(true)
                     .foregroundStyle(.cyan)
                     .font(.headline)
                     .fontWeight(.bold)
-                
-                Image("SeoulGoImage")
-                    .resizable()
-                    .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .scaledToFit()
-                    .clipShape(.circle.inset(by: 10))
-                
             }
             
             VStack(alignment:.leading,spacing: 5){
-                ForEach(0..<min(entry.temp.count, 3)) { i in
+                ForEach(0..<min(entry.temp.count, 4)) { i in
                     HStack(spacing:0) {
-                        
                         Text("[\(entry.temp[i].minClass)] ")
                         Text("\(entry.temp[i].placeName)")
                     }
@@ -90,9 +88,15 @@ struct SeoulGoWidgetEntryView : View {
                     .font(.caption2)
                     .fontWeight(.light)
                     .truncationMode(.tail)
+                   
+                }
+                if entry.temp.count > 4 {
+                    Text("\(entry.temp.count - 4)개 즐겨찾기가 더 있습니다")
+                        .font(.caption2)
+                        .fontWeight(.light)
                 }
             }
-            Spacer()
+//            Spacer()
         }
         .padding()
         .widgetURL(.temporaryDirectory)
