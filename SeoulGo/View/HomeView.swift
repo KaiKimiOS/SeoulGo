@@ -11,10 +11,10 @@ import SwiftSoup
 struct HomeView: View {
     
     @EnvironmentObject var store:Store
-    @State var placeInformation: [Row] = []
-    @State var initialArea: String = "전체지역"
-    @State var initialSport: SportName = .전체종목
-    @State var initialBool:Bool = false //처음 화면 진입시 호출 및 재호출 방지를 위한 Bool값
+    @State private var placeInformation: [Row] = []
+    @State private var initialArea: String = "전체지역"
+    @State private var initialSport: SportName = .전체종목
+    @State private var initialBool:Bool = false //처음 화면 진입시 호출 및 재호출 방지를 위한 Bool값
     
     
     //에러1
@@ -51,7 +51,7 @@ struct HomeView: View {
                             Text("\(information.rawValue)").tag(information)
                         }
                     }
-        
+                    
                     Picker("전체지역", selection: $initialArea) {
                         ForEach(store.availableArea, id: \.self) { area in
                             Text(area).tag(area)
@@ -63,10 +63,8 @@ struct HomeView: View {
                 
                 List {
                     ForEach(store.finalInformation, id: \.serviceID) { info  in
-                        HStack {
-                            NavigationLink("\(info.serviceName)" ) {
-                                DetailView(information: info)
-                            }
+                        NavigationLink("\(info.serviceName)" ) {
+                            DetailView(information: info)
                         }
                     }
                 }
@@ -83,31 +81,28 @@ struct HomeView: View {
                             .frame(width: 120, height: 23, alignment: .center)
                         
                         if store.storeManager.isEmpty {
-                            ProgressView()
-                                .tint(Color.blue)
-                                .padding()
+                           
+                                ProgressView()
+                                    .lineLimit(1)
+                                    .tint(Color.blue)
+                                    .padding()
+                            
                         }
                     }
                 }
             }
         }
-        
-        .onAppear {
-            
-            if !initialBool {
-                Task{
-                    await store.fetchRequest()
-                    initialBool = true
-                }
+        .task {
+            if store.finalInformation.isEmpty {
+                await store.fetchRequest()
             }
+           
         }
-        
         .onChange(of: initialSport.rawValue ) { _ in
             store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
-            
         }
         .onChange(of:initialArea) { _ in
-            
+
             if initialArea == "전체지역" || initialArea == "지역선택" {
                 store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
             } else {
@@ -116,6 +111,3 @@ struct HomeView: View {
         }
     }
 }
-//#Preview {
-//   ContentView()
-//}

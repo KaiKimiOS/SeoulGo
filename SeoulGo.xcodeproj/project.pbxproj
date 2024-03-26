@@ -32,7 +32,6 @@
 		2A7C22EA2B653A5C007CC3EE /* Enum + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4BD5742B4852D90003CBC6 /* Enum + Extension.swift */; };
 		2A8FEFD72B98B32800B02B9E /* ReverseGeoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FEFD62B98B32800B02B9E /* ReverseGeoModel.swift */; };
 		2AA074E42B87378E00AC7C31 /* GoogleBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA074E32B87378E00AC7C31 /* GoogleBanner.swift */; };
-		2AA68EE92B502FF20015A9B8 /* WebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EE82B502FF20015A9B8 /* WebKit.swift */; };
 		2AA68EEB2B5033E60015A9B8 /* SFSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */; };
 		2AE937AF2B5164DB00B5242B /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE937AE2B5164DB00B5242B /* FavoriteView.swift */; };
 		2AF28FF52B4D2BA200D483C5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF28FF42B4D2BA200D483C5 /* DetailView.swift */; };
@@ -110,7 +109,6 @@
 		2A6BCE7D2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2A8FEFD62B98B32800B02B9E /* ReverseGeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseGeoModel.swift; sourceTree = "<group>"; };
 		2AA074E32B87378E00AC7C31 /* GoogleBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBanner.swift; sourceTree = "<group>"; };
-		2AA68EE82B502FF20015A9B8 /* WebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKit.swift; sourceTree = "<group>"; };
 		2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariView.swift; sourceTree = "<group>"; };
 		2ADAB9062B58F27600DB21E5 /* SeoulGoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeoulGoWidgetExtension.entitlements; sourceTree = "<group>"; };
 		2ADAB9072B58F3B300DB21E5 /* SeoulGo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeoulGo.entitlements; sourceTree = "<group>"; };
@@ -220,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				2AF28FF62B4D948300D483C5 /* NaverMap.swift */,
-				2AA68EE82B502FF20015A9B8 /* WebKit.swift */,
 				2AA68EEA2B5033E60015A9B8 /* SFSafariView.swift */,
 				2A465B022B46833F00345046 /* Network.swift */,
 			);
@@ -258,8 +255,8 @@
 				2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */,
 				2ADAB9072B58F3B300DB21E5 /* SeoulGo.entitlements */,
 				2A465B042B468A1A00345046 /* Info.plist */,
-				2A2A8E232B63EAFA006AA339 /* Utility */,
 				2A2A8E242B63EB17006AA339 /* Managers */,
+				2A2A8E232B63EAFA006AA339 /* Utility */,
 				2A2A8E222B63EAE2006AA339 /* Model */,
 				2A2A8E212B63EAD3006AA339 /* ViewModel */,
 				2A2A8E202B63EAC1006AA339 /* View */,
@@ -631,7 +628,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AA68EE92B502FF20015A9B8 /* WebKit.swift in Sources */,
 				2A465B032B46833F00345046 /* Network.swift in Sources */,
 				2A7C22E62B6538C4007CC3EE /* SeoulGoApp.swift in Sources */,
 				2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */,

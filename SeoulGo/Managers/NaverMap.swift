@@ -31,9 +31,6 @@ struct NaverMapWithSnapShot: UIViewRepresentable{
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
     }
-    // MARK: - 네이버 길찾기
-
-
 }
 
 struct NaverMapWithNavigationLink: UIViewRepresentable{
@@ -60,6 +57,7 @@ struct NaverMapWithNavigationLink: UIViewRepresentable{
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
     }
+    
     // MARK: - 네이버 길찾기
     func showNaverMap(lat: Double, lng: Double) {
         // 자동차 길찾기 + 도착지 좌표 + 앱 번들 id

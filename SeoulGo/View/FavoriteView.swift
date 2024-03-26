@@ -12,7 +12,7 @@ import WidgetKit
 struct FavoriteView: View {
     
     @EnvironmentObject var store:Store
-    @State var star = "star.fill"
+    @State private var star = "star.fill"
     //key를 리턴해서, ForEach에서 키값으로 Section을 구분해주고, ForEach에서 areaDictionary[areaKey]를 통해 키값에 맞는 value를 보여준다
     var areaKey:[String] { store.areaDictionary.map{$0.key}.sorted(by: <)  }
     
@@ -26,45 +26,52 @@ struct FavoriteView: View {
                         ForEach(areaKey, id:\.self) { areaName in
                             Section(areaName) {
                                 ForEach(store.areaDictionary[areaName]!, id:\.serviceID) { information in
-                                    HStack {
-                                        VStack {
-                                            Button {
-                                                UserDefaults.shared.removeObject(forKey: information.serviceID)
-                                                WidgetCenter.shared.reloadAllTimelines()
-                                                
-                                            } label: {
-                                                Image(systemName: star)
-                                            }
-                                            .buttonStyle(.borderless)
-                                        }
-                                        VStack {
+//                                    HStack {
+//                                        VStack {
+//                                            Button {
+//                                                UserDefaults.shared.removeObject(forKey: information.serviceID)
+//                                                WidgetCenter.shared.reloadAllTimelines()
+//                                                
+//                                            } label: {
+//                                                Image(systemName: star)
+//                                            }
+//                                            .buttonStyle(.borderless)
+//                                        }
+//                                        VStack {
                                             NavigationLink("\(information.serviceName)") {
                                                 DetailView(information: information)
                                             }
-                                        }
+                                            
+                                            
+//                                        }
                                         
-                                    }
+//                                    }
                                     
                                 }
                                 
                                 
                             }
+                            
                         }
                         
                         
                     }
                 }
+                
                 GoogleBanner()
                     .frame(width: 320, height: 50)
                     .border(.black)
             }
             .navigationTitle("즐겨찾기")
             .navigationBarTitleDisplayMode(.inline)
-            
-            .onAppear {
+            .task {
+               await store.fetchRequest()
                 store.putUserDefaultsToLists()
                 store.putlistToDictionary()
             }
+//            .onAppear {
+//              
+//            }
             .refreshable {
                 store.putUserDefaultsToLists()
                 store.putlistToDictionary()

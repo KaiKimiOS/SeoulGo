@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+enum SeoulGoError:Error {
+    case InternetDisconnected
+}
+
 enum SportName:String, CaseIterable {
     case 전체종목 = "전체종목"
     case 축구 = "축구장"
@@ -45,22 +49,21 @@ enum AreaName:String,CaseIterable {
     
 }
 
-//extension String {
-//    func stringToDate() -> String {
-//
-//        let firstDateFormatter = DateFormatter()
-//        firstDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-//        let firstDate = firstDateFormatter.date(from: self)
-//
-//        let secondDateFormatter = DateFormatter()
-//        secondDateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-//        secondDateFormatter.locale = Locale(identifier: "ko-KR")
-//        let secondDate = secondDateFormatter.string(from: firstDate!)
-//
-//        return secondDate
-//    }
-//
-//}
+extension String {
+    func stringToDate() -> String {
+
+        let firstDateFormatter = DateFormatter()
+        firstDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        let firstDate = firstDateFormatter.date(from: self)
+
+        firstDateFormatter.dateFormat = "yyyy-MM-dd"
+        firstDateFormatter.locale = Locale(identifier: "ko-KR")
+        let secondDate = firstDateFormatter.string(from: firstDate!)
+
+        return secondDate
+    }
+
+}
 
 struct detailMoidifier: ViewModifier {
     func body(content: Content) -> some View {

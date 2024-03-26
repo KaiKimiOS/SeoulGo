@@ -7,7 +7,7 @@
 
 import Foundation
 
-@MainActor
+
 final class Store: ObservableObject {
     
     @Published var storeManager:[Row] = []
@@ -22,11 +22,13 @@ final class Store: ObservableObject {
     
     //Network Fetch 하는 함수
     @discardableResult
+    @MainActor
     func fetchRequest() async-> [Row] {
+        guard finalInformation.isEmpty else { return storeManager }
         let tempStore = await Network.getData()
-        guard let row = tempStore.first else {
-            return [] }
-        storeManager = row.ListPublicReservationSport.resultDetails.sorted {$0.areaName < $1.areaName}
+        guard let row = tempStore.first else { return [] }
+        let result = row.ListPublicReservationSport.resultDetails
+        storeManager = result.sorted {$0.areaName < $1.areaName}
         finalInformation = storeManager
         availableArea = ["지역선택"]
         return storeManager
@@ -40,13 +42,14 @@ final class Store: ObservableObject {
     @discardableResult
     func getSelectedSport(sport:String, areaName:String) -> [Row]{
        //스크롤 처음부터 시작하기 , 지금은 내린곳에서 변경됨, 다시안올라감
+        
         if sport == "전체종목" {
             finalInformation = storeManager
             availableArea = ["지역선택"]
             return finalInformation
         }
         finalInformation = storeManager.filter{ $0.minClass == sport}
-        availableArea = Array(Set(finalInformation.map { $0.areaName}))
+        availableArea = Array(Set(finalInformation.map { $0.areaName})).sorted(by: <)
         if availableArea.contains(areaName) {
             finalInformation = storeManager.filter { $0.minClass == sport && $0.areaName == areaName }
         }

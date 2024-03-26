@@ -16,6 +16,7 @@ extension View {
 }
 
 struct ToastAlertModifier: ViewModifier {
+    
     @Binding var isPresented: Bool
     let title:  String
     
@@ -42,7 +43,7 @@ struct ToastAlertModifier: ViewModifier {
 }
 
 struct ToastAlert: View {
-    
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @Binding var isPresented:Bool
     let title: String
     var body: some View {
@@ -56,8 +57,9 @@ struct ToastAlert: View {
             Text(title)
                 .font(.callout)
                 .bold()
-                .foregroundStyle(.primary)
+                .foregroundStyle(.black)
                 .lineLimit(1)
+                
             
         }
         .padding(.horizontal,20)

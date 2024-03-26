@@ -16,10 +16,9 @@ import SwiftUI
 struct Provider: TimelineProvider {
     
     @ObservedObject var store: Store = Store()
-    @State var initalBool:Bool = false
     
     func placeholder(in context: Context) -> SimpleEntry {
-        return SimpleEntry(date: Date(), temp: store.favoriteLists)
+        return SimpleEntry(date: Date(), temp: [Row(gubun: "", serviceID: "", maxClass: "", minClass: "", serviceStatus: "", serviceName: "", payment: "", placeName: "즐겨찾기", userTarget: "", informationURL: "", serviceStartDate: "", serviceEndDate: "", registerStartDate: "", registerEndDate: "", areaName: "", telephone: "", imageURL: "", locationX: "", locationY: "")])
     }
     
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> Void) {
@@ -40,10 +39,11 @@ struct Provider: TimelineProvider {
     
     func putUserDefaultsToWidget() async {
         
-        if !initalBool {
+        
+        if store.finalInformation.isEmpty {
             await store.fetchRequest()
-            initalBool = true
         }
+        
         store.putUserDefaultsToLists()
         store.putlistToDictionary()
     }
@@ -60,14 +60,13 @@ struct SeoulGoWidgetEntryView : View {
     
     var body: some View {
         
-        VStack(spacing:10) {
+        VStack(alignment:.leading, spacing:10) {
             
-            HStack(spacing:5){
+            HStack {
                 Image("SeoulGoImage")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 30, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-             
                 
                 Text("즐겨찾기")
                     .lineLimit(1)
@@ -77,10 +76,11 @@ struct SeoulGoWidgetEntryView : View {
                     .fontWeight(.bold)
             }
             
-            VStack(alignment:.leading,spacing: 5){
-                ForEach(0..<min(entry.temp.count, 4)) { i in
+            VStack(alignment: .leading,spacing: 3) {
+                
+                ForEach(0..<min(entry.temp.count, 3)) { i in
                     HStack(spacing:0) {
-                        Text("[\(entry.temp[i].minClass)] ")
+                        Text("[\(entry.temp[i].serviceStatus)] ")
                         Text("\(entry.temp[i].placeName)")
                     }
                     .lineLimit(1)
@@ -88,15 +88,28 @@ struct SeoulGoWidgetEntryView : View {
                     .font(.caption2)
                     .fontWeight(.light)
                     .truncationMode(.tail)
-                   
+                    
                 }
-                if entry.temp.count > 4 {
-                    Text("\(entry.temp.count - 4)개 즐겨찾기가 더 있습니다")
+                if entry.temp.isEmpty {
+                    Text("즐겨찾기를 추가해주세요")
+                        .lineLimit(2)
+                        .allowsTightening(true)
                         .font(.caption2)
                         .fontWeight(.light)
+                        .truncationMode(.tail)
                 }
+                
+                if entry.temp.count > 3 {
+                    Text("이외 \(entry.temp.count - 3)개 즐겨찾기")
+                        .font(.caption2)
+                        .fontWeight(.light)
+                        .underline()
+                }
+                Spacer()
             }
-//            Spacer()
+            .frame(height: 70)
+            
+            
         }
         .padding()
         .widgetURL(.temporaryDirectory)
@@ -113,12 +126,10 @@ struct SeoulGoWidget: Widget {
                 .containerBackground(.clear, for: .widget)
             
         }
-        
         .supportedFamilies([.systemSmall])
         .configurationDisplayName("즐겨찾기")
         .description("즐겨찾기에 추가한 리스트를 위젯으로 볼 수 있어요.")
         .contentMarginsDisabled()
-        //마진을 꽉꽉채워서 다쓸건지
     }
     
 }
@@ -126,6 +137,6 @@ struct SeoulGoWidget: Widget {
 #Preview(as: .systemSmall) {
     SeoulGoWidget()
 } timeline: {
-    SimpleEntry(date: .now,  temp: [])
+    SimpleEntry(date: .now,  temp: [Row(gubun: "dfd", serviceID: "", maxClass: "", minClass: "qwer", serviceStatus: "", serviceName: "", payment: "", placeName: "즐겨찾기", userTarget: "", informationURL: "", serviceStartDate: "", serviceEndDate: "", registerStartDate: "", registerEndDate: "", areaName: "", telephone: "", imageURL: "", locationX: "", locationY: ""),Row(gubun: "dfd", serviceID: "", maxClass: "", minClass: "qwer", serviceStatus: "", serviceName: "", payment: "", placeName: "즐겨찾asdfasf기", userTarget: "", informationURL: "", serviceStartDate: "", serviceEndDate: "", registerStartDate: "", registerEndDate: "", areaName: "", telephone: "", imageURL: "", locationX: "", locationY: ""),Row(gubun: "dfd", serviceID: "", maxClass: "", minClass: "qwer", serviceStatus: "", serviceName: "", payment: "", placeName: "즐겨찾기", userTarget: "", informationURL: "", serviceStartDate: "", serviceEndDate: "", registerStartDate: "", registerEndDate: "", areaName: "", telephone: "", imageURL: "", locationX: "", locationY: "")])
     
 }

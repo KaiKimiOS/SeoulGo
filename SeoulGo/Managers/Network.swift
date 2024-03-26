@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class Network {
+final class Network {
         
     private init() { }
     
@@ -19,7 +19,8 @@ class Network {
 
         guard let url = URL(string: urlString) else {
             print(URLError.errorDomain)
-            return [] }
+            return []
+        }
         do {
             let (data,_) = try await URLSession.shared.data(from: url)
             let finalData = try JSONDecoder().decode(SeoulDataModel.self, from: data)

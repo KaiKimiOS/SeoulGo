@@ -10,32 +10,32 @@ import NMapsMap
 import SafariServices
 import GoogleMobileAds
 import WidgetKit
- 
+
 
 struct DetailView:View {
-    @State var starBool:Bool = false
-    @State var isWebViewBool: Bool = false
-    @State var isNaverMapBool:Bool = false
-    @State var isAlertBool:Bool = false
-    @State var isToastAlertBool: Bool = false
+    @State private var starBool:Bool = false
+    @State private var isWebViewBool: Bool = false
+    @State private var isNaverMapBool:Bool = false
+    @State private var isAlertBool:Bool = false
+    @State private var isToastAlertBool: Bool = false
     
     var information:Row
     
-    var imageURL: URL? {
+    private var imageURL: URL? {
         URL(string: information.imageURL)
     }
     
-    var locationY: Double {
+    private var locationY: Double {
         guard let locationY = Double(information.locationY) else { return 0 }
         return locationY
     }
     
-    var locationX: Double {
+    private var locationX: Double {
         guard let locationX = Double(information.locationX) else { return 0 }
         return locationX
     }
     
-    var star:String {
+    private var star:String {
         starBool ? "star.fill" : "star"
     }
     
@@ -65,9 +65,7 @@ struct DetailView:View {
             .sheet(isPresented: $isWebViewBool, content: {
                 SFSafariView(url: information.informationURL)
             })
-            .modifier(ToastAlertModifier(isPresented: $isToastAlertBool, title: starBool ? "즐겨찾기에 저장되었습니다." : "즐겨찾기에서 삭제되었습니다."))
-            
-            
+            .modifier(ToastAlertModifier(isPresented: $isToastAlertBool, title: starBool ? "즐겨찾기에 저장되었습니다." : "저장이 삭제되었습니다."))
             .onAppear {
                 
                 isNaverMapBool = true
@@ -99,6 +97,7 @@ struct DetailView:View {
             ProgressView()
         }
     }
+    
     @ViewBuilder
     func MainTitleView() -> some View {
         VStack(alignment: .center){
@@ -107,11 +106,12 @@ struct DetailView:View {
                 .lineLimit(1)
                 .frame(maxWidth:.infinity)
                 .font(.system(size: 18, weight: .bold, design: .default ))
-                .padding(.bottom)
+                .padding([.bottom,.top])
             Divider()
         }
         //        .border(.blue)
     }
+    
     @ViewBuilder
     func ButtonView() -> some View {
         HStack {
@@ -136,6 +136,7 @@ struct DetailView:View {
                     starBool ?  UserDefaults.shared.setValue(information.serviceID, forKey: information.serviceID) :
                     UserDefaults.shared.removeObject(forKey: information.serviceID)
                     WidgetCenter.shared.reloadAllTimelines()
+                    
                     isAlertBool.toggle()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         isToastAlertBool = false
@@ -175,10 +176,24 @@ struct DetailView:View {
             if isNaverMapBool {
                 NaverMapWithSnapShot(x: locationX, y: locationY)
                     .frame(maxWidth: .infinity, minHeight: 162)
-                
             }
+            
             NavigationLink{
                 NaverMapWithNavigationLink(x: locationX, y: locationY)
+                    .toolbar {
+                        ToolbarItem(placement:.topBarTrailing) {
+                            
+                            Button {
+                                showNaverMap(lat: locationY, lng: locationX)
+                            } label: {
+                                Text("네이버지도")
+                                Image(systemName: "map")
+                                
+                            }                                                 
+                            
+                            
+                        }
+                    }
             } label: {
                 Image(systemName: "arrow.down.backward.and.arrow.up.forward.square.fill")
                     .resizable()
@@ -199,7 +214,7 @@ struct DetailView:View {
             
             Text("접수상태    " + "\(information.serviceStatus)" + "(\(information.payment))")
             
-            Text("접수기간    " + "\(information.registerStartDate)" + " ~ \(information.registerEndDate)")
+            Text("접수기간    " + "\(information.registerStartDate.stringToDate())" + " ~ \(information.registerEndDate.stringToDate())")
             
             if information.telephone != "" {
                 HStack(spacing: 15){
@@ -259,7 +274,7 @@ struct DetailView:View {
         let output = "json"
         let orders = "addr,admcode,roadaddr"
         let endpoint = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
-
+        
         let url = "\(endpoint)?coords=\(coords)&orders=\(orders)&output=\(output)"
         
         
@@ -270,7 +285,7 @@ struct DetailView:View {
         
         guard let url1 = URL(string: url) else {
             
-        print(coords)
+            print(coords)
             print(URLError.errorDomain)
             print("2️⃣")
             return []}
@@ -281,9 +296,9 @@ struct DetailView:View {
             var urlRequest = URLRequest(url: url1)
             urlRequest.setValue(clientSecret, forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
             urlRequest.setValue(clientId, forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
-//
+            //
             print(urlRequest.allHTTPHeaderFields)
-//            urlRequest.allHTTPHeaderFields = headers
+            //            urlRequest.allHTTPHeaderFields = headers
             let (data,response) = try await URLSession.shared.data(for: urlRequest)
             guard let httpresponse = response as? HTTPURLResponse, (200...299).contains(httpresponse.statusCode) else {
                 print(URLError.errorDomain)
