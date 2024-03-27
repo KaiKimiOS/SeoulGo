@@ -65,13 +65,11 @@ struct FavoriteView: View {
             .navigationTitle("즐겨찾기")
             .navigationBarTitleDisplayMode(.inline)
             .task {
-               await store.fetchRequest()
+                await store.fetchRequest()
                 store.putUserDefaultsToLists()
                 store.putlistToDictionary()
             }
-//            .onAppear {
-//              
-//            }
+
             .refreshable {
                 store.putUserDefaultsToLists()
                 store.putlistToDictionary()

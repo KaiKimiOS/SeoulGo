@@ -8,7 +8,34 @@
 import SwiftUI
 
 enum SeoulGoError:Error {
-    case InternetDisconnected
+    case serverError
+    case noInternet
+    case timeout
+    
+    
+    var errorDescription:String? {
+        switch self {
+        case .noInternet:
+            return "인터넷 연결을 확인해주세요"
+        case .serverError:
+            return "서버 연결에 문제가 발생했습니다"
+        case .timeout:
+            return "타임아웃 에러발생"
+            
+        }
+    }
+    
+    var errorTitle:String {
+        switch self {
+        case .noInternet:
+            return "인터넷 에러발생"
+        case .serverError:
+            return "서버 에러발생"
+        case .timeout:
+            return "타임아웃"
+            
+        }
+    }
 }
 
 enum SportName:String, CaseIterable {
@@ -51,18 +78,18 @@ enum AreaName:String,CaseIterable {
 
 extension String {
     func stringToDate() -> String {
-
+        
         let firstDateFormatter = DateFormatter()
         firstDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         let firstDate = firstDateFormatter.date(from: self)
-
+        
         firstDateFormatter.dateFormat = "yyyy-MM-dd"
         firstDateFormatter.locale = Locale(identifier: "ko-KR")
         let secondDate = firstDateFormatter.string(from: firstDate!)
-
+        
         return secondDate
     }
-
+    
 }
 
 struct detailMoidifier: ViewModifier {

@@ -13,10 +13,10 @@ import WidgetKit
 
 
 struct DetailView:View {
+    @Environment(\.colorScheme) private var colorScheme
     @State private var starBool:Bool = false
     @State private var isWebViewBool: Bool = false
     @State private var isNaverMapBool:Bool = false
-    @State private var isAlertBool:Bool = false
     @State private var isToastAlertBool: Bool = false
     
     var information:Row
@@ -40,7 +40,7 @@ struct DetailView:View {
     }
     
     var body: some View {
-        ScrollView(showsIndicators: false){
+        ScrollView(showsIndicators: false) {
             VStack(alignment:.leading,spacing: 10) {
                 
                 HeadImageView()
@@ -49,15 +49,6 @@ struct DetailView:View {
                 NaverMapView()
                 DetailInformationView()
                 BannerView()
-                Button {
-                    //showNaverMap(lat: locationY, lng: locationX)
-                    Task{
-                        var abc = await reverseGeo(lat:locationX,lng:locationY)
-                        print(abc)
-                    }
-                } label: {
-                    Text("뻐튼입다")
-                }
                 
             }
             .padding()
@@ -69,14 +60,8 @@ struct DetailView:View {
             .onAppear {
                 
                 isNaverMapBool = true
-                
-                if UserDefaults.shared.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
-                    
-                    starBool = true
-                } else {
-                    starBool = false
-                }
-                
+                checkingFavorite(id: information.serviceID)
+                  
             }
             
             .onDisappear {
@@ -87,6 +72,16 @@ struct DetailView:View {
         
         
     }
+    
+    func checkingFavorite(id:String)  {
+        if UserDefaults.shared.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
+            return starBool = true
+        } else {
+            starBool = false
+        }
+        
+    }
+    
     @ViewBuilder
     func HeadImageView() -> some View {
         AsyncImage(url: imageURL) { image in
@@ -109,7 +104,6 @@ struct DetailView:View {
                 .padding([.bottom,.top])
             Divider()
         }
-        //        .border(.blue)
     }
     
     @ViewBuilder
@@ -137,7 +131,7 @@ struct DetailView:View {
                     UserDefaults.shared.removeObject(forKey: information.serviceID)
                     WidgetCenter.shared.reloadAllTimelines()
                     
-                    isAlertBool.toggle()
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         isToastAlertBool = false
                     }
@@ -176,6 +170,7 @@ struct DetailView:View {
             if isNaverMapBool {
                 NaverMapWithSnapShot(x: locationX, y: locationY)
                     .frame(maxWidth: .infinity, minHeight: 162)
+                
             }
             
             NavigationLink{
@@ -189,7 +184,7 @@ struct DetailView:View {
                                 Text("네이버지도")
                                 Image(systemName: "map")
                                 
-                            }                                                 
+                            }
                             
                             
                         }
@@ -204,13 +199,14 @@ struct DetailView:View {
             }
         }
         
+        
     }
     @ViewBuilder
     func DetailInformationView() -> some View {
         
         
         VStack(alignment:.leading, spacing: 10){
-            Text("주소          " + "\(information.areaName)" + " - \(information.placeName)" )
+            Text("주소          " + "\(information.areaName)" + " - \(information.placeName)" ).lineLimit(1)
             
             Text("접수상태    " + "\(information.serviceStatus)" + "(\(information.payment))")
             
@@ -220,7 +216,7 @@ struct DetailView:View {
                 HStack(spacing: 15){
                     Text("전화번호")
                     Text("\(information.telephone)")
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(information.telephone.contains(" ") ? colorScheme == .dark ? .white : .black : .blue)
                         .onTapGesture {
                             makePhoneCall()
                         }
@@ -228,22 +224,22 @@ struct DetailView:View {
             }
         }
         .modifier(detailMoidifier())
+        
+        
     }
     @ViewBuilder
     func BannerView() -> some View {
         HStack(alignment:.center){
-            Spacer()
             GoogleBanner()
-                .frame(width: 320, height: 50)
-            Spacer()
+            
         }
         
     }
+    
     func makePhoneCall() {
         if let phoneURL = URL(string: "tel://\(information.telephone.replacingOccurrences(of: "-", with:""))"), UIApplication.shared.canOpenURL(phoneURL) {
             UIApplication.shared.open(phoneURL)
         }
-        
         
     }
     func showNaverMap(lat: Double, lng: Double) {

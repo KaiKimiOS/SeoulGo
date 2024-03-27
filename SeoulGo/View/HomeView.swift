@@ -75,7 +75,6 @@ struct HomeView: View {
                 ToolbarItem(placement:.topBarLeading) {
                     
                     HStack {
-                        
                         Image("HomeTitle")
                             .resizable()
                             .frame(width: 120, height: 23, alignment: .center)
@@ -83,20 +82,25 @@ struct HomeView: View {
                         if store.storeManager.isEmpty {
                            
                                 ProgressView()
-                                    .lineLimit(1)
                                     .tint(Color.blue)
                                     .padding()
-                            
                         }
                     }
                 }
             }
         }
-        .task {
-            if store.finalInformation.isEmpty {
-                await store.fetchRequest()
+        .alert(store.errorType?.errorTitle ?? "에러발생", isPresented: $store.hasError, actions: {
+            Button("확인") {
+                
             }
-           
+        }, message: {
+            if let errorDescription = store.errorType?.errorDescription {
+                Text(errorDescription)
+            }
+        })
+
+        .refreshable {
+            await store.fetchRequest()
         }
         .onChange(of: initialSport.rawValue ) { _ in
             store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)

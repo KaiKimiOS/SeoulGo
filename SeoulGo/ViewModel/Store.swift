@@ -19,20 +19,45 @@ final class Store: ObservableObject {
     
     // section에서 같은 지역을 한꺼번에 묶어서 화면에 보여주기 위해서.
     @Published var areaDictionary:[String: [Row]] = [:]
-    
+    @Published var errorType:SeoulGoError?
+    @Published var hasError:Bool = false
+    deinit {
+        print("deinit Store.!!!")
+    }
     //Network Fetch 하는 함수
     @discardableResult
     @MainActor
-    func fetchRequest() async-> [Row] {
+    func fetchRequest() async -> [Row] {
         guard finalInformation.isEmpty else { return storeManager }
-        let tempStore = await Network.getData()
-        guard let row = tempStore.first else { return [] }
-        let result = row.ListPublicReservationSport.resultDetails
-        storeManager = result.sorted {$0.areaName < $1.areaName}
-        finalInformation = storeManager
-        availableArea = ["지역선택"]
-        return storeManager
+        do {
+           
+            let tempStore = try await Network.getData()
+            guard let row = tempStore.first else { return [] }
+            let result = row.ListPublicReservationSport.resultDetails
+            storeManager = result.sorted {$0.areaName < $1.areaName}
+            finalInformation = storeManager
+            availableArea = ["지역선택"]
+            return storeManager
+        }catch(let error) {
+            print(error.localizedDescription)
+            handleError(error)
+            hasError = true
+        }
+    return []
     }
+    
+    func handleError(_ error: Error) {
+            switch error {
+            case SeoulGoError.serverError:
+                errorType = .serverError
+            case SeoulGoError.noInternet:
+                errorType = .noInternet
+            case SeoulGoError.timeout:
+                errorType = .timeout
+            default:
+                errorType = .noInternet
+            }
+        }
     
     func getSelectedSports() {
         allSports = storeManager.map({ $0.minClass })
