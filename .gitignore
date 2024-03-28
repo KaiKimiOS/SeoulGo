@@ -98,8 +98,9 @@ Info.plist
 **/.SeoulGo.entitlements
 **/.SeoulGoWidgetExtension.entitlements
 *.entitlements
-
+*.lock
 **/.Podfile.lock
 /Pods
+/SeoulGo.xcodeproj
 
 
