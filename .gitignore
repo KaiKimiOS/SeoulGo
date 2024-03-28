@@ -95,3 +95,11 @@ Info.plist
 
 **/.Info.plist
 **/.Config.xcconfig
+**/.SeoulGo.entitlements
+**/.SeoulGoWidgetExtension.entitlements
+*.entitlements
+
+**/.Podfile.lock
+/Pods
+
+

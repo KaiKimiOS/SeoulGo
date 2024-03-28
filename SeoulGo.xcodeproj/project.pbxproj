@@ -22,7 +22,6 @@
 		2A56477E2B960D0A00DC3E01 /* ToastAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A56477D2B960D0A00DC3E01 /* ToastAlert.swift */; };
 		2A6BCE612B3F1A7500396357 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE602B3F1A7500396357 /* ContentView.swift */; };
 		2A6BCE652B3F1A7600396357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BCE642B3F1A7600396357 /* Assets.xcassets */; };
-		2A6BCE682B3F1A7600396357 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BCE672B3F1A7600396357 /* Preview Assets.xcassets */; };
 		2A6BCE722B3F1A7600396357 /* SeoulGoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE712B3F1A7600396357 /* SeoulGoTests.swift */; };
 		2A6BCE7C2B3F1A7600396357 /* SeoulGoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE7B2B3F1A7600396357 /* SeoulGoUITests.swift */; };
 		2A6BCE7E2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BCE7D2B3F1A7600396357 /* SeoulGoUITestsLaunchTests.swift */; };
@@ -104,7 +103,6 @@
 		2A6BCE5E2B3F1A7500396357 /* SeoulGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoApp.swift; sourceTree = "<group>"; };
 		2A6BCE602B3F1A7500396357 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2A6BCE642B3F1A7600396357 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2A6BCE672B3F1A7600396357 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A6BCE6D2B3F1A7600396357 /* SeoulGoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeoulGoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6BCE712B3F1A7600396357 /* SeoulGoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulGoTests.swift; sourceTree = "<group>"; };
 		2A6BCE772B3F1A7600396357 /* SeoulGoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeoulGoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,17 +264,8 @@
 				2A2A8E212B63EAD3006AA339 /* ViewModel */,
 				2A2A8E202B63EAC1006AA339 /* View */,
 				2A6BCE642B3F1A7600396357 /* Assets.xcassets */,
-				2A6BCE662B3F1A7600396357 /* Preview Content */,
 			);
 			path = SeoulGo;
-			sourceTree = "<group>";
-		};
-		2A6BCE662B3F1A7600396357 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				2A6BCE672B3F1A7600396357 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		2A6BCE702B3F1A7600396357 /* SeoulGoTests */ = {
@@ -469,7 +458,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A6BCE682B3F1A7600396357 /* Preview Assets.xcassets in Resources */,
 				2A4E0A5D2BB51A1900F9559C /* .gitignore in Resources */,
 				2A6BCE652B3F1A7600396357 /* Assets.xcassets in Resources */,
 			);
