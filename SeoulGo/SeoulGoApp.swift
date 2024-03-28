@@ -17,15 +17,14 @@ struct SeoulGoApp: App {
         WindowGroup {
             ContentView()
                 .task {
-                    if store.finalInformation.isEmpty {
-                        await store.fetchRequest()
-                    }
+                    await store.fetchRequest()
+                    
                 }
                 .environmentObject(store)
                 .onOpenURL(perform: { url in
                     let text = url.absoluteString.removingPercentEncoding ?? ""
                 })
         }
- 
+        
     }
 }

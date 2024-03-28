@@ -29,8 +29,8 @@ final class Store: ObservableObject {
     @MainActor
     func fetchRequest() async -> [Row] {
         guard finalInformation.isEmpty else { return storeManager }
+        
         do {
-           
             let tempStore = try await Network.getData()
             guard let row = tempStore.first else { return [] }
             let result = row.ListPublicReservationSport.resultDetails
@@ -38,8 +38,8 @@ final class Store: ObservableObject {
             finalInformation = storeManager
             availableArea = ["지역선택"]
             return storeManager
-        }catch(let error) {
-            print(error.localizedDescription)
+            
+        } catch(let error) {
             handleError(error)
             hasError = true
         }

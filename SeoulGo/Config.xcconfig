@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  SeoulGo
+//
+//  Created by kaikim on 3/28/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APIKEY = 647879614473646636395064566e6a

@@ -13,11 +13,12 @@ import WidgetKit
 
 
 struct DetailView:View {
+    
     @Environment(\.colorScheme) private var colorScheme
-    @State private var starBool:Bool = false
-    @State private var isWebViewBool: Bool = false
-    @State private var isNaverMapBool:Bool = false
-    @State private var isToastAlertBool: Bool = false
+    @State private var isStarClicked:Bool = false
+    @State private var isWebViewButtonClicked: Bool = false
+    @State private var isNaverMapButtonClicked:Bool = false
+    @State private var isToastAlertClicked: Bool = false
     
     var information:Row
     
@@ -36,36 +37,41 @@ struct DetailView:View {
     }
     
     private var star:String {
-        starBool ? "star.fill" : "star"
+        isStarClicked ? "star.fill" : "star"
+    }
+    private var starDescription:String {
+        isStarClicked ? "즐겨찾기에 저장되었습니다" : "저장이 취소되었습니다"
+    }
+    private var colorBasedOnColorScheme:Color {
+        colorScheme == .dark ? .white : .black
     }
     
     var body: some View {
+        
         ScrollView(showsIndicators: false) {
+            
             VStack(alignment:.leading,spacing: 10) {
                 
-                HeadImageView()
+                HeaderImageView()
                 MainTitleView()
-                ButtonView()
+                TotalButtonView()
                 NaverMapView()
                 DetailInformationView()
-                BannerView()
+                GoogleBannerView()
                 
             }
             .padding()
-            
-            .sheet(isPresented: $isWebViewBool, content: {
+            .sheet(isPresented: $isWebViewButtonClicked, content: {
                 SFSafariView(url: information.informationURL)
             })
-            .modifier(ToastAlertModifier(isPresented: $isToastAlertBool, title: starBool ? "즐겨찾기에 저장되었습니다." : "저장이 삭제되었습니다."))
+            .modifier(ToastAlertModifier(isPresented: $isToastAlertClicked, title: starDescription))
             .onAppear {
                 
-                isNaverMapBool = true
-                checkingFavorite(id: information.serviceID)
-                  
+                isNaverMapButtonClicked = true
+                checkingFavoriteList(id: information.serviceID)
             }
-            
             .onDisappear {
-                isNaverMapBool = false
+                isNaverMapButtonClicked = false
             }
         }
         
@@ -73,17 +79,18 @@ struct DetailView:View {
         
     }
     
-    func checkingFavorite(id:String)  {
-        if UserDefaults.shared.value(forKey: "\(information.serviceID)") as? String ?? "" == information.serviceID {
-            return starBool = true
+    func checkingFavoriteList(id:String)  {
+        
+        if UserDefaults.shared.value(forKey: id) as? String == id {
+            isStarClicked = true
         } else {
-            starBool = false
+            isStarClicked = false
         }
         
     }
     
     @ViewBuilder
-    func HeadImageView() -> some View {
+    func HeaderImageView() -> some View {
         AsyncImage(url: imageURL) { image in
             image
                 .resizable()
@@ -106,58 +113,78 @@ struct DetailView:View {
         }
     }
     
+    func WebsiteButtonView() -> some View {
+        
+        VStack{
+            Button {
+                isWebViewButtonClicked = true
+            } label: {
+                VStack(spacing: 5){
+                    Image(systemName: "calendar")
+                    Text("예약 사이트")
+                }
+            }
+        }
+        .frame(maxWidth: .infinity)
+        
+    }
+    func savedButton() {
+        isToastAlertClicked.toggle()
+        isStarClicked ?  UserDefaults.shared.setValue(information.serviceID, forKey: information.serviceID) :
+        UserDefaults.shared.removeObject(forKey: information.serviceID)
+        WidgetCenter.shared.reloadAllTimelines()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            isToastAlertClicked = false
+        }
+    }
+    
+    func StarButtonView() -> some View {
+        VStack{
+            Button {
+                
+                isStarClicked.toggle()
+                savedButton()
+               
+            } label: {
+                VStack(spacing: 5){
+                    Image(systemName: star)
+                    Text("저장")
+                }
+                .foregroundStyle(isStarClicked ? .blue : .gray)
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    func ShareButtonView() -> some View {
+        
+        VStack {
+            
+            ShareLink(item: URL(string: information.informationURL)!) {
+                VStack(spacing: 5){
+                    
+                    Image(systemName: "square.and.arrow.up")
+                    Text("공유")
+                }
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
     @ViewBuilder
-    func ButtonView() -> some View {
+    func TotalButtonView() -> some View {
         HStack {
-            VStack{
-                Button {
-                    isWebViewBool = true
-                } label: {
-                    VStack(spacing: 5){
-                        Image(systemName: "calendar")
-                        Text("예약 사이트")
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity)
             
+            WebsiteButtonView()
             Divider()
                 .frame(height: 64)
-            VStack{
-                Button {
-                    starBool.toggle()
-                    isToastAlertBool.toggle()
-                    starBool ?  UserDefaults.shared.setValue(information.serviceID, forKey: information.serviceID) :
-                    UserDefaults.shared.removeObject(forKey: information.serviceID)
-                    WidgetCenter.shared.reloadAllTimelines()
-                    
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        isToastAlertBool = false
-                    }
-                } label: {
-                    VStack(spacing: 5){
-                        Image(systemName: star)
-                        Text("저장")
-                    }
-                    .foregroundStyle(starBool ? .blue : .gray)
-                }
-            }
-            .frame(maxWidth: .infinity)
             
+            StarButtonView()
             Divider()
                 .frame(height: 64)
-            VStack {
-                ShareLink(item:  URL(string: information.informationURL)!) {
-                    VStack(spacing: 5){
-                        
-                        Image(systemName: "square.and.arrow.up")
-                        Text("공유")
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity)
             
+            ShareButtonView()
         }
         .foregroundStyle(.gray)
         
@@ -167,10 +194,9 @@ struct DetailView:View {
         ZStack(alignment:.topTrailing) {
             
             
-            if isNaverMapBool {
+            if isNaverMapButtonClicked {
                 NaverMapWithSnapShot(x: locationX, y: locationY)
                     .frame(maxWidth: .infinity, minHeight: 162)
-                
             }
             
             NavigationLink{
@@ -179,14 +205,11 @@ struct DetailView:View {
                         ToolbarItem(placement:.topBarTrailing) {
                             
                             Button {
-                                showNaverMap(lat: locationY, lng: locationX)
+                                goToNaverMapAPP(lat: locationY, lng: locationX)
                             } label: {
                                 Text("네이버지도")
                                 Image(systemName: "map")
-                                
                             }
-                            
-                            
                         }
                     }
             } label: {
@@ -213,10 +236,10 @@ struct DetailView:View {
             Text("접수기간    " + "\(information.registerStartDate.stringToDate())" + " ~ \(information.registerEndDate.stringToDate())")
             
             if information.telephone != "" {
-                HStack(spacing: 15){
+                HStack(spacing: 15) {
                     Text("전화번호")
                     Text("\(information.telephone)")
-                        .foregroundStyle(information.telephone.contains(" ") ? colorScheme == .dark ? .white : .black : .blue)
+                        .foregroundStyle(information.telephone.contains(" ") ? colorBasedOnColorScheme : .blue)
                         .onTapGesture {
                             makePhoneCall()
                         }
@@ -228,21 +251,19 @@ struct DetailView:View {
         
     }
     @ViewBuilder
-    func BannerView() -> some View {
+    func GoogleBannerView() -> some View {
         HStack(alignment:.center){
             GoogleBanner()
-            
         }
-        
     }
     
     func makePhoneCall() {
         if let phoneURL = URL(string: "tel://\(information.telephone.replacingOccurrences(of: "-", with:""))"), UIApplication.shared.canOpenURL(phoneURL) {
             UIApplication.shared.open(phoneURL)
         }
-        
     }
-    func showNaverMap(lat: Double, lng: Double) {
+    
+    func goToNaverMapAPP(lat: Double, lng: Double) {
         // 자동차 길찾기 + 도착지 좌표 + 앱 번들 id
         //    guard let url = URL(string: "nmap://route/car?dlat=\(lat)&dlng=\(lng)&appname=kaikim.SeoulGo") else { return }
         guard let url = URL(string: "nmap://map?lat=\(lat)&lng=\(lng)&zoom=15&appname=kaikim.SeoulGo") else { return }
@@ -251,66 +272,59 @@ struct DetailView:View {
         // 네이버지도 앱스토어 url
         guard let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8") else { return }
         
-        // 네이버지도 앱이 존재 한다면,
-        if UIApplication.shared.canOpenURL(url) {
-            // 길찾기 open
-            UIApplication.shared.open(url)
-        } else { // 네이버지도 앱이 없다면,
-            // 네이버지도 앱 설치 앱스토어로 이동
-            UIApplication.shared.open(appStoreURL)
-        }
+        UIApplication.shared.canOpenURL(url) ? UIApplication.shared.open(url) :  UIApplication.shared.open(appStoreURL)
     }
     
-    func reverseGeo(lat:Double, lng:Double) async -> [ReverseGeoModel] {
-        let clientId:String = "2lm2knho6r"
-        let clientSecret:String = "KN3UDAq2bPAcOjOFkLoEPpijfOOvphn8g26BjeBb"
-        
-        
-        let coords = "\(lat),\(lng)"
-        let output = "json"
-        let orders = "addr,admcode,roadaddr"
-        let endpoint = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
-        
-        let url = "\(endpoint)?coords=\(coords)&orders=\(orders)&output=\(output)"
-        
-        
-        let headers: [String: String] = [
-            "X-NCP-APIGW-API-KEY-ID": clientId,
-            "X-NCP-APIGW-API-KEY": clientSecret,
-        ]
-        
-        guard let url1 = URL(string: url) else {
-            
-            print(coords)
-            print(URLError.errorDomain)
-            print("2️⃣")
-            return []}
-        
-        do {
-            print(url1)
-            print(coords)
-            var urlRequest = URLRequest(url: url1)
-            urlRequest.setValue(clientSecret, forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
-            urlRequest.setValue(clientId, forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
-            //
-            print(urlRequest.allHTTPHeaderFields)
-            //            urlRequest.allHTTPHeaderFields = headers
-            let (data,response) = try await URLSession.shared.data(for: urlRequest)
-            guard let httpresponse = response as? HTTPURLResponse, (200...299).contains(httpresponse.statusCode) else {
-                print(URLError.errorDomain)
-                print(URLError.badServerResponse)
-                print(URLError.badURL)
-                print("3️⃣")
-                return []
-            }
-            
-            let finalData = try JSONDecoder().decode(ReverseGeoModel.self, from: data)
-            return [finalData]
-        } catch {
-            debugPrint("4️⃣\(String(describing: error))")
-        }
-        return []
-    }
+//    func reverseGeo(lat:Double, lng:Double) async -> [ReverseGeoModel] {
+//        let clientId:String = "2lm2knho6r"
+//        let clientSecret:String = "KN3UDAq2bPAcOjOFkLoEPpijfOOvphn8g26BjeBb"
+//        
+//        
+//        let coords = "\(lat),\(lng)"
+//        let output = "json"
+//        let orders = "addr,admcode,roadaddr"
+//        let endpoint = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
+//        
+//        let url = "\(endpoint)?coords=\(coords)&orders=\(orders)&output=\(output)"
+//        
+//        
+//        let headers: [String: String] = [
+//            "X-NCP-APIGW-API-KEY-ID": clientId,
+//            "X-NCP-APIGW-API-KEY": clientSecret,
+//        ]
+//        
+//        guard let url1 = URL(string: url) else {
+//            
+//            print(coords)
+//            print(URLError.errorDomain)
+//            print("2️⃣")
+//            return []}
+//        
+//        do {
+//            print(url1)
+//            print(coords)
+//            var urlRequest = URLRequest(url: url1)
+//            urlRequest.setValue(clientSecret, forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
+//            urlRequest.setValue(clientId, forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
+//            //
+//            print(urlRequest.allHTTPHeaderFields)
+//            //            urlRequest.allHTTPHeaderFields = headers
+//            let (data,response) = try await URLSession.shared.data(for: urlRequest)
+//            guard let httpresponse = response as? HTTPURLResponse, (200...299).contains(httpresponse.statusCode) else {
+//                print(URLError.errorDomain)
+//                print(URLError.badServerResponse)
+//                print(URLError.badURL)
+//                print("3️⃣")
+//                return []
+//            }
+//            
+//            let finalData = try JSONDecoder().decode(ReverseGeoModel.self, from: data)
+//            return [finalData]
+//        } catch {
+//            debugPrint("4️⃣\(String(describing: error))")
+//        }
+//        return []
+//    }
 }
 
 

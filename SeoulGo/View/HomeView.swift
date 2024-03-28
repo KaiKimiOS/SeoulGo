@@ -6,15 +6,13 @@
 //
 
 import SwiftUI
-import SwiftSoup
 
 struct HomeView: View {
     
     @EnvironmentObject var store:Store
-    @State private var placeInformation: [Row] = []
-    @State private var initialArea: String = "전체지역"
-    @State private var initialSport: SportName = .전체종목
-    @State private var initialBool:Bool = false //처음 화면 진입시 호출 및 재호출 방지를 위한 Bool값
+
+    @State private var initialAreaName: String = "전체지역"
+    @State private var initialSportName: SportName = .전체종목
     
     
     //에러1
@@ -37,28 +35,26 @@ struct HomeView: View {
     
     //종목을 다른거 축구장, 농구장 노르면 무조건 전체가 먼저 나오도록 하기
     
-    
-    
-    
     var body: some View {
         
         NavigationStack{
             VStack(alignment:.leading,spacing:0) {
                 
                 HStack(spacing:0){
-                    Picker("전체종목", selection: $initialSport) {
+                    Picker("전체종목", selection: $initialSportName) {
                         ForEach(SportName.allCases, id:\.self) { information in
                             Text("\(information.rawValue)").tag(information)
                         }
                     }
                     
-                    Picker("전체지역", selection: $initialArea) {
+                    Picker("전체지역", selection: $initialAreaName) {
                         ForEach(store.availableArea, id: \.self) { area in
                             Text(area).tag(area)
                         }
                     }
                     
-                } .padding(.leading,5)
+                }
+                .padding(.leading,5)
                 
                 
                 List {
@@ -74,18 +70,7 @@ struct HomeView: View {
                 
                 ToolbarItem(placement:.topBarLeading) {
                     
-                    HStack {
-                        Image("HomeTitle")
-                            .resizable()
-                            .frame(width: 120, height: 23, alignment: .center)
-                        
-                        if store.storeManager.isEmpty {
-                           
-                                ProgressView()
-                                    .tint(Color.blue)
-                                    .padding()
-                        }
-                    }
+                    MainHeaderView()
                 }
             }
         }
@@ -94,6 +79,7 @@ struct HomeView: View {
                 
             }
         }, message: {
+            
             if let errorDescription = store.errorType?.errorDescription {
                 Text(errorDescription)
             }
@@ -102,16 +88,34 @@ struct HomeView: View {
         .refreshable {
             await store.fetchRequest()
         }
-        .onChange(of: initialSport.rawValue ) { _ in
-            store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
+        .onChange(of: initialSportName.rawValue ) { _ in
+            store.getSelectedSport(sport: initialSportName.rawValue, areaName: initialAreaName)
         }
-        .onChange(of:initialArea) { _ in
+        .onChange(of:initialAreaName) { _ in
 
-            if initialArea == "전체지역" || initialArea == "지역선택" {
-                store.getSelectedSport(sport: initialSport.rawValue, areaName: initialArea)
+            if initialAreaName == "전체지역" || initialAreaName == "지역선택" {
+                store.getSelectedSport(sport: initialSportName.rawValue, areaName: initialAreaName)
             } else {
-                store.getSelectedResults(sport: initialSport.rawValue, areaName: initialArea)
+                store.getSelectedResults(sport: initialSportName.rawValue, areaName: initialAreaName)
             }
         }
+    }
+    
+    func MainHeaderView() -> some View {
+        
+        HStack {
+            
+            Image("HomeTitle")
+                .resizable()
+                .frame(width: 120, height: 23, alignment: .center)
+            
+            if store.storeManager.isEmpty {
+               
+                    ProgressView()
+                        .tint(Color.blue)
+                        .padding()
+            }
+        }
+        
     }
 }

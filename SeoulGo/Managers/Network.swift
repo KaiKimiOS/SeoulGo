@@ -17,7 +17,8 @@ final class Network {
     @MainActor
     static func getData() async throws -> [SeoulDataModel] {
         
-        let apiKey = "647879614473646636395064566e6a"
+        let apiKey = Bundle.main.infoDictionary?["APIKEY"] as! String
+        print(apiKey)
         let urlString = "http://openAPI.seoul.go.kr:8088/\(apiKey)/json/ListPublicReservationSport/1/1000"
         
         guard let url = URL(string: urlString) else {
