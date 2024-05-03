@@ -77,7 +77,7 @@ struct ToastAlert: View {
 }
 
 //#Preview {
-//    
+//
 //    Text("ggg")
 //        .modifier(ToastAlert(isPresented: .constant(true), title: "저장되었습니다")) as! any View
 //}

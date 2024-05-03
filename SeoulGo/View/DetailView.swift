@@ -19,13 +19,10 @@ struct DetailView:View {
     @State private var isWebViewButtonClicked: Bool = false
     @State private var isNaverMapButtonClicked:Bool = false
     @State private var isToastAlertClicked: Bool = false
-    
+    @State private var mainImage: Image?
+   
     var information:Row
-    
-    private var imageURL: URL? {
-        URL(string: information.imageURL)
-    }
-    
+   
     private var locationY: Double {
         guard let locationY = Double(information.locationY) else { return 0 }
         return locationY
@@ -52,12 +49,12 @@ struct DetailView:View {
             
             VStack(alignment:.leading,spacing: 10) {
                 
-                HeaderImageView()
-                MainTitleView()
-                TotalButtonView()
-                NaverMapView()
-                DetailInformationView()
-                GoogleBannerView()
+                HeaderImageView
+                MainTitleView
+                TotalButtonView
+                NaverMapView
+                DetailInformationView
+                GoogleBannerView
                 
             }
             .padding()
@@ -65,8 +62,16 @@ struct DetailView:View {
                 SFSafariView(url: information.informationURL)
             })
             .modifier(ToastAlertModifier(isPresented: $isToastAlertClicked, title: starDescription))
+            .task {
+                do{
+                    self.mainImage = try await cachedImage(urlString: information.imageURL)
+                }catch {
+                    self.mainImage = Image(systemName: "xmark")
+                    print("error in Image")
+                }
+            }
             .onAppear {
-                
+            
                 isNaverMapButtonClicked = true
                 checkingFavoriteList(id: information.serviceID)
             }
@@ -75,8 +80,23 @@ struct DetailView:View {
             }
         }
         
+    }
+    
+    
+    func cachedImage(urlString:String) async throws -> Image {
         
-        
+        guard let url = URL(string: urlString) else {throw URLError(.badURL)}
+        let urlRequest = URLRequest(url: url)
+
+        if let cachedResponse = URLCache.shared.cachedResponse(for: urlRequest) {
+            guard let image = UIImage(data: cachedResponse.data) else { return Image(systemName: "xmark")}
+            return Image(uiImage: image)
+        }  else {
+            let (data, response ) = try await URLSession.shared.data(from: url)
+            URLCache.shared.storeCachedResponse(CachedURLResponse(response: response, data: data), for: urlRequest)
+            guard let image = UIImage(data: data) else { return Image(systemName: "xmark")}
+            return Image(uiImage: image)
+        }
     }
     
     func checkingFavoriteList(id:String)  {
@@ -86,22 +106,67 @@ struct DetailView:View {
         } else {
             isStarClicked = false
         }
-        
     }
     
-    @ViewBuilder
-    func HeaderImageView() -> some View {
-        AsyncImage(url: imageURL) { image in
-            image
-                .resizable()
-                .frame(maxWidth: .infinity, minHeight: 182, idealHeight: 182, maxHeight: 182)
-        } placeholder: {
-            ProgressView()
+    func savedButton() {
+        toastAlert()
+        isStarClicked ? savedToUserDefaults(id: information.serviceID)
+        : deletedToUserDefaults(id: information.serviceID)
+        WidgetCenter.shared.reloadAllTimelines()
+    }
+    
+    func toastAlert() {
+        isToastAlertClicked.toggle()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            isToastAlertClicked = false
         }
     }
     
+    func savedToUserDefaults(id:String) {
+        UserDefaults.shared.setValue(id, forKey: id)
+    }
+    
+    func deletedToUserDefaults(id:String) {
+        UserDefaults.shared.removeObject(forKey: id)
+    }
+    
+    func makePhoneCall() {
+        if let phoneURL = URL(string: "tel://\(information.telephone.replacingOccurrences(of: "-", with:""))"), UIApplication.shared.canOpenURL(phoneURL) {
+            UIApplication.shared.open(phoneURL)
+        }
+    }
+    
+    func goToNaverMapAPP(lat: Double, lng: Double) {
+        // 자동차 길찾기 + 도착지 좌표 + 앱 번들 id
+        //    guard let url = URL(string: "nmap://route/car?dlat=\(lat)&dlng=\(lng)&appname=kaikim.SeoulGo") else { return }
+        guard let url = URL(string: "nmap://map?lat=\(lat)&lng=\(lng)&zoom=15&appname=kaikim.SeoulGo") else { return }
+        
+        //        guard let url = URL(string: "nmap://map?&appname=kaikim.SeoulGo") else { return }
+        // 네이버지도 앱스토어 url
+        guard let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8") else { return }
+        
+        UIApplication.shared.canOpenURL(url) ? UIApplication.shared.open(url) :  UIApplication.shared.open(appStoreURL)
+    }
+
+    
     @ViewBuilder
-    func MainTitleView() -> some View {
+    private var HeaderImageView: some View {
+        VStack {
+        
+                
+            if let mainImage {
+                mainImage
+                    .resizable()
+            } else {
+                ProgressView()
+            }
+        }
+        .frame(maxWidth: .infinity, minHeight: 182, idealHeight: 182, maxHeight: 182,alignment: .center)
+
+    }
+    
+    @ViewBuilder
+    private var MainTitleView: some View {
         VStack(alignment: .center){
             Text("\(information.serviceName)")
                 .bold()
@@ -113,7 +178,8 @@ struct DetailView:View {
         }
     }
     
-    func WebsiteButtonView() -> some View {
+    @ViewBuilder
+    private var WebsiteButtonView: some View {
         
         VStack{
             Button {
@@ -126,26 +192,16 @@ struct DetailView:View {
             }
         }
         .frame(maxWidth: .infinity)
-        
-    }
-    func savedButton() {
-        isToastAlertClicked.toggle()
-        isStarClicked ?  UserDefaults.shared.setValue(information.serviceID, forKey: information.serviceID) :
-        UserDefaults.shared.removeObject(forKey: information.serviceID)
-        WidgetCenter.shared.reloadAllTimelines()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            isToastAlertClicked = false
-        }
     }
     
-    func StarButtonView() -> some View {
+    @ViewBuilder
+    private var StarButtonView: some View {
         VStack{
             Button {
                 
                 isStarClicked.toggle()
                 savedButton()
-               
+                
             } label: {
                 VStack(spacing: 5){
                     Image(systemName: star)
@@ -157,7 +213,8 @@ struct DetailView:View {
         .frame(maxWidth: .infinity)
     }
     
-    func ShareButtonView() -> some View {
+    @ViewBuilder
+    private var ShareButtonView: some View {
         
         VStack {
             
@@ -173,23 +230,26 @@ struct DetailView:View {
     }
     
     @ViewBuilder
-    func TotalButtonView() -> some View {
+    private var TotalButtonView: some View {
         HStack {
+            WebsiteButtonView
             
-            WebsiteButtonView()
             Divider()
                 .frame(height: 64)
+            StarButtonView
             
-            StarButtonView()
             Divider()
                 .frame(height: 64)
+            ShareButtonView
             
-            ShareButtonView()
         }
         .foregroundStyle(.gray)
         
     }
-    func NaverMapView() -> some View {
+    
+    @ViewBuilder
+    private var NaverMapView: some View {
+        
         
         ZStack(alignment:.topTrailing) {
             
@@ -197,6 +257,7 @@ struct DetailView:View {
             if isNaverMapButtonClicked {
                 NaverMapWithSnapShot(x: locationX, y: locationY)
                     .frame(maxWidth: .infinity, minHeight: 162)
+                
             }
             
             NavigationLink{
@@ -222,10 +283,10 @@ struct DetailView:View {
             }
         }
         
-        
     }
+    
     @ViewBuilder
-    func DetailInformationView() -> some View {
+    private var DetailInformationView: some View {
         
         
         VStack(alignment:.leading, spacing: 10){
@@ -247,84 +308,67 @@ struct DetailView:View {
             }
         }
         .modifier(detailMoidifier())
-        
-        
     }
+    
     @ViewBuilder
-    func GoogleBannerView() -> some View {
+    private var GoogleBannerView: some View{
         HStack(alignment:.center){
             GoogleBanner()
         }
     }
     
-    func makePhoneCall() {
-        if let phoneURL = URL(string: "tel://\(information.telephone.replacingOccurrences(of: "-", with:""))"), UIApplication.shared.canOpenURL(phoneURL) {
-            UIApplication.shared.open(phoneURL)
-        }
-    }
     
-    func goToNaverMapAPP(lat: Double, lng: Double) {
-        // 자동차 길찾기 + 도착지 좌표 + 앱 번들 id
-        //    guard let url = URL(string: "nmap://route/car?dlat=\(lat)&dlng=\(lng)&appname=kaikim.SeoulGo") else { return }
-        guard let url = URL(string: "nmap://map?lat=\(lat)&lng=\(lng)&zoom=15&appname=kaikim.SeoulGo") else { return }
-        
-        //        guard let url = URL(string: "nmap://map?&appname=kaikim.SeoulGo") else { return }
-        // 네이버지도 앱스토어 url
-        guard let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8") else { return }
-        
-        UIApplication.shared.canOpenURL(url) ? UIApplication.shared.open(url) :  UIApplication.shared.open(appStoreURL)
-    }
     
-//    func reverseGeo(lat:Double, lng:Double) async -> [ReverseGeoModel] {
-//        let clientId:String = "2lm2knho6r"
-//        let clientSecret:String = "KN3UDAq2bPAcOjOFkLoEPpijfOOvphn8g26BjeBb"
-//        
-//        
-//        let coords = "\(lat),\(lng)"
-//        let output = "json"
-//        let orders = "addr,admcode,roadaddr"
-//        let endpoint = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
-//        
-//        let url = "\(endpoint)?coords=\(coords)&orders=\(orders)&output=\(output)"
-//        
-//        
-//        let headers: [String: String] = [
-//            "X-NCP-APIGW-API-KEY-ID": clientId,
-//            "X-NCP-APIGW-API-KEY": clientSecret,
-//        ]
-//        
-//        guard let url1 = URL(string: url) else {
-//            
-//            print(coords)
-//            print(URLError.errorDomain)
-//            print("2️⃣")
-//            return []}
-//        
-//        do {
-//            print(url1)
-//            print(coords)
-//            var urlRequest = URLRequest(url: url1)
-//            urlRequest.setValue(clientSecret, forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
-//            urlRequest.setValue(clientId, forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
-//            //
-//            print(urlRequest.allHTTPHeaderFields)
-//            //            urlRequest.allHTTPHeaderFields = headers
-//            let (data,response) = try await URLSession.shared.data(for: urlRequest)
-//            guard let httpresponse = response as? HTTPURLResponse, (200...299).contains(httpresponse.statusCode) else {
-//                print(URLError.errorDomain)
-//                print(URLError.badServerResponse)
-//                print(URLError.badURL)
-//                print("3️⃣")
-//                return []
-//            }
-//            
-//            let finalData = try JSONDecoder().decode(ReverseGeoModel.self, from: data)
-//            return [finalData]
-//        } catch {
-//            debugPrint("4️⃣\(String(describing: error))")
-//        }
-//        return []
-//    }
+    //        func reverseGeo(lat:Double, lng:Double) async -> [ReverseGeoModel] {
+    //            let clientId:String = "2lm2knho6r"
+    //            let clientSecret:String = "KN3UDAq2bPAcOjOFkLoEPpijfOOvphn8g26BjeBb"
+    //
+    //
+    //            let coords = "\(lat),\(lng)"
+    //            let output = "json"
+    //            let orders = "addr,admcode,roadaddr"
+    //            let endpoint = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
+    //
+    //            let url = "\(endpoint)?coords=\(coords)&orders=\(orders)&output=\(output)"
+    //
+    //
+    //            let headers: [String: String] = [
+    //                "X-NCP-APIGW-API-KEY-ID": clientId,
+    //                "X-NCP-APIGW-API-KEY": clientSecret,
+    //            ]
+    //
+    //            guard let url1 = URL(string: url) else {
+    //
+    //                print(coords)
+    //                print(URLError.errorDomain)
+    //                print("2️⃣")
+    //                return []}
+    //
+    //            do {
+    //                print(url1)
+    //                print(coords)
+    //                var urlRequest = URLRequest(url: url1)
+    //                urlRequest.setValue(clientSecret, forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
+    //                urlRequest.setValue(clientId, forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
+    //                //
+    //                print(urlRequest.allHTTPHeaderFields)
+    //                //            urlRequest.allHTTPHeaderFields = headers
+    //                let (data,response) = try await URLSession.shared.data(for: urlRequest)
+    //                guard let httpresponse = response as? HTTPURLResponse, (200...299).contains(httpresponse.statusCode) else {
+    //                    print(URLError.errorDomain)
+    //                    print(URLError.badServerResponse)
+    //                    print(URLError.badURL)
+    //                    print("3️⃣")
+    //                    return []
+    //                }
+    //
+    //                let finalData = try JSONDecoder().decode(ReverseGeoModel.self, from: data)
+    //                return [finalData]
+    //            } catch {
+    //                debugPrint("4️⃣\(String(describing: error))")
+    //            }
+    //            return []
+    //        }
 }
 
 

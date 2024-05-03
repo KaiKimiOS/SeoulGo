@@ -21,11 +21,11 @@ struct NaverMapWithSnapShot: UIViewRepresentable{
         map.moveCamera( (NMFCameraUpdate(scrollTo: location)))
         map.zoomLevel = 14
         map.allowsZooming = false
-        map.isZoomGestureEnabled =  false
+//        map.isZoomGestureEnabled =  false
         map.isScrollGestureEnabled =  false
         marker.position = location
         marker.mapView = map
-
+        
         return map
     }
     

@@ -9,11 +9,17 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var store:Store
-
-    @State private var initialAreaName: String = "전체지역"
-    @State private var initialSportName: SportName = .전체종목
+    @EnvironmentObject var store: Store
+    @State private var areaName: String = "전체지역"
+    @State private var sportName: SportName = .전체종목
     
+    
+    //얼러트
+    //store 리팩
+    //swiftlint?
+    //함수옮겨주기
+    //구글배너 아이디
+    //이미지 캐싱 ->     완료, 들어갈때마다 호출하는거 줄임. 퍼센트로 몇퍼정도 ? 인거지?
     
     //에러1
     //ForEach로 화면 표시할때 에러발생 -> ForEach<Array<String>, String, Text>: the ID 성동구 occurs multiple times within the collection, this will give undefined results!
@@ -41,13 +47,13 @@ struct HomeView: View {
             VStack(alignment:.leading,spacing:0) {
                 
                 HStack(spacing:0){
-                    Picker("전체종목", selection: $initialSportName) {
+                    Picker("전체종목", selection: $sportName) {
                         ForEach(SportName.allCases, id:\.self) { information in
                             Text("\(information.rawValue)").tag(information)
                         }
                     }
                     
-                    Picker("전체지역", selection: $initialAreaName) {
+                    Picker("전체지역", selection: $areaName) {
                         ForEach(store.availableArea, id: \.self) { area in
                             Text(area).tag(area)
                         }
@@ -70,52 +76,48 @@ struct HomeView: View {
                 
                 ToolbarItem(placement:.topBarLeading) {
                     
-                    MainHeaderView()
+                    mainHeaderView
                 }
             }
         }
         .alert(store.errorType?.errorTitle ?? "에러발생", isPresented: $store.hasError, actions: {
-            Button("확인") {
-                
-            }
+            Button("확인") { }
         }, message: {
             
             if let errorDescription = store.errorType?.errorDescription {
                 Text(errorDescription)
             }
         })
-
+        
         .refreshable {
             await store.fetchRequest()
         }
-        .onChange(of: initialSportName.rawValue ) { _ in
-            store.getSelectedSport(sport: initialSportName.rawValue, areaName: initialAreaName)
+        .onChange(of: sportName.rawValue ) {
+            store.getSelectedSport(sport: sportName.rawValue, areaName: areaName)
         }
-        .onChange(of:initialAreaName) { _ in
-
-            if initialAreaName == "전체지역" || initialAreaName == "지역선택" {
-                store.getSelectedSport(sport: initialSportName.rawValue, areaName: initialAreaName)
+        .onChange(of:areaName) {
+            
+            if areaName == "전체지역" || areaName == "지역선택" {
+                store.getSelectedSport(sport: sportName.rawValue, areaName: areaName)
             } else {
-                store.getSelectedResults(sport: initialSportName.rawValue, areaName: initialAreaName)
+                store.getSelectedResults(sport: sportName.rawValue, areaName: areaName)
             }
         }
     }
     
-    func MainHeaderView() -> some View {
-        
+    private var mainHeaderView: some View {
         HStack {
-            
             Image("HomeTitle")
                 .resizable()
                 .frame(width: 120, height: 23, alignment: .center)
             
             if store.storeManager.isEmpty {
-               
-                    ProgressView()
-                        .tint(Color.blue)
-                        .padding()
+                
+                ProgressView()
+                    .tint(Color.blue)
+                    .padding()
             }
+                
         }
-        
     }
 }

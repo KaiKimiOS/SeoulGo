@@ -28,6 +28,7 @@ struct Provider: TimelineProvider {
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
+        
         Task{
             await putUserDefaultsToWidget()
             let currentDate = Date()

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum SeoulGoError:Error {
+enum NetworError:Error {
     case serverError
     case noInternet
     case timeout
@@ -79,17 +79,33 @@ enum AreaName:String,CaseIterable {
 extension String {
     func stringToDate() -> String {
         
-        let firstDateFormatter = DateFormatter()
-        firstDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-        let firstDate = firstDateFormatter.date(from: self)
+        DateFormatter.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        let firstDate1 =  DateFormatter.formatter.date(from: self)
         
-        firstDateFormatter.dateFormat = "yyyy-MM-dd"
-        firstDateFormatter.locale = Locale(identifier: "ko-KR")
-        let secondDate = firstDateFormatter.string(from: firstDate!)
+        DateFormatter.formatter.dateFormat = "yyyy-MM-dd"
+        let finalDate = DateFormatter.formatter.string(from: firstDate1!)
         
-        return secondDate
+        return finalDate
+        
+//        let firstDateFormatter = DateFormatter()
+//        firstDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        let firstDate = firstDateFormatter.date(from: self)
+//        
+//        firstDateFormatter.dateFormat = "yyyy-MM-dd"
+//        firstDateFormatter.locale = Locale(identifier: "ko-KR")
+//        let secondDate = firstDateFormatter.string(from: firstDate!)
+//        
+//        return secondDate
     }
     
+}
+
+extension DateFormatter {
+    static let formatter: DateFormatter = {
+        let format =  DateFormatter()
+        format.locale = .init(identifier: "ko-KR")
+        return format
+    }()
 }
 
 struct detailMoidifier: ViewModifier {

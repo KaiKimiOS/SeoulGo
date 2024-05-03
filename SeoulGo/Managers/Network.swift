@@ -10,24 +10,25 @@ import SwiftUI
 final class Network {
     
     private init() { }
+    
     deinit {
-        print("deinit!!! in Network")
+        print("deinit Network")
         
     }
+    
     @MainActor
     static func getData() async throws -> [SeoulDataModel] {
         
         let apiKey = Bundle.main.infoDictionary?["APIKEY"] as! String
-        print(apiKey)
         let urlString = "http://openAPI.seoul.go.kr:8088/\(apiKey)/json/ListPublicReservationSport/1/1000"
         
         guard let url = URL(string: urlString) else {
-            throw SeoulGoError.noInternet
+            throw NetworError.noInternet
         }
       
         let (data,response) = try await URLSession.shared.data(from: url)
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {throw SeoulGoError.serverError}
-        guard let finalData = try? JSONDecoder().decode(SeoulDataModel.self, from: data) else {throw SeoulGoError.timeout}
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {throw NetworError.serverError}
+        guard let finalData = try? JSONDecoder().decode(SeoulDataModel.self, from: data) else {throw NetworError.timeout}
         
         return [finalData]
 

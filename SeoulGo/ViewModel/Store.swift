@@ -19,8 +19,9 @@ final class Store: ObservableObject {
     
     // section에서 같은 지역을 한꺼번에 묶어서 화면에 보여주기 위해서.
     @Published var areaDictionary:[String: [Row]] = [:]
-    @Published var errorType:SeoulGoError?
+    @Published var errorType:NetworError?
     @Published var hasError:Bool = false
+    
     deinit {
         print("deinit Store.!!!")
     }
@@ -48,11 +49,11 @@ final class Store: ObservableObject {
     
     func handleError(_ error: Error) {
             switch error {
-            case SeoulGoError.serverError:
+            case NetworError.serverError:
                 errorType = .serverError
-            case SeoulGoError.noInternet:
+            case NetworError.noInternet:
                 errorType = .noInternet
-            case SeoulGoError.timeout:
+            case NetworError.timeout:
                 errorType = .timeout
             default:
                 errorType = .noInternet
@@ -103,5 +104,10 @@ final class Store: ObservableObject {
         areaDictionary = Dictionary(grouping: favoriteLists){ $0.areaName }
         // network.favoriteLists를 $0.areaName을 키값으로 해서 그룹핑해준다.
     }
+    
+    
+ 
+    
+    
     
 }
