@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
-import SwiftData
-
 
 struct ContentView: View {
     
+    @EnvironmentObject var store:Store
+    
     var body: some View {
+        
         TabView{
+            
             HomeView()
                 .tabItem { Image(systemName: "house")
                     Text("home")
@@ -23,10 +25,4 @@ struct ContentView: View {
                 }
         }
     }
-        
-}
-
-#Preview {
-    ContentView()
-    
 }

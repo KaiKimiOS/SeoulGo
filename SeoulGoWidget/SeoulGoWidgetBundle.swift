@@ -10,7 +10,9 @@ import SwiftUI
 
 @main
 struct SeoulGoWidgetBundle: WidgetBundle {
+
     var body: some Widget {
         SeoulGoWidget()
     }
+    
 }

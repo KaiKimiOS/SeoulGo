@@ -12,46 +12,47 @@ import SwiftUI
 //onchange를 통해서 UserDefault에 변화가 있다면, 다시 func 실행해서 변화를 위젯 view에 바로 보여준다.
 // 해결 -> 그걸 누르면 거기로 바로 들어가게해야함
 
-struct Provider: AppIntentTimelineProvider {
+
+struct Provider: TimelineProvider {
     
     @ObservedObject var store: Store = Store()
-    @State var initalBool:Bool = false
-    func placeholder(in context: Context) ->  SimpleEntry {
-        print("1️⃣")
-        return SimpleEntry(date: Date(), configuration: ConfigurationAppIntent(), temp: store.favoriteLists)
+    
+    func placeholder(in context: Context) -> SimpleEntry {
+        return SimpleEntry(date: Date(), temp: [Row(gubun: "", serviceID: "", maxClass: "", minClass: "", serviceStatus: "", serviceName: "", payment: "", placeName: "즐겨찾기", userTarget: "", informationURL: "", serviceStartDate: "", serviceEndDate: "", registerStartDate: "", registerEndDate: "", areaName: "", telephone: "", imageURL: "", locationX: "", locationY: "")])
+    }
+    
+    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> Void) {
+        
+        completion(SimpleEntry(date: Date(), temp: store.favoriteLists))
         
     }
     
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        print("2️⃣")
-        return SimpleEntry(date: Date(), configuration: configuration, temp: store.favoriteLists)
-        //위젯 추가하려고 꾹 눌러서 seoulgo 검색후 들어가면 그때 호출함.
-    }
-    
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        //바탕화면에 seoulgo 위젯이 하나면 한번, 두개가 존재하면 2번 호출됨.
-        print("3️⃣")
-        await putUserDefaultsToWidget()
+    func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         
-        let currentDate = Date()
-        var entries = SimpleEntry(date: currentDate, configuration: configuration, temp: store.favoriteLists)
-        return Timeline(entries: [entries], policy: .atEnd)
+        Task{
+            await putUserDefaultsToWidget()
+            let currentDate = Date()
+            var entries = SimpleEntry(date: currentDate, temp: store.favoriteLists)
+            completion(Timeline(entries: [entries], policy: .atEnd))
+        }
+        
     }
     
     func putUserDefaultsToWidget() async {
         
-        if !initalBool {
+        
+        if store.finalInformation.isEmpty {
             await store.fetchRequest()
-            initalBool = true
         }
+        
         store.putUserDefaultsToLists()
         store.putlistToDictionary()
     }
+    
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationAppIntent
     let temp: [Row]
 }
 
@@ -60,29 +61,27 @@ struct SeoulGoWidgetEntryView : View {
     
     var body: some View {
         
-        VStack(spacing:0) {
+        VStack(alignment:.leading, spacing:10) {
             
-            HStack(spacing:0){
-                Text("SeoulGo")
+            HStack {
+                Image("SeoulGoImage")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                
+                Text("즐겨찾기")
                     .lineLimit(1)
                     .allowsTightening(true)
                     .foregroundStyle(.cyan)
                     .font(.headline)
                     .fontWeight(.bold)
-                
-                Image("SeoulGoImage")
-                    .resizable()
-                    .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .scaledToFit()
-                    .clipShape(.circle.inset(by: 10))
-
             }
             
-            VStack(alignment:.leading,spacing: 5){
+            VStack(alignment: .leading,spacing: 3) {
+                
                 ForEach(0..<min(entry.temp.count, 3)) { i in
                     HStack(spacing:0) {
-                        
-                        Text("[\(entry.temp[i].minClass)] ")
+                        Text("[\(entry.temp[i].serviceStatus)] ")
                         Text("\(entry.temp[i].placeName)")
                     }
                     .lineLimit(1)
@@ -90,49 +89,55 @@ struct SeoulGoWidgetEntryView : View {
                     .font(.caption2)
                     .fontWeight(.light)
                     .truncationMode(.tail)
+                    
                 }
+                if entry.temp.isEmpty {
+                    Text("즐겨찾기를 추가해주세요")
+                        .lineLimit(2)
+                        .allowsTightening(true)
+                        .font(.caption2)
+                        .fontWeight(.light)
+                        .truncationMode(.tail)
+                }
+                
+                if entry.temp.count > 3 {
+                    Text("이외 \(entry.temp.count - 3)개 즐겨찾기")
+                        .font(.caption2)
+                        .fontWeight(.light)
+                        .underline()
+                }
+                Spacer()
             }
-            Spacer()
+            .frame(height: 70)
+            
+            
         }
         .padding()
         .widgetURL(.temporaryDirectory)
     }
-    
 }
 
 struct SeoulGoWidget: Widget {
     let kind: String = "SeoulGoWidget"
     
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider(), content: { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             
             SeoulGoWidgetEntryView(entry: entry)
                 .containerBackground(.clear, for: .widget)
             
-        })
+        }
+        .supportedFamilies([.systemSmall])
+        .configurationDisplayName("즐겨찾기")
+        .description("즐겨찾기에 추가한 리스트를 위젯으로 볼 수 있어요.")
         .contentMarginsDisabled()
-        //마진을 꽉꽉채워서 다쓸건지
     }
     
-}
-
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        return intent
-    }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
-        return intent
-    }
 }
 
 #Preview(as: .systemSmall) {
     SeoulGoWidget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley, temp: [])
+    SimpleEntry(date: .now,  temp: [Row(gubun: "dfd", serviceID: "", maxClass: "", minClass: "qwer", serviceStatus: "", serviceName: "", payment: "", placeName: "즐겨찾기", userTarget: "", informationURL: "", serviceStartDate: "", serviceEndDate: "", registerStartDate: "", registerEndDate: "", areaName: "", telephone: "", imageURL: "", locationX: "", locationY: ""),Row(gubun: "dfd", serviceID: "", maxClass: "", minClass: "qwer", serviceStatus: "", serviceName: "", payment: "", placeName: "즐겨찾asdfasf기", userTarget: "", informationURL: "", serviceStartDate: "", serviceEndDate: "", registerStartDate: "", registerEndDate: "", areaName: "", telephone: "", imageURL: "", locationX: "", locationY: ""),Row(gubun: "dfd", serviceID: "", maxClass: "", minClass: "qwer", serviceStatus: "", serviceName: "", payment: "", placeName: "즐겨찾기", userTarget: "", informationURL: "", serviceStartDate: "", serviceEndDate: "", registerStartDate: "", registerEndDate: "", areaName: "", telephone: "", imageURL: "", locationX: "", locationY: "")])
     
 }

@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
-import SwiftSoup
 
 struct HomeView: View {
     
-    @EnvironmentObject var store:Store
-    @State var placeInformation: [Row] = []
-    @State var initialArea: String = "지역"
-    @State var initialSport: SportName = .전체
-    @State var initialBool:Bool = false //처음 화면 진입시 호출 및 재호출 방지를 위한 Bool값
-
+    @EnvironmentObject var store: Store
+    @State private var areaName: String = "전체지역"
+    @State private var sportName: SportName = .전체종목
+    
+    
+    //얼러트
+    //store 리팩
+    //swiftlint?
+    //함수옮겨주기
+    //구글배너 아이디
+    //이미지 캐싱 ->     완료, 들어갈때마다 호출하는거 줄임. 퍼센트로 몇퍼정도 ? 인거지?
     
     //에러1
     //ForEach로 화면 표시할때 에러발생 -> ForEach<Array<String>, String, Text>: the ID 성동구 occurs multiple times within the collection, this will give undefined results!
@@ -35,103 +39,85 @@ struct HomeView: View {
     
     // UserDefaults.standard.dictionaryRepresentation().key 로 해주기
     
+    //종목을 다른거 축구장, 농구장 노르면 무조건 전체가 먼저 나오도록 하기
+    
     var body: some View {
         
         NavigationStack{
-            VStack(alignment:.leading) {
-               
-                HStack(alignment:.center){
-                  
-                    Picker("종목", selection: $initialSport) {
-                        
+            VStack(alignment:.leading,spacing:0) {
+                
+                HStack(spacing:0){
+                    Picker("전체종목", selection: $sportName) {
                         ForEach(SportName.allCases, id:\.self) { information in
                             Text("\(information.rawValue)").tag(information)
                         }
                     }
-                    //.border(Color.black)
-                 
-                    Picker("지역", selection: $initialArea) {
-                        
-                        Text("지역")
-                        ForEach(store.allArea, id: \.self) { area in
-                            
-                            Text(area)
+                    
+                    Picker("전체지역", selection: $areaName) {
+                        ForEach(store.availableArea, id: \.self) { area in
+                            Text(area).tag(area)
                         }
                     }
-                    //.border(Color.black)
-                    Text("종목과 지역을 선택해주세요")
-                        .foregroundStyle(.gray)
-                        .font(.caption)
-                        .fontWeight(.light)
-                        .lineLimit(1)
-                        .padding(.leading,5)
-                  
+                    
                 }
-                .padding([.leading], 10)
+                .padding(.leading,5)
+                
+                
                 List {
-
-                    if initialSport == .전체 {
-                        ForEach(store.storeManager, id:\.serviceID) { info in
-                            HStack {
-                                NavigationLink("\(info.serviceName)" ) {
-                                    DetailView(information: info)
-                                }
-                            }
-                        }
-                    } else {
-                    ForEach(store.selectedResults, id: \.serviceID) { info  in
-                            
-                            HStack {
-                                NavigationLink("\(info.serviceName)" ) {
-                                    DetailView(information: info)
-                                    
-                                }
-                                
-                            }
+                    ForEach(store.finalInformation, id: \.serviceID) { info  in
+                        NavigationLink("\(info.serviceName)" ) {
+                            DetailView(information: info)
                         }
                     }
                 }
                 .listStyle(.plain)
-                
             }
-            .onAppear {
-            
-                if !initialBool {
-                    Task{
-                        await store.fetchRequest()
-                        initialBool = true
-                    }
+            .toolbar {
+                
+                ToolbarItem(placement:.topBarLeading) {
+                    
+                    mainHeaderView
                 }
             }
-            
-            .onChange(of: initialSport.rawValue ) { _ in
-                store.getSelectedArea(sport: initialSport.rawValue)
-                initialArea = "지역"
-
-            }
-            .onChange(of:initialArea) { _ in
-                store.getSelectedResults(sport: initialSport.rawValue, areaName: initialArea)
-                
-            }
-            .navigationTitle("SeoulGo")
- 
         }
-       
+        .alert(store.errorType?.errorTitle ?? "에러발생", isPresented: $store.hasError, actions: {
+            Button("확인") { }
+        }, message: {
+            
+            if let errorDescription = store.errorType?.errorDescription {
+                Text(errorDescription)
+            }
+        })
         
+        .refreshable {
+            await store.fetchRequest()
+        }
+        .onChange(of: sportName.rawValue ) {
+            store.getSelectedSport(sport: sportName.rawValue, areaName: areaName)
+        }
+        .onChange(of:areaName) {
+            
+            if areaName == "전체지역" || areaName == "지역선택" {
+                store.getSelectedSport(sport: sportName.rawValue, areaName: areaName)
+            } else {
+                store.getSelectedResults(sport: sportName.rawValue, areaName: areaName)
+            }
+        }
     }
     
-//   축구장(고양시)-> 종목을 농구로 변경 -> 농구장(고양시) -> 농구장 고양시는 데이터에 존재하지 않음 -> 지역구를 재설정 하면 괜찮지만, 농구장(고양시)에서 종목을 또 바꾸면 풋살장(고양시)가 되어버림 -> 해결방법 농구장에 고양시가 존재하지 않으면 농구장지역의 첫번째를 바로 넣어준다.
-//    func resetPlaceInformation() {
-//        
-//        placeInformation.removeAll()
-//        placeInformation = information.store[0].ListPublicReservationSport.resultDetails.filter{ $0.areaName == initialArea
-//        }
-//
-//        if placeInformation.isEmpty  {
-//            initialArea = information.placeArea.first ?? "송파구"
-//        }
-//    }
-}
-#Preview {
-    HomeView()
+    private var mainHeaderView: some View {
+        HStack {
+            Image("HomeTitle")
+                .resizable()
+                .frame(width: 120, height: 23, alignment: .center)
+            
+            if store.storeManager.isEmpty {
+                
+                ProgressView()
+                    .tint(Color.blue)
+                    .padding()
+            }
+                
+        }
+    }
 }

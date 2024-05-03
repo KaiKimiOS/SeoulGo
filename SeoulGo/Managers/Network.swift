@@ -7,27 +7,31 @@
 
 import SwiftUI
 
-class Network {
-        
+final class Network {
+    
     private init() { }
     
-    @MainActor
-    static func getData() async  -> [SeoulDataModel] {
+    deinit {
+        print("deinit Network")
         
-        let apiKey = "647879614473646636395064566e6a"
-        let urlString = "http://openAPI.seoul.go.kr:8088/\(apiKey)/json/ListPublicReservationSport/1/1000"
-
-        guard let url = URL(string: urlString) else {
-            print(URLError.errorDomain)
-            return [] }
-        do {
-            let (data,_) = try await URLSession.shared.data(from: url)
-            let finalData = try JSONDecoder().decode(SeoulDataModel.self, from: data)
-            return [finalData]
-        } catch {
-            debugPrint("\(String(describing: error))")
-        }
-        return []
     }
+    
+    @MainActor
+    static func getData() async throws -> [SeoulDataModel] {
+        
+        let apiKey = Bundle.main.infoDictionary?["APIKEY"] as! String
+        let urlString = "http://openAPI.seoul.go.kr:8088/\(apiKey)/json/ListPublicReservationSport/1/1000"
+        
+        guard let url = URL(string: urlString) else {
+            throw NetworError.noInternet
+        }
+      
+        let (data,response) = try await URLSession.shared.data(from: url)
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {throw NetworError.serverError}
+        guard let finalData = try? JSONDecoder().decode(SeoulDataModel.self, from: data) else {throw NetworError.timeout}
+        
+        return [finalData]
 
+    }
+    
 }
