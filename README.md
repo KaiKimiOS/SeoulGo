@@ -1,11 +1,6 @@
 
 # SeoulGo 
 
-![Simulator Screen Recording - iPhone 15 - 2024-05-07 at 16]
-
-
-
-
 서울시 공공 API를 활용하여 체육시설 예약 정보를 실시간으로 제공하는 앱입니다.
 
 <img width="1430" alt="스크린샷 2024-05-07 오후 4 42 23" src="https://github.com/KaiKimiOS/SeoulGo/assets/110045441/d39a57ea-3c1c-49d9-a203-422b4b7ea722">
