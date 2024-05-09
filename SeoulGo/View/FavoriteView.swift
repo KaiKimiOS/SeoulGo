@@ -36,6 +36,7 @@ struct FavoriteView: View {
                 
                 GoogleBanner()
                     .frame(width: 320, height: 50)
+                
             }
             .navigationTitle("즐겨찾기")
             .navigationBarTitleDisplayMode(.inline)

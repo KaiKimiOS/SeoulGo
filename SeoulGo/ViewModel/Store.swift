@@ -12,7 +12,6 @@ final class Store: ObservableObject {
     
     @Published var storeManager:[Row] = []
     @Published var favoriteLists:[Row] = []
-    //@Published var selectedResults:[Row] = []
     @Published var allSports:[String] = []
     @Published var finalInformation:[Row] = []
     @Published var availableArea:[String] = []

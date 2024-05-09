@@ -86,21 +86,13 @@ extension String {
         let finalDate = DateFormatter.formatter.string(from: firstDate1!)
         
         return finalDate
-        
-//        let firstDateFormatter = DateFormatter()
-//        firstDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-//        let firstDate = firstDateFormatter.date(from: self)
-//        
-//        firstDateFormatter.dateFormat = "yyyy-MM-dd"
-//        firstDateFormatter.locale = Locale(identifier: "ko-KR")
-//        let secondDate = firstDateFormatter.string(from: firstDate!)
-//        
-//        return secondDate
     }
     
 }
 
+//DateFormatter 싱글톤 생성해주기
 extension DateFormatter {
+    
     static let formatter: DateFormatter = {
         let format =  DateFormatter()
         format.locale = .init(identifier: "ko-KR")

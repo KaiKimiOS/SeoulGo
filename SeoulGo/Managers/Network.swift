@@ -9,11 +9,11 @@ import SwiftUI
 
 final class Network {
     
+    //전역이기에 또 생성되게 함을 막아주기 위해서 private 접근제어 설정
     private init() { }
     
     deinit {
         print("deinit Network")
-        
     }
     
     @MainActor

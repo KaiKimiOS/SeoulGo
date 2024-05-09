@@ -63,15 +63,14 @@ struct DetailView:View {
             })
             .modifier(ToastAlertModifier(isPresented: $isToastAlertClicked, title: starDescription))
             .task {
+                
                 do{
                     self.mainImage = try await cachedImage(urlString: information.imageURL)
                 }catch {
                     self.mainImage = Image(systemName: "xmark")
-                    print("error in Image")
                 }
             }
             .onAppear {
-            
                 isNaverMapButtonClicked = true
                 checkingFavoriteList(id: information.serviceID)
             }
@@ -151,9 +150,9 @@ struct DetailView:View {
     
     @ViewBuilder
     private var HeaderImageView: some View {
-        VStack {
         
-                
+        VStack {
+            
             if let mainImage {
                 mainImage
                     .resizable()
@@ -316,106 +315,6 @@ struct DetailView:View {
             GoogleBanner()
         }
     }
-    
-    
-    
-    //        func reverseGeo(lat:Double, lng:Double) async -> [ReverseGeoModel] {
-    //            let clientId:String = "2lm2knho6r"
-    //            let clientSecret:String = "KN3UDAq2bPAcOjOFkLoEPpijfOOvphn8g26BjeBb"
-    //
-    //
-    //            let coords = "\(lat),\(lng)"
-    //            let output = "json"
-    //            let orders = "addr,admcode,roadaddr"
-    //            let endpoint = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
-    //
-    //            let url = "\(endpoint)?coords=\(coords)&orders=\(orders)&output=\(output)"
-    //
-    //
-    //            let headers: [String: String] = [
-    //                "X-NCP-APIGW-API-KEY-ID": clientId,
-    //                "X-NCP-APIGW-API-KEY": clientSecret,
-    //            ]
-    //
-    //            guard let url1 = URL(string: url) else {
-    //
-    //                print(coords)
-    //                print(URLError.errorDomain)
-    //                print("2️⃣")
-    //                return []}
-    //
-    //            do {
-    //                print(url1)
-    //                print(coords)
-    //                var urlRequest = URLRequest(url: url1)
-    //                urlRequest.setValue(clientSecret, forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
-    //                urlRequest.setValue(clientId, forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
-    //                //
-    //                print(urlRequest.allHTTPHeaderFields)
-    //                //            urlRequest.allHTTPHeaderFields = headers
-    //                let (data,response) = try await URLSession.shared.data(for: urlRequest)
-    //                guard let httpresponse = response as? HTTPURLResponse, (200...299).contains(httpresponse.statusCode) else {
-    //                    print(URLError.errorDomain)
-    //                    print(URLError.badServerResponse)
-    //                    print(URLError.badURL)
-    //                    print("3️⃣")
-    //                    return []
-    //                }
-    //
-    //                let finalData = try JSONDecoder().decode(ReverseGeoModel.self, from: data)
-    //                return [finalData]
-    //            } catch {
-    //                debugPrint("4️⃣\(String(describing: error))")
-    //            }
-    //            return []
-    //        }
 }
 
 
-
-//#Preview {
-//    DetailView(information: Row(gubun: "구분", serviceID: "아이디", maxClass: "큰클래스", minClass: "작은클래스", serviceStatus: "상태", serviceName: "네임", payment: "ㄷ돈", placeName: "", userTarget: "1", informationURL: "1", locationX: "1", locationY: "1", serviceStartDate: "1", serviceEndDate: "1", registerStartDate: "1", registerEndDate: "1", areaName: "1", imageURL: "https://yeyak.seoul.go.kr/web/common/file/FileDown.do?file_id=1699407981833BDABH9JL28HPGSME2RMXBEFMX"))
-//}
-
-//BannerView()
-//    .frame(width: 320, height: 50)
-//    .border(.black)
-
-
-
-
-//저장되면 토스트 메세지 "저장되었습니다"
-//
-//HStack(spacing: 15) {
-//    Text("주소      ")
-//    Text("\(information.areaName)" + " - \(information.placeName)" )
-//
-//}
-//.modifier(detailMoidifier())
-//
-//HStack(spacing: 15){
-//    Text("접수상태")
-//    Text("\(information.serviceStatus)" + "(\(information.payment))")
-//
-//}
-//.modifier(detailMoidifier())
-//
-//HStack(spacing: 15){
-//
-//    Text("접수기간")
-//    Text("\(information.registerStartDate)" + " ~ \(information.registerEndDate)" )
-//
-//}
-//.modifier(detailMoidifier())
-//
-//if information.telephone != "" {
-//    HStack(spacing: 15){
-//        Text("전화번호")
-//        Text("\(information.telephone)")
-//            .foregroundStyle(.blue)
-//            .onTapGesture {
-//                makePhoneCall()
-//            }
-//    }
-//    .modifier(detailMoidifier())
-//}
